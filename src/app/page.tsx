@@ -1,41 +1,67 @@
-import Link from "next/link";
-import { type SanityDocument } from "next-sanity";
-
 import { client } from "@/sanity/lib/client";
+import { Hero } from "@/components/Hero";
+import { FeaturedAnimals } from "@/components/FeaturedAnimals";
+import { ImpactStats } from "@/components/ImpactStats";
+import { HowToHelp } from "@/components/HowToHelp";
+import { SuccessStories } from "@/components/SuccessStories";
+import { Newsletter } from "@/components/Newsletter";
+import { Footer } from "@/components/Footer";
 
-const POSTS_QUERY = `*[
-  _type == "post"
-  && defined(slug.current)
-]|order(publishedAt desc)[0...10]{_id, title, slug, publishedAt}`;
+async function getAnimals() {
+    const animals = await client.fetch(`
+    *[_type == "animal" && status == "available"] | order(_createdAt desc)[0...6] {
+      _id,
+      name,
+      slug,
+      species,
+      age,
+      gender,
+      description,
+      image {
+        asset->{
+          _id,
+          url
+        },
+        alt
+      }
+    }
+  `);
+    return animals;
+}
 
-const options = { next: { revalidate: 30 } };
+async function getSuccessStories() {
+    const stories = await client.fetch(`
+    *[_type == "successStory"] | order(adoptionDate desc)[0...3] {
+      _id,
+      animalName,
+      adopterName,
+      adoptionDate,
+      story,
+      image {
+        asset->{
+          _id,
+          url
+        },
+        alt
+      }
+    }
+  `);
+    return stories;
+}
 
-export default async function IndexPage() {
-    const posts = await client.fetch<SanityDocument[]>(
-        POSTS_QUERY,
-        {},
-        options,
-    );
+export default async function Home() {
+    const animals = await getAnimals();
+    const successStories = await getSuccessStories();
 
     return (
-        <main className="container mx-auto min-h-screen max-w-3xl p-8">
-            <h1 className="text-4xl font-bold mb-8">Posts</h1>
-            <ul className="flex flex-col gap-y-4">
-                {posts.map((post) => (
-                    <li className="hover:underline" key={post._id}>
-                        <Link href={`/${post.slug.current}`}>
-                            <h2 className="text-xl font-semibold">
-                                {post.title}
-                            </h2>
-                            <p>
-                                {new Date(
-                                    post.publishedAt,
-                                ).toLocaleDateString()}
-                            </p>
-                        </Link>
-                    </li>
-                ))}
-            </ul>
+        <main className="min-h-screen bg-white">
+            <Hero />
+            <FeaturedAnimals animals={animals} />
+            <ImpactStats />
+            <HowToHelp />
+            <SuccessStories stories={successStories} />
+            <Newsletter />
+            <Footer />
         </main>
     );
 }

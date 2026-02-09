@@ -1,0 +1,120 @@
+"use client";
+
+import { motion } from "framer-motion";
+import Image from "next/image";
+import { Heart, Quote } from "lucide-react";
+
+interface SuccessStory {
+    _id: string;
+    animalName: string;
+    adopterName: string;
+    adoptionDate: string;
+    story: string;
+    image?: {
+        asset: {
+            url: string;
+        };
+        alt?: string;
+    };
+}
+
+interface SuccessStoriesProps {
+    stories: SuccessStory[];
+}
+
+export function SuccessStories({ stories }: SuccessStoriesProps) {
+    return (
+        <section className="bg-white px-6 py-24 lg:px-8">
+            <div className="mx-auto max-w-7xl">
+                <motion.div
+                    className="text-center"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5 }}
+                >
+                    <div className="inline-flex items-center gap-2 rounded-full bg-pink-100 px-4 py-2 text-sm font-semibold text-pink-700">
+                        <Heart className="h-4 w-4 fill-current" />
+                        Happy Endings
+                    </div>
+                    <h2 className="mt-6 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+                        Success Stories
+                    </h2>
+                    <p className="mt-4 text-lg text-gray-600">
+                        These heartwarming tales show the difference adoption
+                        makes
+                    </p>
+                </motion.div>
+
+                <div className="mt-16 grid gap-8 lg:grid-cols-3">
+                    {stories.map((story, index) => (
+                        <motion.div
+                            key={story._id}
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.5, delay: index * 0.1 }}
+                            className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-pink-50 to-purple-50 p-8"
+                        >
+                            {/* Quote icon */}
+                            <div className="absolute right-4 top-4 opacity-10">
+                                <Quote className="h-24 w-24 text-pink-600" />
+                            </div>
+
+                            {/* Image */}
+                            {story.image?.asset?.url && (
+                                <div className="relative mb-6 aspect-square overflow-hidden rounded-xl">
+                                    <Image
+                                        src={story.image.asset.url}
+                                        alt={
+                                            story.image.alt ||
+                                            `${story.animalName} with ${story.adopterName}`
+                                        }
+                                        fill
+                                        className="object-cover"
+                                    />
+                                </div>
+                            )}
+
+                            {/* Content */}
+                            <div className="relative">
+                                <h3 className="text-xl font-bold text-gray-900">
+                                    {story.animalName}
+                                </h3>
+                                <p className="mt-1 text-sm text-gray-600">
+                                    Adopted by {story.adopterName}
+                                </p>
+
+                                <p className="mt-4 text-sm leading-relaxed text-gray-700">
+                                    {story.story}
+                                </p>
+
+                                <div className="mt-6 flex items-center gap-2 text-xs text-gray-500">
+                                    <Heart className="h-4 w-4 fill-pink-500 text-pink-500" />
+                                    {new Date(
+                                        story.adoptionDate,
+                                    ).toLocaleDateString("en-US", {
+                                        month: "long",
+                                        year: "numeric",
+                                    })}
+                                </div>
+                            </div>
+                        </motion.div>
+                    ))}
+                </div>
+
+                {/* If no stories, show placeholder */}
+                {stories.length === 0 && (
+                    <div className="mt-16 text-center">
+                        <div className="inline-flex rounded-full bg-pink-100 p-6">
+                            <Heart className="h-12 w-12 text-pink-600" />
+                        </div>
+                        <p className="mt-4 text-gray-600">
+                            Our success stories will appear here soon!
+                        </p>
+                    </div>
+                )}
+            </div>
+        </section>
+    );
+}

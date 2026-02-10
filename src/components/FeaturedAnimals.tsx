@@ -63,6 +63,19 @@ export function FeaturedAnimals({ animals }: FeaturedAnimalsProps) {
                 },
             },
         },
+        {
+            id: 3,
+            name: "Πάμπλο",
+            slug: "test",
+            species: "Σκύλος",
+            age: 10,
+            gender: "Αρσενικό",
+            image: {
+                asset: {
+                    url: "/dog-high-quality-ultra-hd-8k-hdr-free-photo.jpg",
+                },
+            },
+        },
     ];
 
     const item = {

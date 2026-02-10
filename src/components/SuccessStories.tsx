@@ -48,6 +48,18 @@ export function SuccessStories({ stories }: SuccessStoriesProps) {
                 },
             },
         },
+        {
+            id: 3,
+            animalName: "Πάμπλο",
+            adopterName: "Antony Kotsampaseris",
+            adoptionDate: "2023-06-18",
+            story: "Timos is a beautiful and energetic kitten who loves to play with his toys. He's been adopted by Antony Kotsampaseris, a passionate animal lover who has been raising him since he was just a few weeks old.",
+            image: {
+                asset: {
+                    url: "/dog-high-quality-ultra-hd-8k-hdr-free-photo.jpg",
+                },
+            },
+        },
     ];
 
     return (

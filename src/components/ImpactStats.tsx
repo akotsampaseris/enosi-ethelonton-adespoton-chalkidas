@@ -8,28 +8,29 @@ const stats = [
         icon: Heart,
         value: "500+",
         label: "Ζώα Διασώθηκαν",
-        description: "Saved from the streets",
+        description: "Αδέσποτα ζώα βρήκαν σπίτι και έφυγαν από τον δρόμο.",
         color: "from-pink-500 to-rose-500",
     },
     {
         icon: Home,
         value: "300+",
         label: "Επιτυχείς Υιοθεσίες",
-        description: "Forever homes found",
+        description: "Αδέσποτα ζώα βρήκαν σπίτι και έφυγαν από τον δρόμο.",
         color: "from-purple-500 to-pink-500",
     },
     {
         icon: Stethoscope,
         value: "1,000+",
         label: "Ολοκληρωμένες Θεραπείες",
-        description: "Health care provided",
+        description: "Ιατρική φροντίδα σε χιλιάδες ζώα.",
         color: "from-blue-500 to-purple-500",
     },
     {
         icon: Users,
         value: "50+",
         label: "Ενεργοί Εθελοντές",
-        description: "Dedicated helpers",
+        description:
+            "Άνθρωποι που αφιερώνουν τον χρόνο τους στη φροντίδα των ζώων.",
         color: "from-pink-500 to-purple-500",
     },
 ];

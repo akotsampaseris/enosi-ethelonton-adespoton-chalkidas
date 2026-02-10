@@ -7,28 +7,28 @@ const stats = [
     {
         icon: Heart,
         value: "500+",
-        label: "Animals Rescued",
+        label: "Ζώα Διασώθηκαν",
         description: "Saved from the streets",
         color: "from-pink-500 to-rose-500",
     },
     {
         icon: Home,
         value: "300+",
-        label: "Successful Adoptions",
+        label: "Επιτυχείς Υιοθεσίες",
         description: "Forever homes found",
         color: "from-purple-500 to-pink-500",
     },
     {
         icon: Stethoscope,
         value: "1,000+",
-        label: "Medical Treatments",
+        label: "Ολοκληρωμένες Θεραπείες",
         description: "Health care provided",
         color: "from-blue-500 to-purple-500",
     },
     {
         icon: Users,
         value: "50+",
-        label: "Active Volunteers",
+        label: "Ενεργοί Εθελοντές",
         description: "Dedicated helpers",
         color: "from-pink-500 to-purple-500",
     },
@@ -49,11 +49,10 @@ export function ImpactStats() {
                     transition={{ duration: 0.5 }}
                 >
                     <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
-                        Our Impact in Numbers
+                        Η Δράση μας σε Αριθμούς
                     </h2>
                     <p className="mt-4 text-lg text-pink-100">
-                        Together, we are making a real difference in our
-                        community
+                        Μαζί κάνουμε τη διαφορά στον δήμο μας.
                     </p>
                 </motion.div>
 
@@ -94,8 +93,8 @@ export function ImpactStats() {
                     transition={{ duration: 0.5, delay: 0.4 }}
                 >
                     <p className="text-lg text-white">
-                        And we are just getting started. Help us reach even more
-                        animals in need.
+                        Βοήθησε μας να φροντίσουμε περισσότερα ζωάκια που έχουν
+                        την ανάγκη μας.
                     </p>
                 </motion.div>
             </div>

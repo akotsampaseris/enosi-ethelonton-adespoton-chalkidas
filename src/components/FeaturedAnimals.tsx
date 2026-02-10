@@ -6,11 +6,11 @@ import Image from "next/image";
 import { Heart, Calendar, MapPin } from "lucide-react";
 
 interface Animal {
-    _id: string;
+    id: number | string;
     name: string;
-    slug: { current: string };
+    slug: string;
     species: string;
-    age: string;
+    age: string | number;
     gender: string;
     description?: string;
     image?: {
@@ -36,6 +36,35 @@ export function FeaturedAnimals({ animals }: FeaturedAnimalsProps) {
         },
     };
 
+    animals = [
+        {
+            id: 1,
+            name: "Τιμός",
+            slug: "test",
+            species: "Σκύλος",
+            age: 5,
+            gender: "Αρσενικό",
+            image: {
+                asset: {
+                    url: "/dog-high-quality-ultra-hd-8k-hdr-free-photo.jpg",
+                },
+            },
+        },
+        {
+            id: 2,
+            name: "Σόνια",
+            slug: "test",
+            species: "Γάτα",
+            age: 10,
+            gender: "Θηλυκό",
+            image: {
+                asset: {
+                    url: "/dog-high-quality-ultra-hd-8k-hdr-free-photo.jpg",
+                },
+            },
+        },
+    ];
+
     const item = {
         hidden: { opacity: 0, y: 20 },
         show: { opacity: 1, y: 0 },
@@ -52,11 +81,10 @@ export function FeaturedAnimals({ animals }: FeaturedAnimalsProps) {
                         transition={{ duration: 0.5 }}
                     >
                         <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-                            Meet Your New Best Friend
+                            Βρες τον νέο σου φίλο
                         </h2>
                         <p className="mt-4 text-lg text-gray-600">
-                            These wonderful animals are waiting for their
-                            forever home
+                            Τα ζωάκια που περιμένουν το παντοτινό τους σπίτι
                         </p>
                     </motion.div>
                 </div>
@@ -70,12 +98,12 @@ export function FeaturedAnimals({ animals }: FeaturedAnimalsProps) {
                 >
                     {animals.map((animal) => (
                         <motion.div
-                            key={animal._id}
+                            key={animal.id}
                             variants={item}
                             className="group relative overflow-hidden rounded-2xl bg-white shadow-lg ring-1 ring-gray-900/5 transition hover:shadow-2xl"
                         >
                             <Link
-                                href={`/animals/${animal.slug.current}`}
+                                href={`/animals/${animal.slug}`}
                                 className="block"
                             >
                                 {/* Image */}
@@ -130,16 +158,16 @@ export function FeaturedAnimals({ animals }: FeaturedAnimalsProps) {
                                     <div className="mt-6 flex items-center gap-4 text-xs text-gray-500">
                                         <span className="flex items-center gap-1">
                                             <MapPin className="h-4 w-4" />
-                                            Athens, Greece
+                                            Χαλκίδα, Ελλάδα
                                         </span>
                                         <span className="flex items-center gap-1">
                                             <Calendar className="h-4 w-4" />
-                                            Available Now
+                                            Διαθέσιμο
                                         </span>
                                     </div>
 
                                     <button className="mt-6 w-full rounded-full bg-pink-600 py-3 text-sm font-semibold text-white transition hover:bg-pink-700">
-                                        Learn More
+                                        Μάθε περισσότερα
                                     </button>
                                 </div>
                             </Link>
@@ -152,7 +180,7 @@ export function FeaturedAnimals({ animals }: FeaturedAnimalsProps) {
                         href="/animals"
                         className="inline-flex items-center gap-2 rounded-full border-2 border-pink-600 px-8 py-3 text-sm font-semibold text-pink-600 transition hover:bg-pink-50"
                     >
-                        View All Animals
+                        Δείτε όλα τα ζωάκια
                         <span aria-hidden="true">→</span>
                     </Link>
                 </div>

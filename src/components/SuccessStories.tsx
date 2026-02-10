@@ -5,9 +5,9 @@ import Image from "next/image";
 import { Heart, Quote } from "lucide-react";
 
 interface SuccessStory {
-    _id: string;
+    id: string | number;
     animalName: string;
-    adopterName: string;
+    adopterName?: string;
     adoptionDate: string;
     story: string;
     image?: {
@@ -23,6 +23,33 @@ interface SuccessStoriesProps {
 }
 
 export function SuccessStories({ stories }: SuccessStoriesProps) {
+    stories = [
+        {
+            id: 1,
+            animalName: "Timos",
+            adopterName: "Antony Kotsampaseris",
+            adoptionDate: "2023-06-18",
+            story: "Timos is a beautiful and energetic kitten who loves to play with his toys. He's been adopted by Antony Kotsampaseris, a passionate animal lover who has been raising him since he was just a few weeks old.",
+            image: {
+                asset: {
+                    url: "/dog-high-quality-ultra-hd-8k-hdr-free-photo.jpg",
+                },
+            },
+        },
+        {
+            id: 2,
+            animalName: "Sonia",
+            adopterName: "Antony Kotsampaseris",
+            adoptionDate: "2023-06-18",
+            story: "Timos is a beautiful and energetic kitten who loves to play with his toys. He's been adopted by Antony Kotsampaseris, a passionate animal lover who has been raising him since he was just a few weeks old.",
+            image: {
+                asset: {
+                    url: "/dog-high-quality-ultra-hd-8k-hdr-free-photo.jpg",
+                },
+            },
+        },
+    ];
+
     return (
         <section className="bg-white px-6 py-24 lg:px-8">
             <div className="mx-auto max-w-7xl">
@@ -38,18 +65,18 @@ export function SuccessStories({ stories }: SuccessStoriesProps) {
                         Happy Endings
                     </div>
                     <h2 className="mt-6 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-                        Success Stories
+                        Επιτυχημένες Υιοθεσίες
                     </h2>
                     <p className="mt-4 text-lg text-gray-600">
-                        These heartwarming tales show the difference adoption
-                        makes
+                        Αυτές οι όμορφες ιστορίες δείχνουν τη διαφορά που μπορεί
+                        να φέρει μια υιοθεσία
                     </p>
                 </motion.div>
 
                 <div className="mt-16 grid gap-8 lg:grid-cols-3">
                     {stories.map((story, index) => (
                         <motion.div
-                            key={story._id}
+                            key={story.id}
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
@@ -82,7 +109,7 @@ export function SuccessStories({ stories }: SuccessStoriesProps) {
                                     {story.animalName}
                                 </h3>
                                 <p className="mt-1 text-sm text-gray-600">
-                                    Adopted by {story.adopterName}
+                                    Νέος κηδεμόνας: {story.adopterName}
                                 </p>
 
                                 <p className="mt-4 text-sm leading-relaxed text-gray-700">
@@ -110,7 +137,7 @@ export function SuccessStories({ stories }: SuccessStoriesProps) {
                             <Heart className="h-12 w-12 text-pink-600" />
                         </div>
                         <p className="mt-4 text-gray-600">
-                            Our success stories will appear here soon!
+                            Οι υιοθεσίες μας θα εμφανιστούν εδώ σύντομα!
                         </p>
                     </div>
                 )}

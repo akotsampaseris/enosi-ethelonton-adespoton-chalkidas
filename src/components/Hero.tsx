@@ -22,24 +22,29 @@ export function Hero() {
                     >
                         {/* Logo */}
                         <div className="mb-8">
-                            <Image
-                                src="/logo.png"
-                                alt="Animal Rights Volunteer Group"
-                                width={200}
-                                height={200}
-                                className="h-32 w-auto"
-                            />
+                            <Link
+                                href="/"
+                                className="flex items-center gap-x-4"
+                            >
+                                <Image
+                                    src="/logo.png"
+                                    alt="Animal Rights Volunteer Group"
+                                    width={200}
+                                    height={200}
+                                    className="h-32 w-auto"
+                                />
+                            </Link>
                         </div>
 
                         <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl lg:text-6xl">
-                            Every animal deserves a{" "}
-                            <span className="text-pink-600">loving home</span>
+                            Σε κάθε ζώο αξίζει ένα{" "}
+                            <span className="text-pink-600">ζεστό σπίτι</span>
                         </h1>
 
                         <p className="mt-6 text-lg leading-8 text-gray-600">
-                            We rescue, care for, and rehome stray animals in our
-                            community. Together, we can give them the second
-                            chance they deserve.
+                            Διασώζουμε, φροντίζουμε και βρίσκουμε ένα σπίτι για
+                            τα αδέσποτα ζώα στον δήμο μας. Σε κάθε ζώο αξίζει
+                            ένα ζεστό σπίτι.
                         </p>
 
                         <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:gap-6">
@@ -48,7 +53,7 @@ export function Hero() {
                                 className="group inline-flex items-center justify-center gap-2 rounded-full bg-pink-600 px-8 py-4 text-base font-semibold text-white shadow-lg transition hover:bg-pink-700 hover:shadow-xl"
                             >
                                 <Heart className="h-5 w-5" />
-                                Adopt a Friend
+                                Υιοθέτησε ένα ζωάκι
                                 <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
                             </Link>
 
@@ -56,7 +61,7 @@ export function Hero() {
                                 href="/donate"
                                 className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-pink-600 px-8 py-4 text-base font-semibold text-pink-600 transition hover:bg-pink-50"
                             >
-                                Support Our Mission
+                                Στήριξε την αποστολή μας
                             </Link>
                         </div>
 
@@ -67,7 +72,7 @@ export function Hero() {
                                     500+
                                 </div>
                                 <div className="mt-1 text-sm text-gray-600">
-                                    Animals Rescued
+                                    Ζώα Διασώθηκαν
                                 </div>
                             </div>
                             <div>
@@ -75,7 +80,7 @@ export function Hero() {
                                     300+
                                 </div>
                                 <div className="mt-1 text-sm text-gray-600">
-                                    Happy Adoptions
+                                    Υιοθεσίες
                                 </div>
                             </div>
                             <div>
@@ -83,7 +88,7 @@ export function Hero() {
                                     24/7
                                 </div>
                                 <div className="mt-1 text-sm text-gray-600">
-                                    Care & Support
+                                    Φροντίδα & Στήριξη
                                 </div>
                             </div>
                         </div>
@@ -103,15 +108,15 @@ export function Hero() {
                                 HERO IMAGE
                             </div>
                             {/* 
-              Uncomment when you have actual image:
-              <Image
-                src="/hero-dog.jpg"
-                alt="Happy adopted dog"
-                fill
-                className="object-cover"
-                priority
-              />
-              */}
+                                Uncomment when you have actual image:
+                                <Image
+                                    src="/hero-dog.jpg"
+                                    alt="Happy adopted dog"
+                                    fill
+                                    className="object-cover"
+                                    priority
+                                />
+                                */}
                         </div>
 
                         {/* Floating badge */}
@@ -132,10 +137,10 @@ export function Hero() {
                                 </div>
                                 <div>
                                     <div className="font-semibold text-gray-900">
-                                        50+ Volunteers
+                                        50+ Εθελοντές
                                     </div>
                                     <div className="text-sm text-gray-600">
-                                        Making a difference
+                                        κάνουν τη διαφορά
                                     </div>
                                 </div>
                             </div>

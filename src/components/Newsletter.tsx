@@ -21,6 +21,7 @@ export function Newsletter() {
             setStatus("success");
             setEmail("");
         } catch (error) {
+            console.log(error);
             setStatus("error");
         }
     };
@@ -46,11 +47,11 @@ export function Newsletter() {
                 </div>
 
                 <h2 className="mt-6 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-                    Get Weekly Updates
+                    Μηνιαία Newsletter
                 </h2>
                 <p className="mt-4 text-lg text-gray-600">
-                    Receive heartwarming stories, adoption alerts, and ways you
-                    can help directly to your inbox.
+                    Θα λαμβάνεις τα νέα μας, τα διαθέσιμα ζωάκια μας, και τις
+                    τελευταίες υιοθεσίες μας.
                 </p>
 
                 <form onSubmit={handleSubmit} className="mt-10">
@@ -75,12 +76,12 @@ export function Newsletter() {
                             {status === "loading" ? (
                                 <>
                                     <span className="h-5 w-5 animate-spin rounded-full border-2 border-white border-t-transparent" />
-                                    Subscribing...
+                                    Γίνεται εγγραφή...
                                 </>
                             ) : (
                                 <>
                                     <Heart className="h-5 w-5" />
-                                    Subscribe
+                                    Εγγραφή
                                 </>
                             )}
                         </button>
@@ -92,8 +93,8 @@ export function Newsletter() {
                             animate={{ opacity: 1, y: 0 }}
                             className="mt-4 text-sm font-medium text-green-600"
                         >
-                            ✓ Welcome to our community! Check your email to
-                            confirm.
+                            ✓ Καλώς ήρθες στην κοινότητα μας! Έλεγξε το email
+                            σου για να το επιβεβαιώσεις!
                         </motion.p>
                     )}
 
@@ -103,37 +104,37 @@ export function Newsletter() {
                             animate={{ opacity: 1, y: 0 }}
                             className="mt-4 text-sm font-medium text-red-600"
                         >
-                            Something went wrong. Please try again.
+                            Κάτι πήγε στραβά. Προσπάθησε ξανά σε λίγο.
                         </motion.p>
                     )}
 
                     <p className="mt-4 text-sm text-gray-500">
-                        We respect your privacy. Unsubscribe anytime. No spam,
-                        we promise! 🐾
+                        Σεβόμαστε την ιδιωτικότητα σου. Μπορείς να βγεις όποτε
+                        θέλεις. Αλήθεια! 🐾
                     </p>
                 </form>
 
                 {/* Social proof */}
                 <div className="mt-12 flex items-center justify-center gap-8 text-sm text-gray-600">
                     <div>
-                        <div className="text-2xl font-bold text-pink-600">
+                        <div className="text-lg font-bold text-pink-600">
                             2,000+
                         </div>
                         <div>Subscribers</div>
                     </div>
                     <div className="h-12 w-px bg-gray-300" />
                     <div>
-                        <div className="text-2xl font-bold text-pink-600">
-                            Weekly
+                        <div className="text-lg font-bold text-pink-600">
+                            Μηνιαία
                         </div>
                         <div>Newsletter</div>
                     </div>
                     <div className="h-12 w-px bg-gray-300" />
                     <div>
-                        <div className="text-2xl font-bold text-pink-600">
-                            No Spam
+                        <div className="text-lg font-bold text-pink-600">
+                            Χωρίς spam
                         </div>
-                        <div>Guaranteed</div>
+                        <div>Αλήθεια</div>
                     </div>
                 </div>
             </motion.div>

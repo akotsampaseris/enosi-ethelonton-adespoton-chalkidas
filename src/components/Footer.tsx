@@ -4,22 +4,22 @@ import { Facebook, Instagram, Mail, Phone, MapPin, Heart } from "lucide-react";
 
 const navigation = {
     adopt: [
-        { name: "Available Animals", href: "/animals" },
-        { name: "Adoption Process", href: "/adopt/process" },
-        { name: "Adoption FAQ", href: "/adopt/faq" },
-        { name: "Success Stories", href: "/stories" },
+        { name: "Διαθέσιμα Ζώα", href: "/animals" },
+        { name: "Διαδικασία Υιοθεσίας", href: "/adopt/process" },
+        { name: "Συχνές Ερωτήσεις", href: "/adopt/faq" },
+        { name: "Ιστορίες Υιοθεσίας", href: "/stories" },
     ],
     support: [
-        { name: "Donate", href: "/donate" },
-        { name: "Volunteer", href: "/volunteer" },
-        { name: "Foster Program", href: "/foster" },
-        { name: "Sponsor an Animal", href: "/sponsor" },
+        { name: "Δωρεές", href: "/donate" },
+        { name: "Γίνε Εθελοντής", href: "/volunteer" },
+        { name: "Φιλοξένησε ένα ζώο", href: "/foster" },
+        { name: "Γίνε χορηγός ενός ζώου", href: "/sponsor" },
     ],
     about: [
-        { name: "Our Mission", href: "/about" },
-        { name: "Our Team", href: "/team" },
+        { name: "Η Αποστολή μας", href: "/about" },
+        { name: "Η Ομάδα μας", href: "/team" },
         { name: "Blog", href: "/blog" },
-        { name: "Contact Us", href: "/contact" },
+        { name: "Επικοινωνία", href: "/contact" },
     ],
 };
 
@@ -34,16 +34,19 @@ export function Footer() {
                 <div className="xl:grid xl:grid-cols-3 xl:gap-8">
                     {/* Brand column */}
                     <div className="space-y-8">
-                        <Image
-                            src="/logo.png"
-                            alt="Animal Rights Volunteer Group"
-                            width={150}
-                            height={150}
-                            className="h-24 w-auto brightness-0 invert"
-                        />
+                        <Link href="/" className="flex items-center space-x-4">
+                            <Image
+                                src="/logo.png"
+                                alt="Animal Rights Volunteer Group"
+                                width={150}
+                                height={150}
+                                className="h-24 w-auto mix-blend-difference"
+                            />
+                        </Link>
                         <p className="text-sm leading-6 text-gray-300">
-                            Rescuing, caring for, and rehoming stray animals in
-                            our community. Every animal deserves a loving home.
+                            Διασώζουμε, φροντίζουμε και βρίσκουμε ένα σπίτι για
+                            τα αδέσποτα ζώα στον δήμο μας. Σε κάθε ζώο αξίζει
+                            ένα ζεστό σπίτι.
                         </p>
 
                         {/* Contact info */}
@@ -54,7 +57,7 @@ export function Footer() {
                                     href="tel:+302101234567"
                                     className="hover:text-white transition"
                                 >
-                                    +30 210 123 4567
+                                    +30 210 210 2100
                                 </a>
                             </div>
                             <div className="flex items-center gap-2">
@@ -68,21 +71,21 @@ export function Footer() {
                             </div>
                             <div className="flex items-start gap-2">
                                 <MapPin className="h-4 w-4 mt-0.5" />
-                                <span>Athens, Greece</span>
+                                <span>Χαλκίδα, Ελλάδα</span>
                             </div>
                         </div>
 
                         {/* Social links */}
                         <div className="flex gap-4">
                             <a
-                                href="#"
+                                href="https://facebook.com/ethelontesadespotwnchalkidas"
                                 className="text-gray-400 hover:text-pink-500 transition"
                             >
                                 <span className="sr-only">Facebook</span>
                                 <Facebook className="h-6 w-6" />
                             </a>
                             <a
-                                href="#"
+                                href="https://instagram.com/enosi_ethel_adespoton_chalkidas"
                                 className="text-gray-400 hover:text-pink-500 transition"
                             >
                                 <span className="sr-only">Instagram</span>
@@ -96,7 +99,7 @@ export function Footer() {
                         <div className="md:grid md:grid-cols-2 md:gap-8">
                             <div>
                                 <h3 className="text-sm font-semibold leading-6 text-white">
-                                    Adopt
+                                    Υιοθέτησε
                                 </h3>
                                 <ul role="list" className="mt-6 space-y-4">
                                     {navigation.adopt.map((item) => (
@@ -113,7 +116,7 @@ export function Footer() {
                             </div>
                             <div className="mt-10 md:mt-0">
                                 <h3 className="text-sm font-semibold leading-6 text-white">
-                                    Support Us
+                                    Στηρίξτε μας
                                 </h3>
                                 <ul role="list" className="mt-6 space-y-4">
                                     {navigation.support.map((item) => (
@@ -131,7 +134,7 @@ export function Footer() {
                         </div>
                         <div>
                             <h3 className="text-sm font-semibold leading-6 text-white">
-                                About
+                                Σχετικά με εμάς
                             </h3>
                             <ul role="list" className="mt-6 space-y-4">
                                 {navigation.about.map((item) => (
@@ -153,8 +156,8 @@ export function Footer() {
                 <div className="mt-16 border-t border-white/10 pt-8 sm:mt-20 lg:mt-24">
                     <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-between">
                         <p className="text-xs leading-5 text-gray-400">
-                            © {new Date().getFullYear()} Animal Rights Volunteer
-                            Group. All rights reserved.
+                            © {new Date().getFullYear()} Ένωση Εθελοντών
+                            Αδέσποτων Χαλκίδας. All rights reserved.
                         </p>
                         <div className="flex items-center gap-2 text-xs text-gray-400">
                             Made with{" "}

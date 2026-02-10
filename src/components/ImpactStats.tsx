@@ -38,7 +38,7 @@ export function ImpactStats() {
     return (
         <section className="relative overflow-hidden bg-gradient-to-br from-pink-600 via-purple-600 to-pink-700 px-6 py-24 lg:px-8">
             {/* Background pattern */}
-            <div className="absolute inset-0 bg-[url('/paw-pattern.svg')] opacity-10" />
+            <div className="absolute inset-0 bg-[url('/images/paw-pattern.jpg')] opacity-5" />
 
             <div className="relative mx-auto max-w-7xl">
                 <motion.div

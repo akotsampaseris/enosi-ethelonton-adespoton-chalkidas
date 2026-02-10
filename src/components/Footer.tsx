@@ -160,7 +160,15 @@ export function Footer() {
                             Αδέσποτων Χαλκίδας. All rights reserved.
                         </p>
                         <div className="flex items-center gap-2 text-xs text-gray-400">
-                            Made with{" "}
+                            Made by
+                            <Link
+                                href="https://negativeentropy.me"
+                                target="_blank"
+                                className="text-blue-500 hover:text-pink-500"
+                            >
+                                negativeentropy.me
+                            </Link>
+                            with{" "}
                             <Heart className="h-3 w-3 fill-pink-500 text-pink-500" />{" "}
                             for animals
                         </div>

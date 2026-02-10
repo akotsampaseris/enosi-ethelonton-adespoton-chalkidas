@@ -4,12 +4,19 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 import { Heart, ArrowRight } from "lucide-react";
+import HeroImageCarousel from "./ImageCarousel";
+
+const images = [
+    "/images/carousel/1.jpeg",
+    "/images/carousel/2.jpeg",
+    "/images/carousel/3.jpeg",
+];
 
 export function Hero() {
     return (
         <section className="relative overflow-hidden bg-gradient-to-br from-pink-50 via-white to-purple-50">
             {/* Background pattern */}
-            <div className="absolute inset-0 bg-[url('/paw-pattern.svg')] opacity-5" />
+            <div className="absolute inset-0 bg-[url('/images/paw-pattern.jpg')] opacity-5" />
 
             <div className="relative mx-auto max-w-7xl px-6 py-16 sm:py-24 lg:px-8">
                 <div className="grid gap-12 lg:grid-cols-2 lg:gap-8 items-center">
@@ -101,23 +108,7 @@ export function Hero() {
                         transition={{ duration: 0.6, delay: 0.2 }}
                         className="relative"
                     >
-                        <div className="relative aspect-[4/3] overflow-hidden rounded-3xl shadow-2xl">
-                            {/* Placeholder - replace with actual hero image */}
-                            <div className="absolute inset-0 bg-gradient-to-br from-pink-400 to-purple-500" />
-                            <div className="absolute inset-0 flex items-center justify-center text-white/20 text-6xl font-bold">
-                                HERO IMAGE
-                            </div>
-                            {/* 
-                                Uncomment when you have actual image:
-                                <Image
-                                    src="/hero-dog.jpg"
-                                    alt="Happy adopted dog"
-                                    fill
-                                    className="object-cover"
-                                    priority
-                                />
-                                */}
-                        </div>
+                        <HeroImageCarousel images={images} />
 
                         {/* Floating badge */}
                         <motion.div

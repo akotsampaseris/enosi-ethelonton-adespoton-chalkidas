@@ -29,7 +29,7 @@ export function Newsletter() {
     return (
         <section className="relative overflow-hidden bg-gradient-to-br from-pink-100 via-purple-50 to-pink-50 px-6 py-24 lg:px-8">
             {/* Background decorative elements */}
-            <div className="absolute inset-0 bg-[url('/paw-pattern.svg')] opacity-5" />
+            <div className="absolute inset-0 bg-[url('/images/paw-pattern.jpg')] opacity-5" />
 
             <div className="absolute -left-10 top-20 h-64 w-64 rounded-full bg-pink-300/30 blur-3xl" />
             <div className="absolute -right-10 bottom-20 h-64 w-64 rounded-full bg-purple-300/30 blur-3xl" />
@@ -117,24 +117,24 @@ export function Newsletter() {
                 {/* Social proof */}
                 <div className="mt-12 flex items-center justify-center gap-8 text-sm text-gray-600">
                     <div>
-                        <div className="text-lg font-bold text-pink-600">
+                        <div className="text-lg lg:text-2xl font-bold text-pink-600">
                             2,000+
                         </div>
                         <div>Subscribers</div>
                     </div>
                     <div className="h-12 w-px bg-gray-300" />
                     <div>
-                        <div className="text-lg font-bold text-pink-600">
+                        <div className="text-lg lg:text-2xl font-bold text-pink-600">
                             Μηνιαία
                         </div>
                         <div>Newsletter</div>
                     </div>
                     <div className="h-12 w-px bg-gray-300" />
                     <div>
-                        <div className="text-lg font-bold text-pink-600">
+                        <div className="text-lg lg:text-2xl font-bold text-pink-600">
                             Χωρίς spam
                         </div>
-                        <div>Αλήθεια</div>
+                        <div>Εγγυημένα</div>
                     </div>
                 </div>
             </motion.div>

@@ -8,7 +8,8 @@ const ways = [
     {
         icon: Heart,
         title: "Υιοθέτησε",
-        description: "Άνοιξε την αγκαλιά σου για ένα ζωάκι.",
+        description:
+            "Άνοιξε την αγκαλιά σου για ένα ζωάκι και βρες τον καλύτερο σου φίλο.",
         cta: "Βρες τον νέο σου φίλο",
         href: "/adopt",
         color: "bg-pink-50 hover:bg-pink-100 border-pink-200",
@@ -19,7 +20,7 @@ const ways = [
         title: "Κάνε μια δωρεά",
         description:
             "Στήριξε την ιατρική φροντίδα, τις τροφές και τις φιλοξενίες που προσφέρουμε.",
-        cta: "Make a Donation",
+        cta: "Κάνε μια δωρεά",
         href: "/donate",
         color: "bg-purple-50 hover:bg-purple-100 border-purple-200",
         iconColor: "text-purple-600",
@@ -27,7 +28,7 @@ const ways = [
     {
         icon: HandHeart,
         title: "Γίνε εθελοντής",
-        description: "Έλα στην ομάδα μας και φέρε άμεσα την αλλαγή.",
+        description: "Έλα στην ομάδα μας και φέρε άμεσα την αλλαγή. ",
         cta: "Γίνε μέλος",
         href: "/volunteer",
         color: "bg-blue-50 hover:bg-blue-100 border-blue-200",
@@ -35,7 +36,7 @@ const ways = [
     },
     {
         icon: Share2,
-        title: "Διάδωσε το μήνυμα μας",
+        title: "Διάδωσε το μήνυμα",
         description: "Μοιράσου την αποστολή μας με τους δικούς σου ανθρώπους.",
         cta: "Ακολούθησε μας",
         href: "/social",

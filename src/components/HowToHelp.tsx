@@ -65,7 +65,7 @@ export function HowToHelp() {
                     </p>
                 </motion.div>
 
-                <div className="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+                <div className="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-4 items-stretch">
                     {ways.map((way, index) => (
                         <motion.div
                             key={way.title}
@@ -73,11 +73,9 @@ export function HowToHelp() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.5, delay: index * 0.1 }}
+                            className={`group block rounded-2xl border-2 ${way.color} p-8 transition`}
                         >
-                            <Link
-                                href={way.href}
-                                className={`group block rounded-2xl border-2 ${way.color} p-8 transition`}
-                            >
+                            <Link href={way.href}>
                                 <div
                                     className={`mb-6 inline-flex rounded-xl bg-white p-3 shadow-sm ${way.iconColor}`}
                                 >

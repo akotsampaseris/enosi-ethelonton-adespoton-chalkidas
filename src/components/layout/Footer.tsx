@@ -23,7 +23,7 @@ const navigation = {
     ],
 };
 
-export function Footer() {
+export default function Footer() {
     return (
         <footer className="bg-gray-900" aria-labelledby="footer-heading">
             <h2 id="footer-heading" className="sr-only">
@@ -43,11 +43,16 @@ export function Footer() {
                                 className="h-24 w-auto mix-blend-difference"
                             />
                         </Link>
-                        <p className="text-sm leading-6 text-gray-300">
-                            Διασώζουμε, φροντίζουμε και βρίσκουμε ένα σπίτι για
-                            τα αδέσποτα ζώα στον δήμο μας. Σε κάθε ζώο αξίζει
-                            ένα ζεστό σπίτι.
-                        </p>
+                        <div>
+                            <h3 className="text-xl text-white font-semibold leading-7 sm:text-inde">
+                                Ένωση Εθελοντών Αδέσποτων Χαλκίδας
+                            </h3>
+                            <p className="text-sm leading-6 text-gray-300">
+                                Διασώζουμε, φροντίζουμε και βρίσκουμε ένα σπίτι
+                                για τα αδέσποτα ζώα στον δήμο μας. Σε κάθε ζώο
+                                αξίζει ένα ζεστό σπίτι.
+                            </p>
+                        </div>
 
                         {/* Contact info */}
                         <div className="space-y-2 text-sm text-gray-300">

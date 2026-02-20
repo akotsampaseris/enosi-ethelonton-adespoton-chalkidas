@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 import { Heart, ArrowRight } from "lucide-react";
-import HeroImageCarousel from "./ImageCarousel";
+import HeroImageCarousel from "./ui/ImageCarousel";
 
 const images = [
     "/images/carousel/1.jpeg",
@@ -14,7 +14,7 @@ const images = [
 
 export function Hero() {
     return (
-        <section className="relative overflow-hidden bg-gradient-to-br from-pink-50 via-white to-purple-50">
+        <section className="relative overflow-hidden bg-purple-50">
             {/* Background pattern */}
             <div className="absolute inset-0 bg-[url('/images/paw-pattern.jpg')] opacity-5" />
 
@@ -29,7 +29,7 @@ export function Hero() {
                     >
                         {/* Logo */}
                         <div className="mb-8">
-                            <Link
+                            {/* <Link
                                 href="/"
                                 className="flex items-center gap-x-4"
                             >
@@ -40,23 +40,27 @@ export function Hero() {
                                     height={200}
                                     className="h-32 w-auto"
                                 />
-                            </Link>
+                            </Link> */}
                         </div>
-
                         <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl lg:text-6xl">
                             Σε κάθε ζώο αξίζει ένα{" "}
                             <span className="text-pink-600">ζεστό σπίτι</span>
                         </h1>
+                        <div className="mt-6 space-y-2">
+                            <h3 className="text-2xl font-semibold leading-7 sm:text-inde">
+                                Ένωση Εθελοντών Αδέσποτων Χαλκίδας
+                            </h3>
 
-                        <p className="mt-6 text-lg leading-8 text-gray-600">
-                            Διασώζουμε, φροντίζουμε και βρίσκουμε ένα σπίτι για
-                            τα αδέσποτα ζώα στον δήμο μας. Σε κάθε ζώο αξίζει
-                            ένα ζεστό σπίτι.
-                        </p>
+                            <p className="text-lg leading-7 text-gray-600">
+                                Διασώζουμε, φροντίζουμε και βρίσκουμε ένα σπίτι
+                                για τα αδέσποτα ζώα στον δήμο μας. Σε κάθε ζώο
+                                αξίζει ένα ζεστό σπίτι.
+                            </p>
+                        </div>
 
                         <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:gap-6">
                             <Link
-                                href="/adopt"
+                                href="/animals"
                                 className="group inline-flex items-center justify-center gap-2 rounded-full bg-pink-600 px-8 py-4 text-base font-semibold text-white shadow-lg transition hover:bg-pink-700 hover:shadow-xl"
                             >
                                 <Heart className="h-5 w-5" />

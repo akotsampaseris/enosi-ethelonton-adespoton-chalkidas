@@ -22,7 +22,7 @@ export async function POST(request: NextRequest) {
             process.env.ORGANIZATION_EMAIL ?? "info@enosi-ethelonton.gr";
         const fromEmail =
             process.env.NODE_ENV == "development"
-                ? "Αιτήσεις Υιοθεσίας <onboarding@resend.dev>"
+                ? "Επικοινωνία <onboarding@resend.dev>"
                 : "Επικοινωνία <contact@enosi-ethelonton.gr>";
 
         // Send email to organization

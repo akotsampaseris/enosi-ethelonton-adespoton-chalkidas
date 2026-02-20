@@ -1,4 +1,5 @@
+import { animalType } from "./animalType";
 import { postType } from "@/sanity/schemaTypes/postType";
-import { AnimalType } from "./animalType";
+import { teamMemberType } from "./teamMemberType";
 
-export const schemaTypes = [postType, AnimalType];
+export const schemaTypes = [animalType, postType, teamMemberType];

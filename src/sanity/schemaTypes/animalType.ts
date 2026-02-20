@@ -1,6 +1,6 @@
 import { defineField, defineType } from "sanity";
 
-export const AnimalType = defineType({
+export const animalType = defineType({
     name: "animal",
     title: "Ζώα προς υιοθεσία",
     type: "document",

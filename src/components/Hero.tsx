@@ -18,7 +18,7 @@ export function Hero() {
             {/* Background pattern */}
             <div className="absolute inset-0 bg-[url('/images/paw-pattern.jpg')] opacity-5" />
 
-            <div className="relative mx-auto max-w-7xl px-6 py-16 sm:py-24 lg:px-8">
+            <div className="relative mx-auto max-w-7xl px-6 py-30 sm:py-40 lg:px-8">
                 <div className="grid gap-12 lg:grid-cols-2 lg:gap-8 items-center">
                     {/* Left column - Text content */}
                     <motion.div
@@ -27,21 +27,6 @@ export function Hero() {
                         transition={{ duration: 0.6 }}
                         className="max-w-2xl"
                     >
-                        {/* Logo */}
-                        <div className="mb-8">
-                            {/* <Link
-                                href="/"
-                                className="flex items-center gap-x-4"
-                            >
-                                <Image
-                                    src="/logo.png"
-                                    alt="Animal Rights Volunteer Group"
-                                    width={200}
-                                    height={200}
-                                    className="h-32 w-auto"
-                                />
-                            </Link> */}
-                        </div>
                         <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl lg:text-6xl">
                             Σε κάθε ζώο αξίζει ένα{" "}
                             <span className="text-pink-600">ζεστό σπίτι</span>

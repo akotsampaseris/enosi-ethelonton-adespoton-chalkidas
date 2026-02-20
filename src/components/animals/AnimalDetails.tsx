@@ -422,7 +422,11 @@ export default function AnimalPage({ animal }: AnimalPageProps) {
                                         className="border-gray-300"
                                         asChild
                                     >
-                                        <Link href="/foster">Φιλοξενία</Link>
+                                        <Link
+                                            href={`/foster?animal=${animal.slug}`}
+                                        >
+                                            Φιλοξενία
+                                        </Link>
                                     </Button>
                                     <Button
                                         variant="outline"

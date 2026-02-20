@@ -25,11 +25,18 @@ export async function POST(request: NextRequest) {
             submittedAt,
         } = body;
 
+        const organizationEmail =
+            process.env.ORGANIZATION_EMAIL ?? "info@enosi-ethelonton.gr";
+        const fromEmail =
+            process.env.NODE_ENV == "development"
+                ? "Αιτήσεις Υιοθεσίας <onboarding@resend.dev>"
+                : "Αιτήσεις Υιοθεσίας <adoptions@enosi-ethelonton.gr>";
+
         // Send email to organization
         const { data: orgEmail, error: orgError } = await resend.emails.send({
             // from: "Αιτήσεις Υιοθεσίας <adoptions@enosi-ethelonton.gr>",
-            from: "onboarding@resend.dev",
-            to: process.env.ORGANIZATION_EMAIL || "info@animalrescue.gr",
+            from: fromEmail,
+            to: organizationEmail,
             subject: `Νέα Αίτηση Υιοθεσίας${animalName ? ` - ${animalName}` : ""}`,
             html: `
         <h2>Νέα Αίτηση Υιοθεσίας</h2>
@@ -77,8 +84,7 @@ export async function POST(request: NextRequest) {
         // Send confirmation email to applicant
         const { data: confirmEmail, error: confirmError } =
             await resend.emails.send({
-                // from: "Ένωση Εθελοντών Αδέσποτων <noreply@enosi-ethelonton.gr>",
-                from: "onboarding@resend.dev",
+                from: fromEmail,
                 to: email,
                 subject: `Λάβαμε την αίτησή σας για υιοθεσία${animalName ? ` - ${animalName}` : ""}`,
                 html: `

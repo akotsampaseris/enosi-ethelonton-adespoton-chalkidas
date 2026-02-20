@@ -6,7 +6,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
 import { standardSchemaResolver } from "@hookform/resolvers/standard-schema";
-import { z } from "zod/v4";
+import * as z from "zod";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -29,104 +29,60 @@ import {
 import { ArrowLeft, Heart, CheckCircle, AlertCircle } from "lucide-react";
 import { AnimalType } from "@/types/animal";
 
-interface FosterFormProps {
+interface AdoptionFormProps {
     animal?: AnimalType;
 }
 
-// Zod schema for foster form
-const fosterFormSchema = z.object({
+// Zod schema for form validation
+const adoptionFormSchema = z.object({
     // Personal Information
     fullName: z
-        .string({
-            error: "Το όνομα πρέπει να έχει τουλάχιστον 2 χαρακτήρες",
-        })
-        .min(2),
-    email: z.email({
-        error: "Μη έγκυρη διεύθυνση email",
-    }),
-    phone: z
-        .string({
-            error: "Μη έγκυρος αριθμός τηλεφώνου",
-        })
-        .min(10),
-    address: z
-        .string({
-            error: "Η διεύθυνση είναι υποχρεωτική",
-        })
-        .min(5),
-    city: z
-        .string({
-            error: "Η πόλη είναι υποχρεωτική",
-        })
-        .min(2),
+        .string()
+        .min(2, "Το ονοματεπώνυμο πρέπει να έχει τουλάχιστον 2 χαρακτήρες"),
+    email: z.email("Μη έγκυρη διεύθυνση email"),
+    phone: z.string().min(10, "Μη έγκυρος αριθμός τηλεφώνου"),
+    address: z.string().min(5, "Η διεύθυνση είναι υποχρεωτική"),
+    city: z.string().min(2, "Η πόλη είναι υποχρεωτική"),
 
     // Living Situation
-    housingType: z.enum(["apartment", "house", "other"], {
-        error: "Επιλέξτε τον τύπο κατοικίας",
-    }),
-    hasYard: z.enum(["yes", "no"], {
-        error: "Επιλέξτε αν έχετε αυλή",
-    }),
-
-    // Foster Specific
-    fosterDuration: z.enum(
-        ["1-2weeks", "1month", "2-3months", "3+months", "flexible"],
-        {
-            error: "Επιλέξτε διάρκεια φιλοξενίας",
-        },
+    housingType: z.enum(
+        ["apartment", "house", "other"],
+        "Επιλέξτε τον τύπο κατοικίας",
     ),
-    preferredTypes: z
-        .array(z.string())
-        .min(1, "Επιλέξτε τουλάχιστον έναν τύπο"),
-    canHandleMedical: z.enum(["yes", "no", "depends"], {
-        error: "Επιλέξτε αν μπορείτε να φροντίσετε ζώα με ιατρικές ανάγκες",
-    }),
-    canTransport: z.enum(["yes", "no", "sometimes"], {
-        error: "Επιλέξτε αν μπορείτε να μεταφέρετε το ζώο",
-    }),
+    hasYard: z.enum(["yes", "no"], "Επιλέξτε αν έχετε αυλή"),
 
     // Experience
-    hadPetsBefore: z.enum(["yes", "no"], {
-        error: "Επιλέξτε αν είχατε ζώα στο παρελθόν",
-    }),
+    hadPetsBefore: z.enum(["yes", "no"], "Επιλέξτε αν είχατε ζώα στο παρελθόν"),
     currentPets: z.string().optional(),
-    fosteredBefore: z.enum(["yes", "no"], {
-        error: "Επιλέξτε αν έχετε φιλοξενήσει ζώα στο παρελθόν",
-    }),
 
     // Availability
     workSchedule: z.string().min(5, "Περιγράψτε το πρόγραμμα εργασίας σας"),
+    whoWillCare: z.string().min(10, "Περιγράψτε ποιος θα φροντίζει το ζώο"),
 
     // Motivation
-    whyFoster: z.string().min(20, "Παρακαλώ γράψτε τουλάχιστον 20 χαρακτήρες"),
+    whyAdopt: z.string().min(20, "Παρακαλώ γράψτε τουλάχιστον 20 χαρακτήρες"),
 
     // Agreements
-    agreeToReturnAnimal: z
-        .boolean({
-            error: "Πρέπει να συμφωνήσετε να επιστρέψετε το ζώο",
-        })
-        .refine((val) => val === true),
-    agreeToFollowGuidelines: z
-        .boolean({
-            error: "Πρέπει να συμφωνήσετε με τις οδηγίες",
-        })
-        .refine((val) => val === true),
+    agreeToHomeVisit: z
+        .boolean()
+        .refine((val) => val === true, "Πρέπει να συμφωνήσετε με την επίσκεψη"),
+    agreeToFollowUp: z
+        .boolean()
+        .refine((val) => val === true, "Πρέπει να συμφωνήσετε με το follow-up"),
     agreeToTerms: z
-        .boolean({
-            error: "Πρέπει να αποδεχτείτε τους όρους",
-        })
-        .refine((val) => val === true),
+        .boolean()
+        .refine((val) => val === true, "Πρέπει να αποδεχτείτε τους όρους"),
 });
 
-type FosterFormValues = z.infer<typeof fosterFormSchema>;
+type AdoptionFormValues = z.infer<typeof adoptionFormSchema>;
 
-export default function FosterForm({ animal }: FosterFormProps) {
+export default function AnimalAdoptionForm({ animal }: AdoptionFormProps) {
     const [submitStatus, setSubmitStatus] = useState<
         "idle" | "success" | "error"
     >("idle");
 
-    const form = useForm<FosterFormValues>({
-        resolver: standardSchemaResolver(fosterFormSchema),
+    const form = useForm<AdoptionFormValues>({
+        resolver: standardSchemaResolver(adoptionFormSchema),
         defaultValues: {
             fullName: "",
             email: "",
@@ -135,19 +91,19 @@ export default function FosterForm({ animal }: FosterFormProps) {
             city: "",
             currentPets: "",
             workSchedule: "",
-            whyFoster: "",
-            preferredTypes: [],
-            agreeToReturnAnimal: false,
-            agreeToFollowGuidelines: false,
+            whoWillCare: "",
+            whyAdopt: "",
+            agreeToHomeVisit: false,
+            agreeToFollowUp: false,
             agreeToTerms: false,
         },
     });
 
-    const onSubmit = async (values: FosterFormValues) => {
+    const onSubmit = async (values: AdoptionFormValues) => {
         setSubmitStatus("idle");
 
         try {
-            const response = await fetch("/api/fosters", {
+            const response = await fetch("/api/adoptions", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -172,20 +128,10 @@ export default function FosterForm({ animal }: FosterFormProps) {
         }
     };
 
-    const animalTypes = [
-        { id: "puppies", label: "Κουτάβια" },
-        { id: "adult-dogs", label: "Ενήλικοι σκύλοι" },
-        { id: "senior-dogs", label: "Ηλικιωμένοι σκύλοι" },
-        { id: "kittens", label: "Γατάκια" },
-        { id: "adult-cats", label: "Ενήλικες γάτες" },
-        { id: "senior-cats", label: "Ηλικιωμένες γάτες" },
-        { id: "special-needs", label: "Ειδικές ανάγκες" },
-    ];
-
     return (
         <div className="min-h-screen bg-white">
             {/* Header */}
-            <div className="bg-gradient-to-r from-pink-500 to-pink-600 text-white py-12">
+            <div className="bg-gradient-to-r from-pink-800 to-pink to-pink-500 text-white py-12">
                 <div className="container mx-auto max-w-4xl px-4">
                     <Link
                         href={animal ? `/animals/${animal.slug}` : "/animals"}
@@ -199,39 +145,21 @@ export default function FosterForm({ animal }: FosterFormProps) {
                         </Button>
                     </Link>
 
-                    <div className="flex items-center gap-4">
+                    <div className="flex items-start gap-4">
                         <Heart className="w-12 h-12" />
                         <div>
                             <h1 className="text-4xl font-bold mb-2">
-                                Αίτηση Φιλοξενίας
+                                Αίτηση Υιοθεσίας
                             </h1>
                             {animal && (
-                                <p className="text-pink-100 text-lg">
-                                    για το {animal.name}
+                                <p className="text-pink-100 text-lg font-semibold">
+                                    για{" "}
+                                    {animal.gender == "Αρσενικό"
+                                        ? "τον"
+                                        : "την"}{" "}
+                                    {animal.name}
                                 </p>
                             )}
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            {/* Info Banner */}
-            <div className="bg-blue-50 border-b border-blue-200">
-                <div className="container mx-auto max-w-4xl px-4 py-6">
-                    <div className="flex items-start gap-3">
-                        <div className="bg-blue-500 rounded-full p-2 flex-shrink-0">
-                            <Heart className="text-white" size={20} />
-                        </div>
-                        <div>
-                            <h3 className="font-semibold text-blue-900 mb-1">
-                                Τι είναι η φιλοξενία;
-                            </h3>
-                            <p className="text-sm text-blue-700">
-                                Η φιλοξενία είναι προσωρινή φροντίδα για ένα ζώο
-                                μέχρι να βρεθεί το μόνιμο σπίτι του. Η οργάνωση
-                                μας καλύπτει τα έξοδα κτηνιάτρου και τροφής.
-                                Εσείς προσφέρετε αγάπη και ένα ασφαλές σπίτι!
-                            </p>
                         </div>
                     </div>
                 </div>
@@ -255,7 +183,8 @@ export default function FosterForm({ animal }: FosterFormProps) {
                                     {animal.name}
                                 </h3>
                                 <p className="text-sm text-gray-600">
-                                    {animal.species} • {animal.age} έτη •{" "}
+                                    {animal.species} • {animal.age}{" "}
+                                    {animal.age === 1 ? "έτους" : "χρονών"} •{" "}
                                     {animal.gender}
                                 </p>
                             </div>
@@ -277,8 +206,8 @@ export default function FosterForm({ animal }: FosterFormProps) {
                             Η αίτηση σας υποβλήθηκε επιτυχώς!
                         </h2>
                         <p className="text-green-700 mb-6">
-                            Θα επικοινωνήσουμε μαζί σας σύντομα για να
-                            συζητήσουμε τα επόμενα βήματα.
+                            Θα επικοινωνήσουμε μαζί σας σύντομα για τα επόμενα
+                            βήματα.
                         </p>
                         <Button
                             asChild
@@ -462,208 +391,7 @@ export default function FosterForm({ animal }: FosterFormProps) {
                                 </div>
                             </section>
 
-                            {/* Foster Specific Details */}
-                            <section className="bg-white rounded-2xl border border-gray-200 p-6">
-                                <h2 className="text-2xl font-bold text-gray-900 mb-6">
-                                    Λεπτομέρειες Φιλοξενίας
-                                </h2>
-
-                                <div className="space-y-4">
-                                    <FormField
-                                        control={form.control}
-                                        name="fosterDuration"
-                                        render={({ field }) => (
-                                            <FormItem>
-                                                <FormLabel>
-                                                    Πόσο καιρό μπορείτε να
-                                                    φιλοξενήσετε; *
-                                                </FormLabel>
-                                                <Select
-                                                    onValueChange={
-                                                        field.onChange
-                                                    }
-                                                    value={field.value}
-                                                >
-                                                    <FormControl>
-                                                        <SelectTrigger>
-                                                            <SelectValue placeholder="Επιλέξτε..." />
-                                                        </SelectTrigger>
-                                                    </FormControl>
-                                                    <SelectContent>
-                                                        <SelectItem value="1-2weeks">
-                                                            1-2 εβδομάδες
-                                                        </SelectItem>
-                                                        <SelectItem value="1month">
-                                                            1 μήνα
-                                                        </SelectItem>
-                                                        <SelectItem value="2-3months">
-                                                            2-3 μήνες
-                                                        </SelectItem>
-                                                        <SelectItem value="3+months">
-                                                            3+ μήνες
-                                                        </SelectItem>
-                                                        <SelectItem value="flexible">
-                                                            Ευέλικτα
-                                                        </SelectItem>
-                                                    </SelectContent>
-                                                </Select>
-                                                <FormMessage />
-                                            </FormItem>
-                                        )}
-                                    />
-
-                                    <FormField
-                                        control={form.control}
-                                        name="preferredTypes"
-                                        render={() => (
-                                            <FormItem>
-                                                <FormLabel>
-                                                    Τι τύπους ζώων μπορείτε να
-                                                    φιλοξενήσετε; * (επιλέξτε
-                                                    όσα θέλετε)
-                                                </FormLabel>
-                                                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-2">
-                                                    {animalTypes.map((type) => (
-                                                        <FormField
-                                                            key={type.id}
-                                                            control={
-                                                                form.control
-                                                            }
-                                                            name="preferredTypes"
-                                                            render={({
-                                                                field,
-                                                            }) => (
-                                                                <FormItem className="flex flex-row items-start space-x-3 space-y-0">
-                                                                    <FormControl>
-                                                                        <Checkbox
-                                                                            checked={field.value?.includes(
-                                                                                type.id,
-                                                                            )}
-                                                                            onCheckedChange={(
-                                                                                checked,
-                                                                            ) => {
-                                                                                const current =
-                                                                                    field.value ||
-                                                                                    [];
-                                                                                if (
-                                                                                    checked
-                                                                                ) {
-                                                                                    field.onChange(
-                                                                                        [
-                                                                                            ...current,
-                                                                                            type.id,
-                                                                                        ],
-                                                                                    );
-                                                                                } else {
-                                                                                    field.onChange(
-                                                                                        current.filter(
-                                                                                            (
-                                                                                                val,
-                                                                                            ) =>
-                                                                                                val !==
-                                                                                                type.id,
-                                                                                        ),
-                                                                                    );
-                                                                                }
-                                                                            }}
-                                                                        />
-                                                                    </FormControl>
-                                                                    <FormLabel className="font-normal cursor-pointer">
-                                                                        {
-                                                                            type.label
-                                                                        }
-                                                                    </FormLabel>
-                                                                </FormItem>
-                                                            )}
-                                                        />
-                                                    ))}
-                                                </div>
-                                                <FormMessage />
-                                            </FormItem>
-                                        )}
-                                    />
-
-                                    <FormField
-                                        control={form.control}
-                                        name="canHandleMedical"
-                                        render={({ field }) => (
-                                            <FormItem>
-                                                <FormLabel>
-                                                    Μπορείτε να φιλοξενήσετε ζώα
-                                                    με ιατρικές ανάγκες; *
-                                                </FormLabel>
-                                                <Select
-                                                    onValueChange={
-                                                        field.onChange
-                                                    }
-                                                    value={field.value}
-                                                >
-                                                    <FormControl>
-                                                        <SelectTrigger>
-                                                            <SelectValue placeholder="Επιλέξτε..." />
-                                                        </SelectTrigger>
-                                                    </FormControl>
-                                                    <SelectContent>
-                                                        <SelectItem value="yes">
-                                                            Ναι, άνετα
-                                                        </SelectItem>
-                                                        <SelectItem value="depends">
-                                                            Εξαρτάται από την
-                                                            περίπτωση
-                                                        </SelectItem>
-                                                        <SelectItem value="no">
-                                                            Όχι, προτιμώ υγιή
-                                                            ζώα
-                                                        </SelectItem>
-                                                    </SelectContent>
-                                                </Select>
-                                                <FormMessage />
-                                            </FormItem>
-                                        )}
-                                    />
-
-                                    <FormField
-                                        control={form.control}
-                                        name="canTransport"
-                                        render={({ field }) => (
-                                            <FormItem>
-                                                <FormLabel>
-                                                    Μπορείτε να μεταφέρετε το
-                                                    ζώο σε ραντεβού κτηνιάτρου;
-                                                    *
-                                                </FormLabel>
-                                                <Select
-                                                    onValueChange={
-                                                        field.onChange
-                                                    }
-                                                    value={field.value}
-                                                >
-                                                    <FormControl>
-                                                        <SelectTrigger>
-                                                            <SelectValue placeholder="Επιλέξτε..." />
-                                                        </SelectTrigger>
-                                                    </FormControl>
-                                                    <SelectContent>
-                                                        <SelectItem value="yes">
-                                                            Ναι, όποτε χρειαστεί
-                                                        </SelectItem>
-                                                        <SelectItem value="sometimes">
-                                                            Μερικές φορές
-                                                        </SelectItem>
-                                                        <SelectItem value="no">
-                                                            Όχι, χρειάζομαι
-                                                            βοήθεια
-                                                        </SelectItem>
-                                                    </SelectContent>
-                                                </Select>
-                                                <FormMessage />
-                                            </FormItem>
-                                        )}
-                                    />
-                                </div>
-                            </section>
-
-                            {/* Experience */}
+                            {/* Experience with Pets */}
                             <section className="bg-white rounded-2xl border border-gray-200 p-6">
                                 <h2 className="text-2xl font-bold text-gray-900 mb-6">
                                     Εμπειρία με Ζώα
@@ -724,37 +452,50 @@ export default function FosterForm({ animal }: FosterFormProps) {
                                             </FormItem>
                                         )}
                                     />
+                                </div>
+                            </section>
 
+                            {/* Availability & Care */}
+                            <section className="bg-white rounded-2xl border border-gray-200 p-6">
+                                <h2 className="text-2xl font-bold text-gray-900 mb-6">
+                                    Διαθεσιμότητα & Φροντίδα
+                                </h2>
+
+                                <div className="space-y-4">
                                     <FormField
                                         control={form.control}
-                                        name="fosteredBefore"
+                                        name="workSchedule"
                                         render={({ field }) => (
                                             <FormItem>
                                                 <FormLabel>
-                                                    Έχετε φιλοξενήσει ζώα στο
-                                                    παρελθόν; *
+                                                    Πρόγραμμα εργασίας *
                                                 </FormLabel>
-                                                <Select
-                                                    onValueChange={
-                                                        field.onChange
-                                                    }
-                                                    value={field.value}
-                                                >
-                                                    <FormControl>
-                                                        <SelectTrigger>
-                                                            <SelectValue placeholder="Επιλέξτε..." />
-                                                        </SelectTrigger>
-                                                    </FormControl>
-                                                    <SelectContent>
-                                                        <SelectItem value="yes">
-                                                            Ναι
-                                                        </SelectItem>
-                                                        <SelectItem value="no">
-                                                            Όχι, θα είναι η
-                                                            πρώτη μου φορά
-                                                        </SelectItem>
-                                                    </SelectContent>
-                                                </Select>
+                                                <FormControl>
+                                                    <Input
+                                                        placeholder="π.χ. 9-5 καθημερινά, βάρδιες, από σπίτι..."
+                                                        {...field}
+                                                    />
+                                                </FormControl>
+                                                <FormMessage />
+                                            </FormItem>
+                                        )}
+                                    />
+
+                                    <FormField
+                                        control={form.control}
+                                        name="whoWillCare"
+                                        render={({ field }) => (
+                                            <FormItem>
+                                                <FormLabel>
+                                                    Ποιος θα φροντίζει το ζώο; *
+                                                </FormLabel>
+                                                <FormControl>
+                                                    <Textarea
+                                                        placeholder="Περιγράψτε ποιος θα αναλάβει την καθημερινή φροντίδα..."
+                                                        rows={3}
+                                                        {...field}
+                                                    />
+                                                </FormControl>
                                                 <FormMessage />
                                             </FormItem>
                                         )}
@@ -762,48 +503,29 @@ export default function FosterForm({ animal }: FosterFormProps) {
                                 </div>
                             </section>
 
-                            {/* Availability */}
-                            <section className="bg-white rounded-2xl border border-gray-200 p-6">
-                                <h2 className="text-2xl font-bold text-gray-900 mb-6">
-                                    Διαθεσιμότητα
-                                </h2>
-
-                                <FormField
-                                    control={form.control}
-                                    name="workSchedule"
-                                    render={({ field }) => (
-                                        <FormItem>
-                                            <FormLabel>
-                                                Πρόγραμμα εργασίας *
-                                            </FormLabel>
-                                            <FormControl>
-                                                <Input
-                                                    placeholder="π.χ. 9-5 καθημερινά, βάρδιες, από σπίτι..."
-                                                    {...field}
-                                                />
-                                            </FormControl>
-                                            <FormMessage />
-                                        </FormItem>
-                                    )}
-                                />
-                            </section>
-
                             {/* Motivation */}
                             <section className="bg-white rounded-2xl border border-gray-200 p-6">
                                 <h2 className="text-2xl font-bold text-gray-900 mb-6">
-                                    Γιατί θέλετε να φιλοξενήσετε;
+                                    Γιατί θέλετε να υιοθετήσετε;
                                 </h2>
 
                                 <FormField
                                     control={form.control}
-                                    name="whyFoster"
+                                    name="whyAdopt"
                                     render={({ field }) => (
                                         <FormItem>
                                             <FormLabel>
                                                 Πείτε μας για τους λόγους που
-                                                θέλετε να φιλοξενήσετε{" "}
+                                                θέλετε να υιοθετήσετε{" "}
                                                 {animal
-                                                    ? `το ${animal.name}`
+                                                    ? `
+                                                    ${
+                                                        animal.gender ==
+                                                        "Αρσενικό"
+                                                            ? "τον"
+                                                            : "την"
+                                                    }
+                                                    ${animal.name}`
                                                     : "ένα ζώο"}{" "}
                                                 *
                                             </FormLabel>
@@ -829,7 +551,7 @@ export default function FosterForm({ animal }: FosterFormProps) {
                                 <div className="space-y-4">
                                     <FormField
                                         control={form.control}
-                                        name="agreeToReturnAnimal"
+                                        name="agreeToHomeVisit"
                                         render={({ field }) => (
                                             <FormItem className="flex flex-row items-start space-x-3 space-y-0">
                                                 <FormControl>
@@ -842,11 +564,9 @@ export default function FosterForm({ animal }: FosterFormProps) {
                                                 </FormControl>
                                                 <div className="space-y-1 leading-none">
                                                     <FormLabel className="font-normal cursor-pointer">
-                                                        Καταλαβαίνω ότι η
-                                                        φιλοξενία είναι
-                                                        προσωρινή και συμφωνώ να
-                                                        επιστρέψω το ζώο όταν
-                                                        βρεθεί μόνιμο σπίτι
+                                                        Συμφωνώ σε επίσκεψη στο
+                                                        σπίτι μου πριν την
+                                                        υιοθεσία
                                                     </FormLabel>
                                                     <FormMessage />
                                                 </div>
@@ -856,7 +576,7 @@ export default function FosterForm({ animal }: FosterFormProps) {
 
                                     <FormField
                                         control={form.control}
-                                        name="agreeToFollowGuidelines"
+                                        name="agreeToFollowUp"
                                         render={({ field }) => (
                                             <FormItem className="flex flex-row items-start space-x-3 space-y-0">
                                                 <FormControl>
@@ -869,9 +589,9 @@ export default function FosterForm({ animal }: FosterFormProps) {
                                                 </FormControl>
                                                 <div className="space-y-1 leading-none">
                                                     <FormLabel className="font-normal cursor-pointer">
-                                                        Συμφωνώ να ακολουθώ τις
-                                                        οδηγίες της οργάνωσης
-                                                        για τη φροντίδα του ζώου
+                                                        Συμφωνώ σε follow-up
+                                                        επικοινωνίες μετά την
+                                                        υιοθεσία
                                                     </FormLabel>
                                                     <FormMessage />
                                                 </div>
@@ -897,10 +617,10 @@ export default function FosterForm({ animal }: FosterFormProps) {
                                                         Έχω διαβάσει και συμφωνώ
                                                         με τους{" "}
                                                         <Link
-                                                            href="/foster/terms"
+                                                            href="/adopt/terms"
                                                             className="text-pink-600 underline"
                                                         >
-                                                            όρους φιλοξενίας
+                                                            όρους υιοθεσίας
                                                         </Link>
                                                     </FormLabel>
                                                     <FormMessage />

@@ -1,6 +1,6 @@
 import { client } from "@/sanity/lib/client";
 import { notFound } from "next/navigation";
-import AdoptionForm from "@/forms/animals/AdoptionForm";
+import AnimalAdoptionForm from "@/forms/AnimalAdoptionForm";
 import { AnimalType } from "@/types/animal";
 import PageLayout from "@/components/PageLayout";
 
@@ -40,7 +40,7 @@ export default async function AdoptPage({ searchParams }: PageProps) {
 
     return (
         <PageLayout>
-            <AdoptionForm animal={animal} />
+            <AnimalAdoptionForm animal={animal} />
         </PageLayout>
     );
 }

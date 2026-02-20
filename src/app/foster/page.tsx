@@ -1,6 +1,6 @@
 import { client } from "@/sanity/lib/client";
 import { notFound } from "next/navigation";
-import FosterForm from "@/forms/animals/FosterForm";
+import AnimalFosterForm from "@/forms/AnimalFosterForm";
 import { AnimalType } from "@/types/animal";
 import PageLayout from "@/components/PageLayout";
 
@@ -40,7 +40,7 @@ export default async function FosterPage({ searchParams }: PageProps) {
 
     return (
         <PageLayout>
-            <FosterForm animal={animal} />
+            <AnimalFosterForm animal={animal} />
         </PageLayout>
     );
 }

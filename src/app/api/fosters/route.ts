@@ -52,7 +52,7 @@ export async function POST(request: NextRequest) {
         const fromEmail =
             process.env.NODE_ENV == "development"
                 ? "Αιτήσεις Υιοθεσίας <onboarding@resend.dev>"
-                : "Αιτήσεις Υιοθεσίας <adoptions@enosi-ethelonton.gr>";
+                : "Αιτήσεις Φιλοξενίας <fostering@enosi-ethelonton.gr>";
 
         // Send email to organization
         await resend.emails.send({

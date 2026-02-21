@@ -18,8 +18,12 @@ const navigation = {
     about: [
         { name: "Η Αποστολή μας", href: "/about" },
         { name: "Blog", href: "/blog" },
+        { name: "Social", href: "/social" },
+    ],
+    help: [
         { name: "Συχνές Ερωτήσεις", href: "/faq" },
         { name: "Επικοινωνία", href: "/contact" },
+        { name: "Όροι & Προϋποθέσεις", href: "/faq" },
     ],
 };
 
@@ -105,17 +109,31 @@ export default function Footer() {
                                 </ul>
                             </div>
                         </div>
-                        <div>
-                            <h3 className="text-sm font-semibold leading-6 text-white">Σχετικά με εμάς</h3>
-                            <ul role="list" className="mt-6 space-y-4">
-                                {navigation.about.map((item) => (
-                                    <li key={item.name}>
-                                        <Link href={item.href} className="text-sm leading-6 text-gray-300 hover:text-white transition">
-                                            {item.name}
-                                        </Link>
-                                    </li>
-                                ))}
-                            </ul>
+                        <div className="md:grid md:grid-cols-2 md:gap-8">
+                            <div>
+                                <h3 className="text-sm font-semibold leading-6 text-white">Σχετικά με εμάς</h3>
+                                <ul role="list" className="mt-6 space-y-4">
+                                    {navigation.about.map((item) => (
+                                        <li key={item.name}>
+                                            <Link href={item.href} className="text-sm leading-6 text-gray-300 hover:text-white transition">
+                                                {item.name}
+                                            </Link>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                            <div className="mt-10 md:mt-0">
+                                <h3 className="text-sm font-semibold leading-6 text-white">Χρήσιμοι Σύνδεσμοι</h3>
+                                <ul role="list" className="mt-6 space-y-4">
+                                    {navigation.help.map((item) => (
+                                        <li key={item.name}>
+                                            <Link href={item.href} className="text-sm leading-6 text-gray-300 hover:text-white transition">
+                                                {item.name}
+                                            </Link>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>

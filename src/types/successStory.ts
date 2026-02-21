@@ -1,3 +1,5 @@
+import { PortableTextBlock } from "@portabletext/react";
+
 export interface SuccessStory {
     _id: string;
     storyTitle: string;
@@ -8,6 +10,6 @@ export interface SuccessStory {
     mainImage: string;
     beforeImage?: string;
     excerpt: string;
-    story: any;
+    story: PortableTextBlock;
     featured: boolean;
 }

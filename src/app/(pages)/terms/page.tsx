@@ -20,7 +20,13 @@ export default function TermsPage() {
             setTimeout(() => {
                 const element = document.getElementById(hash);
                 if (element) {
-                    element.scrollIntoView({ behavior: "smooth", block: "center" });
+                    const elementPosition = element.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - 150;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: "smooth",
+                    });
                 }
             }, 100);
         }

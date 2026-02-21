@@ -6,6 +6,7 @@ import { HowToHelp } from "@/components/HowToHelp";
 import { SuccessStories } from "@/components/SuccessStories";
 import { Newsletter } from "@/components/Newsletter";
 import type { AnimalType } from "@/types/animal";
+import PageLayout from "@/components/PageLayout";
 
 async function getAnimals(): Promise<AnimalType[]> {
     const query = `*[_type == "animal"] | order(_createdAt desc) {
@@ -49,13 +50,15 @@ export default async function Home() {
     const successStories = await getSuccessStories();
 
     return (
-        <main className="min-h-screen bg-white">
-            <Hero />
-            <FeaturedAnimals animals={animals} />
-            <ImpactStats />
-            <HowToHelp />
-            <SuccessStories stories={successStories} />
-            <Newsletter />
-        </main>
+        <PageLayout hasHero={true}>
+            <main className="min-h-screen bg-white">
+                <Hero />
+                <FeaturedAnimals animals={animals} />
+                <ImpactStats />
+                <HowToHelp />
+                <SuccessStories stories={successStories} />
+                <Newsletter />
+            </main>
+        </PageLayout>
     );
 }

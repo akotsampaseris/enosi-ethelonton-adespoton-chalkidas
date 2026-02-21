@@ -23,7 +23,7 @@ export const teamMemberType = defineType({
             title: "Bio",
             type: "text",
             description: "Short biography (1-2 sentences)",
-            validation: (Rule) => Rule.required().max(200),
+            validation: (Rule) => Rule.max(200),
         }),
         defineField({
             name: "image",

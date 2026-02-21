@@ -3,10 +3,11 @@ import { Hero } from "@/components/Hero";
 import { FeaturedAnimals } from "@/components/animals/FeaturedAnimals";
 import { ImpactStats } from "@/components/ImpactStats";
 import { HowToHelp } from "@/components/HowToHelp";
-import { SuccessStories } from "@/components/SuccessStories";
+import { FeaturedSuccessStories } from "@/components/animals/FeaturedSuccessStories";
 import { Newsletter } from "@/components/Newsletter";
 import type { AnimalType } from "@/types/animal";
 import PageLayout from "@/components/PageLayout";
+import type { SuccessStory } from "@/types/successStory";
 
 async function getAnimals(): Promise<AnimalType[]> {
     const query = `*[_type == "animal"] | order(_createdAt desc) {
@@ -25,29 +26,25 @@ async function getAnimals(): Promise<AnimalType[]> {
     return animals;
 }
 
-async function getSuccessStories() {
-    const stories = await client.fetch(`
-    *[_type == "successStory"] | order(adoptionDate desc)[0...3] {
-      _id,
-      animalName,
-      adopterName,
-      adoptionDate,
-      story,
-      image {
-        asset->{
-          _id,
-          url
-        },
-        alt
-      }
-    }
-  `);
+async function getFeaturedStories(): Promise<SuccessStory[]> {
+    const query = `*[_type == "successStory" && featured == true] | order(adoptionDate desc)[0...3] {
+    _id,
+    storyTitle,
+    animalName,
+    "slug": slug.current,
+    adopterName,
+    adoptionDate,
+    "mainImage": mainImage.asset->url,
+    excerpt
+  }`;
+
+    const stories = await client.fetch(query);
     return stories;
 }
 
 export default async function Home() {
     const animals = await getAnimals();
-    const successStories = await getSuccessStories();
+    const successStories = await getFeaturedStories();
 
     return (
         <PageLayout hasHero={true}>
@@ -56,7 +53,7 @@ export default async function Home() {
                 <FeaturedAnimals animals={animals} />
                 <ImpactStats />
                 <HowToHelp />
-                <SuccessStories stories={successStories} />
+                <FeaturedSuccessStories stories={successStories} />
                 <Newsletter />
             </main>
         </PageLayout>

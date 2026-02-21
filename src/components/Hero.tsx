@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import Image from "next/image";
 import { Heart, ArrowRight } from "lucide-react";
 import HeroImageCarousel from "./ui/ImageCarousel";
 
@@ -10,6 +9,7 @@ const images = [
     "/images/carousel/1.jpeg",
     "/images/carousel/2.jpeg",
     "/images/carousel/3.jpeg",
+    "/images/carousel/4.jpeg",
 ];
 
 export function Hero() {

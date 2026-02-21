@@ -447,7 +447,7 @@ export default function AnimalAdoptionForm({ animal }: AdoptionFormProps) {
                                                     <FormLabel className="font-normal cursor-pointer">
                                                         <span>
                                                             Έχω διαβάσει και συμφωνώ με τους{" "}
-                                                            <Link href="/terms?section=adoption" className="text-pink-600 underline" target="_blank">
+                                                            <Link href="/terms#adoption" className="text-pink-600 underline" target="_blank">
                                                                 όρους υιοθεσίας
                                                             </Link>
                                                         </span>

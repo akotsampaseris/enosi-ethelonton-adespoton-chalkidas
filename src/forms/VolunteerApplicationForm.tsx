@@ -464,7 +464,7 @@ export default function VolunteerApplicationForm() {
                                                     <span>
                                                         Καταλαβαίνω ότι ο εθελοντισμός απαιτεί δέσμευση και υπευθυνότητα. Συμφωνώ να ακολουθώ τις οδηγίες της οργάνωσης και να
                                                         σεβαστώ τους{" "}
-                                                        <Link href="/terms?section=volunteer" className="text-pink-600 underline" target="_blank">
+                                                        <Link href="/terms#volunteer" className="text-pink-600 underline" target="_blank">
                                                             όρους εθελοντισμού
                                                         </Link>
                                                     </span>

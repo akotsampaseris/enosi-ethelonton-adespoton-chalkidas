@@ -639,7 +639,7 @@ export default function AnimalFosterForm({ animal }: FosterFormProps) {
                                                     <FormLabel className="font-normal cursor-pointer">
                                                         <span>
                                                             Έχω διαβάσει και συμφωνώ με τους{" "}
-                                                            <Link href="/terms?section=foster" className="text-pink-600 underline" target="_blank">
+                                                            <Link href="/terms#foster" className="text-pink-600 underline" target="_blank">
                                                                 όρους φιλοξενίας
                                                             </Link>
                                                         </span>

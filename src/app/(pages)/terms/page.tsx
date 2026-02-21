@@ -1,30 +1,30 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useEffectEvent } from "react";
 import { ChevronDown, FileText, Home, Heart, Users, Shield } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
 import PageLayout from "@/components/PageLayout";
 
 export default function TermsPage() {
-    const [openSection, setOpenSection] = useState<string>("general");
-    const searchParams = useSearchParams();
+    const [openSection, setOpenSection] = useState("adoption");
 
-    // Handle URL hash for direct navigation
+    const openSectionByHash = useEffectEvent((hash: string) => {
+        setOpenSection(hash);
+    });
+
     useEffect(() => {
-        const section = searchParams.get("section");
-        if (section) {
-            setOpenSection(section);
-            // Scroll to the section after a brief delay to allow accordion to open
+        const hash = window.location.hash.slice(1);
+        if (hash) {
+            openSectionByHash(hash);
             setTimeout(() => {
-                const element = document.getElementById(section);
+                const element = document.getElementById(hash);
                 if (element) {
                     element.scrollIntoView({ behavior: "smooth", block: "center" });
                 }
             }, 100);
         }
-    }, [searchParams]);
+    }, []);
 
     const toggleSection = (section: string) => {
         setOpenSection(openSection === section ? "" : section);
@@ -69,8 +69,8 @@ export default function TermsPage() {
                     <div>
                         <h3 className="text-xl font-bold text-gray-900 mb-3">4. Απόρριψη Εγγυήσεων</h3>
                         <p className="text-gray-700 leading-relaxed">
-                            Ο ιστότοπος παρέχεται "ως έχει" χωρίς καμία εγγύηση οποιουδήποτε είδους. Δεν εγγυόμαστε ότι ο ιστότοπος θα είναι διαθέσιμος χωρίς διακοπές ή ότι θα
-                            είναι απαλλαγμένος από σφάλματα.
+                            Ο ιστότοπος παρέχεται &quot;ως έχει&quot; χωρίς καμία εγγύηση οποιουδήποτε είδους. Δεν εγγυόμαστε ότι ο ιστότοπος θα είναι διαθέσιμος χωρίς διακοπές ή
+                            ότι θα είναι απαλλαγμένος από σφάλματα.
                         </p>
                     </div>
 
@@ -210,7 +210,7 @@ export default function TermsPage() {
                     <div>
                         <h3 className="text-xl font-bold text-gray-900 mb-3">6. Υιοθεσία από Φιλοξενητή</h3>
                         <p className="text-gray-700 leading-relaxed">
-                            Αν επιθυμείτε να υιοθετήσετε το ζώο που φιλοξενείτε ("foster to adopt"), ενημερώστε μας. Θα ακολουθήσουμε τη συνήθη διαδικασία υιοθεσίας.
+                            Αν επιθυμείτε να υιοθετήσετε το ζώο που φιλοξενείτε (&quot;foster to adopt&quot;), ενημερώστε μας. Θα ακολουθήσουμε τη συνήθη διαδικασία υιοθεσίας.
                         </p>
                     </div>
 
@@ -301,7 +301,7 @@ export default function TermsPage() {
 
     return (
         <PageLayout>
-            <div className="min-h-screen bg-white pt-20">
+            <div className="min-h-screen bg-white">
                 {/* Hero */}
                 <section className="bg-gradient-to-r from-pink-500 to-pink-600 text-white py-20">
                     <div className="container mx-auto max-w-4xl px-4 text-center">

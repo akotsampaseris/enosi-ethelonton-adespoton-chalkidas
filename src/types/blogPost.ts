@@ -13,4 +13,5 @@ export interface BlogPost {
     };
     categories?: string[];
     body: PortableTextBlock;
+    featured: boolean;
 }

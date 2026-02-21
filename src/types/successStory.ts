@@ -8,5 +8,6 @@ export interface SuccessStory {
     mainImage: string;
     beforeImage?: string;
     excerpt: string;
+    story: any;
     featured: boolean;
 }

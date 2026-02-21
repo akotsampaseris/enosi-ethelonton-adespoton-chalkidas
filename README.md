@@ -15,41 +15,41 @@ A beautiful, warm, and mission-driven website for an animal rescue organization 
 ### Homepage Sections
 
 1. **Hero Section**
-    - Emotional headline with brand messaging
-    - Dual CTAs (Adopt / Donate)
-    - Quick stats showing impact
-    - Space for hero image/video
+   - Emotional headline with brand messaging
+   - Dual CTAs (Adopt / Donate)
+   - Quick stats showing impact
+   - Space for hero image/video
 
 2. **Featured Animals**
-    - Grid of available animals for adoption
-    - Quick animal info (species, age, gender)
-    - "Favorite" functionality
-    - Links to individual animal pages
+   - Grid of available animals for adoption
+   - Quick animal info (species, age, gender)
+   - "Favorite" functionality
+   - Links to individual animal pages
 
 3. **Impact Stats**
-    - Visual counter section showing rescues, adoptions, medical care
-    - Gradient background with brand colors
-    - Builds credibility and trust
+   - Visual counter section showing rescues, adoptions, medical care
+   - Gradient background with brand colors
+   - Builds credibility and trust
 
 4. **How You Can Help**
-    - Four ways to support: Adopt, Donate, Volunteer, Share
-    - Distinct visual treatment for each
-    - Emergency hotline banner
+   - Four ways to support: Adopt, Donate, Volunteer, Share
+   - Distinct visual treatment for each
+   - Emergency hotline banner
 
 5. **Success Stories**
-    - Testimonials from adopters
-    - Photos of happy animals in their new homes
-    - Builds emotional appeal
+   - Testimonials from adopters
+   - Photos of happy animals in their new homes
+   - Builds emotional appeal
 
 6. **Newsletter Signup**
-    - Weekly updates and stories
-    - Social proof (subscriber count)
-    - Form validation
+   - Weekly updates and stories
+   - Social proof (subscriber count)
+   - Form validation
 
 7. **Footer**
-    - Full navigation
-    - Contact information
-    - Social media links
+   - Full navigation
+   - Contact information
+   - Social media links
 
 ## Installation
 
@@ -73,65 +73,65 @@ Create these content types in your Sanity Studio:
 import { defineType } from "sanity";
 
 export default defineType({
-    name: "animal",
-    title: "Animal",
-    type: "document",
-    fields: [
-        {
-            name: "name",
-            title: "Name",
-            type: "string",
-            validation: (Rule) => Rule.required(),
-        },
-        {
-            name: "slug",
-            title: "Slug",
-            type: "slug",
-            options: { source: "name" },
-        },
-        {
-            name: "species",
-            title: "Species",
-            type: "string",
-            options: {
-                list: ["Dog", "Cat", "Other"],
-            },
-        },
-        {
-            name: "age",
-            title: "Age",
-            type: "string",
-        },
-        {
-            name: "gender",
-            title: "Gender",
-            type: "string",
-            options: {
-                list: ["Male", "Female"],
-            },
-        },
-        {
-            name: "description",
-            title: "Description",
-            type: "text",
-        },
-        {
-            name: "image",
-            title: "Image",
-            type: "image",
-            options: { hotspot: true },
-            fields: [{ name: "alt", type: "string", title: "Alt text" }],
-        },
-        {
-            name: "status",
-            title: "Status",
-            type: "string",
-            options: {
-                list: ["available", "adopted", "pending"],
-            },
-            initialValue: "available",
-        },
-    ],
+  name: "animal",
+  title: "Animal",
+  type: "document",
+  fields: [
+    {
+      name: "name",
+      title: "Name",
+      type: "string",
+      validation: (Rule) => Rule.required(),
+    },
+    {
+      name: "slug",
+      title: "Slug",
+      type: "slug",
+      options: { source: "name" },
+    },
+    {
+      name: "species",
+      title: "Species",
+      type: "string",
+      options: {
+        list: ["Dog", "Cat", "Other"],
+      },
+    },
+    {
+      name: "age",
+      title: "Age",
+      type: "string",
+    },
+    {
+      name: "gender",
+      title: "Gender",
+      type: "string",
+      options: {
+        list: ["Male", "Female"],
+      },
+    },
+    {
+      name: "description",
+      title: "Description",
+      type: "text",
+    },
+    {
+      name: "image",
+      title: "Image",
+      type: "image",
+      options: { hotspot: true },
+      fields: [{ name: "alt", type: "string", title: "Alt text" }],
+    },
+    {
+      name: "status",
+      title: "Status",
+      type: "string",
+      options: {
+        list: ["available", "adopted", "pending"],
+      },
+      initialValue: "available",
+    },
+  ],
 });
 ```
 
@@ -141,40 +141,40 @@ export default defineType({
 import { defineType } from "sanity";
 
 export default defineType({
-    name: "successStory",
-    title: "Success Story",
-    type: "document",
-    fields: [
-        {
-            name: "animalName",
-            title: "Animal Name",
-            type: "string",
-            validation: (Rule) => Rule.required(),
-        },
-        {
-            name: "adopterName",
-            title: "Adopter Name",
-            type: "string",
-        },
-        {
-            name: "adoptionDate",
-            title: "Adoption Date",
-            type: "date",
-        },
-        {
-            name: "story",
-            title: "Story",
-            type: "text",
-            validation: (Rule) => Rule.required(),
-        },
-        {
-            name: "image",
-            title: "Image",
-            type: "image",
-            options: { hotspot: true },
-            fields: [{ name: "alt", type: "string", title: "Alt text" }],
-        },
-    ],
+  name: "successStory",
+  title: "Success Story",
+  type: "document",
+  fields: [
+    {
+      name: "animalName",
+      title: "Animal Name",
+      type: "string",
+      validation: (Rule) => Rule.required(),
+    },
+    {
+      name: "adopterName",
+      title: "Adopter Name",
+      type: "string",
+    },
+    {
+      name: "adoptionDate",
+      title: "Adoption Date",
+      type: "date",
+    },
+    {
+      name: "story",
+      title: "Story",
+      type: "text",
+      validation: (Rule) => Rule.required(),
+    },
+    {
+      name: "image",
+      title: "Image",
+      type: "image",
+      options: { hotspot: true },
+      fields: [{ name: "alt", type: "string", title: "Alt text" }],
+    },
+  ],
 });
 ```
 

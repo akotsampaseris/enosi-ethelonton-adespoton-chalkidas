@@ -4,41 +4,41 @@ import { Resend } from "resend";
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(request: NextRequest) {
-    try {
-        const body = await request.json();
+  try {
+    const body = await request.json();
 
-        const {
-            fullName,
-            email,
-            phone,
-            address,
-            city,
-            housingType,
-            hasYard,
-            hadPetsBefore,
-            currentPets,
-            workSchedule,
-            whoWillCare,
-            whyAdopt,
-            animalId,
-            animalName,
-            submittedAt,
-        } = body;
+    const {
+      fullName,
+      email,
+      phone,
+      address,
+      city,
+      housingType,
+      hasYard,
+      hadPetsBefore,
+      currentPets,
+      workSchedule,
+      whoWillCare,
+      whyAdopt,
+      animalId,
+      animalName,
+      submittedAt,
+    } = body;
 
-        const organizationEmail =
-            process.env.ORGANIZATION_EMAIL ?? "info@enosi-ethelonton.gr";
-        const fromEmail =
-            process.env.NODE_ENV == "development"
-                ? "Αιτήσεις Υιοθεσίας <onboarding@resend.dev>"
-                : "Αιτήσεις Υιοθεσίας <adoptions@enosi-ethelonton.gr>";
+    const organizationEmail =
+      process.env.ORGANIZATION_EMAIL ?? "info@enosi-ethelonton.gr";
+    const fromEmail =
+      process.env.NODE_ENV == "development"
+        ? "Αιτήσεις Υιοθεσίας <onboarding@resend.dev>"
+        : "Αιτήσεις Υιοθεσίας <adoptions@enosi-ethelonton.gr>";
 
-        // Send email to organization
-        const { data: orgEmail, error: orgError } = await resend.emails.send({
-            // from: "Αιτήσεις Υιοθεσίας <adoptions@enosi-ethelonton.gr>",
-            from: fromEmail,
-            to: organizationEmail,
-            subject: `Νέα Αίτηση Υιοθεσίας${animalName ? ` - ${animalName}` : ""}`,
-            html: `
+    // Send email to organization
+    const { data: orgEmail, error: orgError } = await resend.emails.send({
+      // from: "Αιτήσεις Υιοθεσίας <adoptions@enosi-ethelonton.gr>",
+      from: fromEmail,
+      to: organizationEmail,
+      subject: `Νέα Αίτηση Υιοθεσίας${animalName ? ` - ${animalName}` : ""}`,
+      html: `
         <h2>Νέα Αίτηση Υιοθεσίας</h2>
         
         ${animalName ? `<p><strong>Ζώο:</strong> ${animalName} (ID: ${animalId})</p>` : ""}
@@ -74,20 +74,20 @@ export async function POST(request: NextRequest) {
         
         <p><small>Υποβλήθηκε στις: ${new Date(submittedAt).toLocaleString("el-GR")}</small></p>
       `,
-        });
+    });
 
-        if (orgError) {
-            console.error("Error sending email to organization:", orgError);
-            throw orgError;
-        }
+    if (orgError) {
+      console.error("Error sending email to organization:", orgError);
+      throw orgError;
+    }
 
-        // Send confirmation email to applicant
-        const { data: confirmEmail, error: confirmError } =
-            await resend.emails.send({
-                from: fromEmail,
-                to: email,
-                subject: `Λάβαμε την αίτησή σας για υιοθεσία${animalName ? ` - ${animalName}` : ""}`,
-                html: `
+    // Send confirmation email to applicant
+    const { data: confirmEmail, error: confirmError } =
+      await resend.emails.send({
+        from: fromEmail,
+        to: email,
+        subject: `Λάβαμε την αίτησή σας για υιοθεσία${animalName ? ` - ${animalName}` : ""}`,
+        html: `
         <h2>Ευχαριστούμε για την αίτηση υιοθεσίας!</h2>
         
         <p>Αγαπητέ/ή ${fullName},</p>
@@ -107,22 +107,22 @@ export async function POST(request: NextRequest) {
         <p>Με αγάπη για τα ζώα,<br/>
         Ένωση Εθελοντών Αδέσποτων Χαλκίδας</p>
       `,
-            });
+      });
 
-        if (confirmError) {
-            console.error("Error sending confirmation email:", confirmError);
-            // Don't throw here - org email was sent successfully
-        }
-
-        return NextResponse.json({
-            success: true,
-            message: "Adoption application submitted successfully",
-        });
-    } catch (error) {
-        console.error("Adoption submission error:", error);
-        return NextResponse.json(
-            { error: "Failed to submit adoption application" },
-            { status: 500 },
-        );
+    if (confirmError) {
+      console.error("Error sending confirmation email:", confirmError);
+      // Don't throw here - org email was sent successfully
     }
+
+    return NextResponse.json({
+      success: true,
+      message: "Adoption application submitted successfully",
+    });
+  } catch (error) {
+    console.error("Adoption submission error:", error);
+    return NextResponse.json(
+      { error: "Failed to submit adoption application" },
+      { status: 500 },
+    );
+  }
 }

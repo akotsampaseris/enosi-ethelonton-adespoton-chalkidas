@@ -5,13 +5,13 @@ import { AnimalType } from "@/types/animal";
 import PageLayout from "@/components/PageLayout";
 
 interface PageProps {
-    searchParams: Promise<{
-        animal?: string;
-    }>;
+  searchParams: Promise<{
+    animal?: string;
+  }>;
 }
 
 async function getAnimal(slug: string): Promise<AnimalType | null> {
-    const query = `*[_type == "animal" && slug.current == "${slug}"][0] {
+  const query = `*[_type == "animal" && slug.current == "${slug}"][0] {
     _id,
     name,
     species,
@@ -21,26 +21,26 @@ async function getAnimal(slug: string): Promise<AnimalType | null> {
     "slug": slug.current
   }`;
 
-    const animal = await client.fetch(query);
-    return animal;
+  const animal = await client.fetch(query);
+  return animal;
 }
 
 export default async function FosterPage({ searchParams }: PageProps) {
-    const { animal: animalSlug } = await searchParams;
+  const { animal: animalSlug } = await searchParams;
 
-    let animal: AnimalType | undefined = undefined;
+  let animal: AnimalType | undefined = undefined;
 
-    if (animalSlug) {
-        const fetchedAnimal = await getAnimal(animalSlug);
-        if (!fetchedAnimal) {
-            notFound();
-        }
-        animal = fetchedAnimal;
+  if (animalSlug) {
+    const fetchedAnimal = await getAnimal(animalSlug);
+    if (!fetchedAnimal) {
+      notFound();
     }
+    animal = fetchedAnimal;
+  }
 
-    return (
-        <PageLayout>
-            <AnimalFosterForm animal={animal} />
-        </PageLayout>
-    );
+  return (
+    <PageLayout>
+      <AnimalFosterForm animal={animal} />
+    </PageLayout>
+  );
 }

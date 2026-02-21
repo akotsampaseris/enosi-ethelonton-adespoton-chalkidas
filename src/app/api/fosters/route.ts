@@ -4,62 +4,62 @@ import { Resend } from "resend";
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(request: NextRequest) {
-    try {
-        const body = await request.json();
+  try {
+    const body = await request.json();
 
-        const {
-            fullName,
-            email,
-            phone,
-            address,
-            city,
-            housingType,
-            hasYard,
-            fosterDuration,
-            preferredTypes,
-            canHandleMedical,
-            canTransport,
-            hadPetsBefore,
-            currentPets,
-            fosteredBefore,
-            workSchedule,
-            whyFoster,
-            animalId,
-            animalName,
-            submittedAt,
-        } = body;
+    const {
+      fullName,
+      email,
+      phone,
+      address,
+      city,
+      housingType,
+      hasYard,
+      fosterDuration,
+      preferredTypes,
+      canHandleMedical,
+      canTransport,
+      hadPetsBefore,
+      currentPets,
+      fosteredBefore,
+      workSchedule,
+      whyFoster,
+      animalId,
+      animalName,
+      submittedAt,
+    } = body;
 
-        const durationLabels: Record<string, string> = {
-            "1-2weeks": "1-2 εβδομάδες",
-            "1month": "1 μήνα",
-            "2-3months": "2-3 μήνες",
-            "3+months": "3+ μήνες",
-            flexible: "Ευέλικτα",
-        };
+    const durationLabels: Record<string, string> = {
+      "1-2weeks": "1-2 εβδομάδες",
+      "1month": "1 μήνα",
+      "2-3months": "2-3 μήνες",
+      "3+months": "3+ μήνες",
+      flexible: "Ευέλικτα",
+    };
 
-        const typeLabels: Record<string, string> = {
-            puppies: "Κουτάβια",
-            "adult-dogs": "Ενήλικοι σκύλοι",
-            "senior-dogs": "Ηλικιωμένοι σκύλοι",
-            kittens: "Γατάκια",
-            "adult-cats": "Ενήλικες γάτες",
-            "senior-cats": "Ηλικιωμένες γάτες",
-            "special-needs": "Ειδικές ανάγκες",
-        };
+    const typeLabels: Record<string, string> = {
+      puppies: "Κουτάβια",
+      "adult-dogs": "Ενήλικοι σκύλοι",
+      "senior-dogs": "Ηλικιωμένοι σκύλοι",
+      kittens: "Γατάκια",
+      "adult-cats": "Ενήλικες γάτες",
+      "senior-cats": "Ηλικιωμένες γάτες",
+      "special-needs": "Ειδικές ανάγκες",
+    };
 
-        const organizationEmail =
-            process.env.ORGANIZATION_EMAIL ?? "info@enosi-ethelonton.gr";
-        const fromEmail =
-            process.env.NODE_ENV == "development"
-                ? "Αιτήσεις Φιλοξενίας <onboarding@resend.dev>"
-                : "Αιτήσεις Φιλοξενίας <fostering@enosi-ethelonton.gr>";
+    const organizationEmail =
+      process.env.ORGANIZATION_EMAIL ?? "info@enosi-ethelonton.gr";
+    const fromEmail =
+      process.env.NODE_ENV == "development"
+        ? "Αιτήσεις Φιλοξενίας <onboarding@resend.dev>"
+        : "Αιτήσεις Φιλοξενίας <fostering@enosi-ethelonton.gr>";
 
-        // Send email to organization
-        await resend.emails.send({
-            from: fromEmail,
-            to: organizationEmail,
-            subject: `Νέα Αίτηση Φιλοξενίας${animalName ? ` - ${animalName}` : ""}`,
-            html: `
+    // Send email to organization
+    await resend.emails.send({
+      from: fromEmail,
+      to: organizationEmail,
+      subject: `Νέα Αίτηση Φιλοξενίας${animalName ? ` - ${animalName}` : ""}`,
+      html: `
         <h2>Νέα Αίτηση Φιλοξενίας</h2>
         
         ${animalName ? `<p><strong>Ζώο:</strong> ${animalName} (ID: ${animalId})</p>` : ""}
@@ -83,18 +83,18 @@ export async function POST(request: NextRequest) {
           <li><strong>Διάρκεια:</strong> ${durationLabels[fosterDuration]}</li>
           <li><strong>Προτιμώμενοι τύποι:</strong> ${preferredTypes.map((t: string) => typeLabels[t]).join(", ")}</li>
           <li><strong>Ιατρικές ανάγκες:</strong> ${
-              canHandleMedical === "yes"
-                  ? "Ναι, άνετα"
-                  : canHandleMedical === "depends"
-                    ? "Εξαρτάται από την περίπτωση"
-                    : "Όχι, προτιμώ υγιή ζώα"
+            canHandleMedical === "yes"
+              ? "Ναι, άνετα"
+              : canHandleMedical === "depends"
+                ? "Εξαρτάται από την περίπτωση"
+                : "Όχι, προτιμώ υγιή ζώα"
           }</li>
           <li><strong>Μεταφορά:</strong> ${
-              canTransport === "yes"
-                  ? "Ναι, όποτε χρειαστεί"
-                  : canTransport === "sometimes"
-                    ? "Μερικές φορές"
-                    : "Όχι, χρειάζομαι βοήθεια"
+            canTransport === "yes"
+              ? "Ναι, όποτε χρειαστεί"
+              : canTransport === "sometimes"
+                ? "Μερικές φορές"
+                : "Όχι, χρειάζομαι βοήθεια"
           }</li>
         </ul>
         
@@ -115,14 +115,14 @@ export async function POST(request: NextRequest) {
         
         <p><small>Υποβλήθηκε στις: ${new Date(submittedAt).toLocaleString("el-GR")}</small></p>
       `,
-        });
+    });
 
-        // Send confirmation email to applicant
-        await resend.emails.send({
-            from: fromEmail,
-            to: email,
-            subject: `Λάβαμε την αίτησή σας για φιλοξενία${animalName ? ` - ${animalName}` : ""}`,
-            html: `
+    // Send confirmation email to applicant
+    await resend.emails.send({
+      from: fromEmail,
+      to: email,
+      subject: `Λάβαμε την αίτησή σας για φιλοξενία${animalName ? ` - ${animalName}` : ""}`,
+      html: `
         <h2>Ευχαριστούμε για την αίτηση φιλοξενίας!</h2>
         
         <p>Αγαπητέ/ή ${fullName},</p>
@@ -151,17 +151,17 @@ export async function POST(request: NextRequest) {
         <p>Με ευγνωμοσύνη,<br/>
         Ένωση Εθελοντών Αδέσποτων Χαλκίδας</p>
       `,
-        });
+    });
 
-        return NextResponse.json({
-            success: true,
-            message: "Foster application submitted successfully",
-        });
-    } catch (error) {
-        console.error("Foster submission error:", error);
-        return NextResponse.json(
-            { error: "Failed to submit foster application" },
-            { status: 500 },
-        );
-    }
+    return NextResponse.json({
+      success: true,
+      message: "Foster application submitted successfully",
+    });
+  } catch (error) {
+    console.error("Foster submission error:", error);
+    return NextResponse.json(
+      { error: "Failed to submit foster application" },
+      { status: 500 },
+    );
+  }
 }

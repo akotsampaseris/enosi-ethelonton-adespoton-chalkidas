@@ -1,92 +1,92 @@
 import { defineField, defineType } from "sanity";
 
 export const faqType = defineType({
-    name: "faq",
-    title: "FAQ",
-    type: "document",
-    fields: [
-        defineField({
-            name: "question",
-            title: "Question",
-            type: "string",
-            validation: (Rule) => Rule.required(),
-        }),
-        defineField({
-            name: "answer",
-            title: "Answer",
-            type: "array",
-            of: [
-                {
-                    type: "block",
-                    styles: [
-                        { title: "Normal", value: "normal" },
-                        { title: "H3", value: "h3" },
-                    ],
-                    marks: {
-                        decorators: [
-                            { title: "Strong", value: "strong" },
-                            { title: "Emphasis", value: "em" },
-                        ],
-                        annotations: [
-                            {
-                                name: "link",
-                                type: "object",
-                                title: "Link",
-                                fields: [
-                                    {
-                                        name: "href",
-                                        type: "url",
-                                        title: "URL",
-                                    },
-                                ],
-                            },
-                        ],
-                    },
-                    lists: [
-                        { title: "Bullet", value: "bullet" },
-                        { title: "Numbered", value: "number" },
-                    ],
-                },
-            ],
-            validation: (Rule) => Rule.required(),
-        }),
-        defineField({
-            name: "category",
-            title: "Category",
-            type: "string",
-            options: {
-                list: [
-                    { title: "Υιοθεσία", value: "adoption" },
-                    { title: "Φιλοξενία", value: "fostering" },
-                    { title: "Εθελοντισμός", value: "volunteering" },
-                    { title: "Δωρεές", value: "donations" },
-                    { title: "Γενικά", value: "general" },
-                ],
-            },
-            validation: (Rule) => Rule.required(),
-        }),
-        defineField({
-            name: "order",
-            title: "Display Order",
-            type: "number",
-            description: "Lower numbers appear first within each category",
-            validation: (Rule) => Rule.required().min(0),
-        }),
-    ],
-    preview: {
-        select: {
-            title: "question",
-            subtitle: "category",
-        },
-    },
-    orderings: [
+  name: "faq",
+  title: "FAQ",
+  type: "document",
+  fields: [
+    defineField({
+      name: "question",
+      title: "Question",
+      type: "string",
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: "answer",
+      title: "Answer",
+      type: "array",
+      of: [
         {
-            title: "Category & Order",
-            name: "categoryOrder",
-            by: [
-                { field: "category", direction: "asc" },
-                { field: "order", direction: "asc" },
+          type: "block",
+          styles: [
+            { title: "Normal", value: "normal" },
+            { title: "H3", value: "h3" },
+          ],
+          marks: {
+            decorators: [
+              { title: "Strong", value: "strong" },
+              { title: "Emphasis", value: "em" },
             ],
+            annotations: [
+              {
+                name: "link",
+                type: "object",
+                title: "Link",
+                fields: [
+                  {
+                    name: "href",
+                    type: "url",
+                    title: "URL",
+                  },
+                ],
+              },
+            ],
+          },
+          lists: [
+            { title: "Bullet", value: "bullet" },
+            { title: "Numbered", value: "number" },
+          ],
         },
-    ],
+      ],
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: "category",
+      title: "Category",
+      type: "string",
+      options: {
+        list: [
+          { title: "Υιοθεσία", value: "adoption" },
+          { title: "Φιλοξενία", value: "fostering" },
+          { title: "Εθελοντισμός", value: "volunteering" },
+          { title: "Δωρεές", value: "donations" },
+          { title: "Γενικά", value: "general" },
+        ],
+      },
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: "order",
+      title: "Display Order",
+      type: "number",
+      description: "Lower numbers appear first within each category",
+      validation: (Rule) => Rule.required().min(0),
+    }),
+  ],
+  preview: {
+    select: {
+      title: "question",
+      subtitle: "category",
+    },
+  },
+  orderings: [
+    {
+      title: "Category & Order",
+      name: "categoryOrder",
+      by: [
+        { field: "category", direction: "asc" },
+        { field: "order", direction: "asc" },
+      ],
+    },
+  ],
 });

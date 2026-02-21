@@ -4,33 +4,33 @@ import { Resend } from "resend";
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(request: NextRequest) {
-    try {
-        const body = await request.json();
+  try {
+    const body = await request.json();
 
-        const { name, email, phone, subject, message, submittedAt } = body;
+    const { name, email, phone, subject, message, submittedAt } = body;
 
-        const subjectLabels: Record<string, string> = {
-            general: "Γενική ερώτηση",
-            adoption: "Υιοθεσία",
-            foster: "Φιλοξενία",
-            volunteer: "Εθελοντισμός",
-            donation: "Δωρεά",
-            other: "Άλλο",
-        };
+    const subjectLabels: Record<string, string> = {
+      general: "Γενική ερώτηση",
+      adoption: "Υιοθεσία",
+      foster: "Φιλοξενία",
+      volunteer: "Εθελοντισμός",
+      donation: "Δωρεά",
+      other: "Άλλο",
+    };
 
-        const organizationEmail =
-            process.env.ORGANIZATION_EMAIL ?? "info@enosi-ethelonton.gr";
-        const fromEmail =
-            process.env.NODE_ENV == "development"
-                ? "Επικοινωνία <onboarding@resend.dev>"
-                : "Επικοινωνία <contact@enosi-ethelonton.gr>";
+    const organizationEmail =
+      process.env.ORGANIZATION_EMAIL ?? "info@enosi-ethelonton.gr";
+    const fromEmail =
+      process.env.NODE_ENV == "development"
+        ? "Επικοινωνία <onboarding@resend.dev>"
+        : "Επικοινωνία <contact@enosi-ethelonton.gr>";
 
-        // Send email to organization
-        await resend.emails.send({
-            from: fromEmail,
-            to: organizationEmail,
-            subject: `Νέο Μήνυμα Επικοινωνίας - ${subjectLabels[subject]}`,
-            html: `
+    // Send email to organization
+    await resend.emails.send({
+      from: fromEmail,
+      to: organizationEmail,
+      subject: `Νέο Μήνυμα Επικοινωνίας - ${subjectLabels[subject]}`,
+      html: `
         <h2>Νέο Μήνυμα από τη Φόρμα Επικοινωνίας</h2>
         
         <h3>Στοιχεία Αποστολέα</h3>
@@ -46,16 +46,16 @@ export async function POST(request: NextRequest) {
         
         <p><small>Στάλθηκε στις: ${new Date(submittedAt).toLocaleString("el-GR")}</small></p>
       `,
-            // Set reply-to so you can reply directly to the sender
-            replyTo: email,
-        });
+      // Set reply-to so you can reply directly to the sender
+      replyTo: email,
+    });
 
-        // Send confirmation email to sender
-        await resend.emails.send({
-            from: fromEmail,
-            to: email,
-            subject: "Λάβαμε το μήνυμά σας",
-            html: `
+    // Send confirmation email to sender
+    await resend.emails.send({
+      from: fromEmail,
+      to: email,
+      subject: "Λάβαμε το μήνυμά σας",
+      html: `
         <h2>Ευχαριστούμε για την επικοινωνία!</h2>
         
         <p>Αγαπητέ/ή ${name},</p>
@@ -74,17 +74,17 @@ export async function POST(request: NextRequest) {
         <p>Με εκτίμηση,<br/>
         Ένωση Εθελοντών Αδέσποτων Χαλκίδας</p>
       `,
-        });
+    });
 
-        return NextResponse.json({
-            success: true,
-            message: "Contact message sent successfully",
-        });
-    } catch (error) {
-        console.error("Contact submission error:", error);
-        return NextResponse.json(
-            { error: "Failed to send contact message" },
-            { status: 500 },
-        );
-    }
+    return NextResponse.json({
+      success: true,
+      message: "Contact message sent successfully",
+    });
+  } catch (error) {
+    console.error("Contact submission error:", error);
+    return NextResponse.json(
+      { error: "Failed to send contact message" },
+      { status: 500 },
+    );
+  }
 }

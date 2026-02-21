@@ -5,13 +5,13 @@ import { AnimalType } from "@/types/animal";
 import PageLayout from "@/components/PageLayout";
 
 interface PageProps {
-    params: {
-        slug: string;
-    };
+  params: {
+    slug: string;
+  };
 }
 
 async function getAnimal(slug: string): Promise<AnimalType | null> {
-    const query = `*[_type == "animal" && slug.current == $slug][0] {
+  const query = `*[_type == "animal" && slug.current == $slug][0] {
     _id,
     name,
     species,
@@ -31,36 +31,36 @@ async function getAnimal(slug: string): Promise<AnimalType | null> {
     adoptedBy,
     adoptionDate
   }`;
-    const animal = await client.fetch(query, { slug });
-    return animal;
+  const animal = await client.fetch(query, { slug });
+  return animal;
 }
 
 // Generate static params for all animals
 export async function generateStaticParams() {
-    const query = `*[_type == "animal"] {
+  const query = `*[_type == "animal"] {
     "slug": slug.current
   }`;
 
-    const animals = await client.fetch(query);
+  const animals = await client.fetch(query);
 
-    return animals.map((animal: { slug: string }) => ({
-        slug: animal.slug,
-    }));
+  return animals.map((animal: { slug: string }) => ({
+    slug: animal.slug,
+  }));
 }
 
 export default async function AnimalPage({ params }: PageProps) {
-    const { slug } = await params;
-    const animal = await getAnimal(slug);
+  const { slug } = await params;
+  const animal = await getAnimal(slug);
 
-    if (!animal) {
-        notFound();
-    }
+  if (!animal) {
+    notFound();
+  }
 
-    return (
-        <PageLayout>
-            <AnimalDetails animal={animal} />
-        </PageLayout>
-    );
+  return (
+    <PageLayout>
+      <AnimalDetails animal={animal} />
+    </PageLayout>
+  );
 }
 
 export const revalidate = 60; // Revalidate every 60 seconds

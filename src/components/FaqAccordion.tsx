@@ -3,11 +3,12 @@
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { PortableText } from "@portabletext/react";
 
 interface FAQ {
     _id: string;
     question: string;
-    answer: string;
+    answer: any; // PortableText content
     category: string;
     order: number;
 }
@@ -20,6 +21,26 @@ interface FAQAccordionProps {
     faqsByCategory: FAQByCategory;
     categoryLabels: Record<string, { label: string; emoji: string }>;
 }
+
+const portableTextComponents = {
+    block: {
+        h3: ({ children }: any) => <h3 className="text-xl font-bold text-gray-900 mt-4 mb-2">{children}</h3>,
+        normal: ({ children }: any) => <p className="mb-4">{children}</p>,
+    },
+    marks: {
+        link: ({ children, value }: any) => (
+            <a href={value.href} target="_blank" rel="noopener noreferrer" className="text-pink-600 hover:text-pink-700 underline">
+                {children}
+            </a>
+        ),
+        strong: ({ children }: any) => <strong className="font-bold text-gray-900">{children}</strong>,
+        em: ({ children }: any) => <em className="italic">{children}</em>,
+    },
+    list: {
+        bullet: ({ children }: any) => <ul className="list-disc list-inside mb-4 space-y-1">{children}</ul>,
+        number: ({ children }: any) => <ol className="list-decimal list-inside mb-4 space-y-1">{children}</ol>,
+    },
+};
 
 export default function FAQAccordion({ faqsByCategory, categoryLabels }: FAQAccordionProps) {
     const [openFAQs, setOpenFAQs] = useState<Set<string>>(new Set());
@@ -46,7 +67,7 @@ export default function FAQAccordion({ faqsByCategory, categoryLabels }: FAQAcco
                             <span className="text-4xl">{categoryLabels[category]?.emoji}</span>
                             {categoryLabels[category]?.label}
                         </h2>
-                        <div className="mt-2 h-[2px] w-full bg-pink-500 rounded-full"></div>
+                        <div className="mt-2 h-1 w-20 bg-pink-500 rounded-full"></div>
                     </div>
 
                     {/* FAQ Items */}
@@ -70,7 +91,9 @@ export default function FAQAccordion({ faqsByCategory, categoryLabels }: FAQAcco
                                                 transition={{ duration: 0.3 }}
                                                 className="overflow-hidden">
                                                 <div className="px-6 pb-6 pt-0">
-                                                    <p className="text-gray-700 leading-relaxed whitespace-pre-wrap">{faq.answer}</p>
+                                                    <div className="text-gray-700 leading-relaxed">
+                                                        <PortableText value={faq.answer} components={portableTextComponents} />
+                                                    </div>
                                                 </div>
                                             </motion.div>
                                         )}

@@ -7,7 +7,7 @@ import Link from "next/link";
 import PageLayout from "@/components/PageLayout";
 
 export default function TermsPage() {
-    const [openSection, setOpenSection] = useState("adoption");
+    const [openSection, setOpenSection] = useState("general");
 
     const openSectionByHash = useEffectEvent((hash: string) => {
         setOpenSection(hash);

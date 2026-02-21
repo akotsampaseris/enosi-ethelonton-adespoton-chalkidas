@@ -6,19 +6,19 @@ const navigation = {
     adopt: [
         { name: "Διαθέσιμα Ζώα", href: "/animals" },
         { name: "Διαδικασία Υιοθεσίας", href: "/adopt/process" },
-        { name: "Συχνές Ερωτήσεις", href: "/adopt/faq" },
         { name: "Ιστορίες Υιοθεσίας", href: "/stories" },
+        // { name: "Συχνές Ερωτήσεις", href: "/faq" },
     ],
     support: [
         { name: "Δωρεές", href: "/donate" },
         { name: "Γίνε Εθελοντής", href: "/volunteer" },
         { name: "Φιλοξένησε ένα ζώο", href: "/foster" },
-        { name: "Γίνε χορηγός ενός ζώου", href: "/sponsor" },
+        // { name: "Γίνε χορηγός ενός ζώου", href: "/sponsor" },
     ],
     about: [
         { name: "Η Αποστολή μας", href: "/about" },
-        { name: "Η Ομάδα μας", href: "/team" },
         { name: "Blog", href: "/blog" },
+        { name: "Συχνές Ερωτήσεις", href: "/faq" },
         { name: "Επικοινωνία", href: "/contact" },
     ],
 };
@@ -35,22 +35,12 @@ export default function Footer() {
                     {/* Brand column */}
                     <div className="space-y-8">
                         <Link href="/" className="flex items-center space-x-4">
-                            <Image
-                                src="/logo.png"
-                                alt="Animal Rights Volunteer Group"
-                                width={150}
-                                height={150}
-                                className="h-24 w-auto mix-blend-difference"
-                            />
+                            <Image src="/logo.png" alt="Animal Rights Volunteer Group" width={150} height={150} className="h-24 w-auto mix-blend-difference" />
                         </Link>
                         <div>
-                            <h3 className="text-xl text-white font-semibold leading-7 sm:text-inde">
-                                Ένωση Εθελοντών Αδέσποτων Χαλκίδας
-                            </h3>
+                            <h3 className="text-xl text-white font-semibold leading-7 sm:text-inde">Ένωση Εθελοντών Αδέσποτων Χαλκίδας</h3>
                             <p className="text-sm leading-6 text-gray-300">
-                                Διασώζουμε, φροντίζουμε και βρίσκουμε ένα σπίτι
-                                για τα αδέσποτα ζώα στον δήμο μας. Σε κάθε ζώο
-                                αξίζει ένα ζεστό σπίτι.
+                                Διασώζουμε, φροντίζουμε και βρίσκουμε ένα σπίτι για τα αδέσποτα ζώα στον δήμο μας. Σε κάθε ζώο αξίζει ένα ζεστό σπίτι.
                             </p>
                         </div>
 
@@ -58,19 +48,13 @@ export default function Footer() {
                         <div className="space-y-2 text-sm text-gray-300">
                             <div className="flex items-center gap-2">
                                 <Phone className="h-4 w-4" />
-                                <a
-                                    href="tel:+302101234567"
-                                    className="hover:text-white transition"
-                                >
+                                <a href="tel:+302101234567" className="hover:text-white transition">
                                     +30 210 210 2100
                                 </a>
                             </div>
                             <div className="flex items-center gap-2">
                                 <Mail className="h-4 w-4" />
-                                <a
-                                    href="mailto:info@animalrescue.gr"
-                                    className="hover:text-white transition"
-                                >
+                                <a href="mailto:info@animalrescue.gr" className="hover:text-white transition">
                                     info@animalrescue.gr
                                 </a>
                             </div>
@@ -82,17 +66,11 @@ export default function Footer() {
 
                         {/* Social links */}
                         <div className="flex gap-4">
-                            <a
-                                href="https://facebook.com/ethelontesadespotwnchalkidas"
-                                className="text-gray-400 hover:text-pink-500 transition"
-                            >
+                            <a href="https://facebook.com/ethelontesadespotwnchalkidas" className="text-gray-400 hover:text-pink-500 transition">
                                 <span className="sr-only">Facebook</span>
                                 <Facebook className="h-6 w-6" />
                             </a>
-                            <a
-                                href="https://instagram.com/enosi_ethel_adespoton_chalkida"
-                                className="text-gray-400 hover:text-pink-500 transition"
-                            >
+                            <a href="https://instagram.com/enosi_ethel_adespoton_chalkida" className="text-gray-400 hover:text-pink-500 transition">
                                 <span className="sr-only">Instagram</span>
                                 <Instagram className="h-6 w-6" />
                             </a>
@@ -103,16 +81,11 @@ export default function Footer() {
                     <div className="mt-16 grid grid-cols-2 gap-8 xl:col-span-2 xl:mt-0">
                         <div className="md:grid md:grid-cols-2 md:gap-8">
                             <div>
-                                <h3 className="text-sm font-semibold leading-6 text-white">
-                                    Υιοθέτησε
-                                </h3>
+                                <h3 className="text-sm font-semibold leading-6 text-white">Υιοθέτησε</h3>
                                 <ul role="list" className="mt-6 space-y-4">
                                     {navigation.adopt.map((item) => (
                                         <li key={item.name}>
-                                            <Link
-                                                href={item.href}
-                                                className="text-sm leading-6 text-gray-300 hover:text-white transition"
-                                            >
+                                            <Link href={item.href} className="text-sm leading-6 text-gray-300 hover:text-white transition">
                                                 {item.name}
                                             </Link>
                                         </li>
@@ -120,16 +93,11 @@ export default function Footer() {
                                 </ul>
                             </div>
                             <div className="mt-10 md:mt-0">
-                                <h3 className="text-sm font-semibold leading-6 text-white">
-                                    Στηρίξτε μας
-                                </h3>
+                                <h3 className="text-sm font-semibold leading-6 text-white">Στηρίξτε μας</h3>
                                 <ul role="list" className="mt-6 space-y-4">
                                     {navigation.support.map((item) => (
                                         <li key={item.name}>
-                                            <Link
-                                                href={item.href}
-                                                className="text-sm leading-6 text-gray-300 hover:text-white transition"
-                                            >
+                                            <Link href={item.href} className="text-sm leading-6 text-gray-300 hover:text-white transition">
                                                 {item.name}
                                             </Link>
                                         </li>
@@ -138,16 +106,11 @@ export default function Footer() {
                             </div>
                         </div>
                         <div>
-                            <h3 className="text-sm font-semibold leading-6 text-white">
-                                Σχετικά με εμάς
-                            </h3>
+                            <h3 className="text-sm font-semibold leading-6 text-white">Σχετικά με εμάς</h3>
                             <ul role="list" className="mt-6 space-y-4">
                                 {navigation.about.map((item) => (
                                     <li key={item.name}>
-                                        <Link
-                                            href={item.href}
-                                            className="text-sm leading-6 text-gray-300 hover:text-white transition"
-                                        >
+                                        <Link href={item.href} className="text-sm leading-6 text-gray-300 hover:text-white transition">
                                             {item.name}
                                         </Link>
                                     </li>
@@ -160,19 +123,10 @@ export default function Footer() {
                 {/* Bottom section */}
                 <div className="mt-16 border-t border-white/10 pt-8 sm:mt-20 lg:mt-24">
                     <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-between">
-                        <p className="text-xs leading-5 text-gray-400">
-                            © {new Date().getFullYear()} Ένωση Εθελοντών
-                            Αδέσποτων Χαλκίδας. All rights reserved.
-                        </p>
+                        <p className="text-xs leading-5 text-gray-400">© {new Date().getFullYear()} Ένωση Εθελοντών Αδέσποτων Χαλκίδας. All rights reserved.</p>
                         <div className="flex items-center gap-2 text-xs text-gray-400">
-                            Made with{" "}
-                            <Heart className="h-3 w-3 fill-pink-500 text-pink-500" />{" "}
-                            for animals by
-                            <Link
-                                href="https://negativeentropy.me"
-                                target="_blank"
-                                className="text-blue-500 hover:text-pink-500"
-                            >
+                            Made with <Heart className="h-3 w-3 fill-pink-500 text-pink-500" /> for animals by
+                            <Link href="https://negativeentropy.me" target="_blank" className="text-blue-500 hover:text-pink-500">
                                 negativeentropy.me
                             </Link>
                         </div>

@@ -12,6 +12,7 @@ export interface AnimalData {
     };
     species: "Σκύλος" | "Γάτα";
     age: number;
+    weight: number;
     gender: "Αρσενικό" | "Θηλυκό";
     location: string;
     status: "Διαθέσιμο" | "Υιοθετήθηκε" | "Σε φιλοξενία";
@@ -59,9 +60,10 @@ export type AnimalType = {
     name: string;
     species: "Σκύλος" | "Γάτα";
     age: number;
+    weight: number;
     gender: "Αρσενικό" | "Θηλυκό";
     location: string;
-    status: "Διαθέσιμο" | "Υιοθετήθηκε" | "Σε φιλοξενία";
+    status: "Διαθέσιμο" | "Υιοθετήθηκε";
     image: string; // Transformed to URL
     slug: string; // Extracted from slug.current
     description?: string;

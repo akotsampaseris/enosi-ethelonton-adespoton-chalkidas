@@ -45,7 +45,7 @@ export function FeaturedSuccessStories({ stories }: SuccessStoriesProps) {
                                     </div>
 
                                     <div className="p-6">
-                                        <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-pink-600 transition-colors">{story.storyTitle}</h3>
+                                        <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-pink-600 transition-colors">{story.title}</h3>
 
                                         <p className="text-gray-600 mb-4 line-clamp-2 leading-relaxed">{story.excerpt}</p>
 

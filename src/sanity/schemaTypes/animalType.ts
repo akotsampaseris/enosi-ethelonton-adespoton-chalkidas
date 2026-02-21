@@ -40,6 +40,12 @@ export const animalType = defineType({
             validation: (Rule) => Rule.required().min(0).max(30),
         }),
         defineField({
+            name: "weight",
+            title: "Βάρος (σε κιλά)",
+            type: "number",
+            validation: (Rule) => Rule.required().min(0).max(100),
+        }),
+        defineField({
             name: "gender",
             title: "Φύλο",
             type: "string",

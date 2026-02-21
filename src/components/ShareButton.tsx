@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Share2, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 interface ShareButtonProps {
     title: string;
@@ -10,15 +11,11 @@ interface ShareButtonProps {
     url?: string;
     className?: string;
     showLabel?: boolean;
+    variant?: "default" | "outline" | "ghost" | "link" | "destructive" | "secondary";
+    size?: "default" | "sm" | "lg" | "icon";
 }
 
-export default function ShareButton({
-    title,
-    text,
-    url,
-    className = "",
-    showLabel = true,
-}: ShareButtonProps) {
+export default function ShareButton({ title, text, url, className = "", showLabel = true, variant = "default", size = "default" }: ShareButtonProps) {
     const [copied, setCopied] = useState(false);
 
     const handleShare = async () => {
@@ -56,21 +53,18 @@ export default function ShareButton({
     };
 
     return (
-        <button
-            onClick={handleShare}
-            className={`flex items-center gap-2 ${className}`}
-        >
+        <Button onClick={handleShare} variant={variant} size={size} className={cn(className)}>
             {copied ? (
                 <>
-                    <Check size={20} />
+                    <Check className={showLabel ? "mr-2" : ""} size={20} />
                     {showLabel && <span>Αντιγράφηκε!</span>}
                 </>
             ) : (
                 <>
-                    <Share2 size={20} />
+                    <Share2 className={showLabel ? "mr-2" : ""} size={20} />
                     {showLabel && <span>Κοινοποίηση</span>}
                 </>
             )}
-        </button>
+        </Button>
     );
 }

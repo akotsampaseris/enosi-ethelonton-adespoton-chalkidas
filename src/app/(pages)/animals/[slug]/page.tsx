@@ -16,6 +16,7 @@ async function getAnimal(slug: string): Promise<AnimalType | null> {
     name,
     species,
     age,
+    weight,
     gender,
     location,
     status,

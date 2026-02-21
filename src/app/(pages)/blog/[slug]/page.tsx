@@ -166,7 +166,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                             </div>
                         )}
                         <div className="ml-auto">
-                            <ShareButton title={post.title} text={post.excerpt} className="text-pink-600 hover:text-pink-700" />
+                            <ShareButton variant="ghost" title={post.title} text={post.excerpt} className="text-pink-600 hover:text-pink-700" />
                         </div>
                     </div>
 

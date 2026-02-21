@@ -6,7 +6,7 @@ export const successStoryType = defineType({
     type: "document",
     fields: [
         defineField({
-            name: "storyTitle",
+            name: "title",
             title: "Story Title",
             type: "string",
             validation: (Rule) => Rule.required(),

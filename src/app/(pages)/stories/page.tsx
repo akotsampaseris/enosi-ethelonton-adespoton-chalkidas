@@ -14,7 +14,7 @@ async function getSuccessStories(): Promise<{
     const query = `{
     "featured": *[_type == "successStory" && featured == true] | order(adoptionDate desc)[0] {
       _id,
-      storyTitle,
+      title,
       animalName,
       "slug": slug.current,
       adopterName,
@@ -25,7 +25,7 @@ async function getSuccessStories(): Promise<{
     },
     "stories": *[_type == "successStory"] | order(adoptionDate desc) {
       _id,
-      storyTitle,
+      title,
       animalName,
       "slug": slug.current,
       adopterName,
@@ -76,7 +76,7 @@ export default async function SuccessStoriesPage() {
                                     </div>
 
                                     <div className="p-8 lg:p-12 flex flex-col justify-center">
-                                        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 group-hover:text-pink-600 transition-colors">{featured.storyTitle}</h2>
+                                        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 group-hover:text-pink-600 transition-colors">{featured.title}</h2>
 
                                         <p className="text-lg text-gray-700 mb-6 leading-relaxed">{featured.excerpt}</p>
 
@@ -122,7 +122,7 @@ export default async function SuccessStoriesPage() {
                                             </div>
 
                                             <div className="p-6">
-                                                <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-pink-600 transition-colors">{story.storyTitle}</h3>
+                                                <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-pink-600 transition-colors">{story.title}</h3>
 
                                                 <p className="text-gray-600 mb-4 line-clamp-2 leading-relaxed">{story.excerpt}</p>
 

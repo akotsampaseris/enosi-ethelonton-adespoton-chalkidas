@@ -2,7 +2,7 @@ import { PortableTextBlock } from "@portabletext/react";
 
 export interface SuccessStory {
     _id: string;
-    storyTitle: string;
+    title: string;
     animalName: string;
     slug: string;
     adopterName: string;

@@ -7,11 +7,12 @@ import { Calendar, Heart, ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import PageLayout from "@/components/PageLayout";
 import { SuccessStory } from "@/types/successStory";
+import ShareButton from "@/components/ShareButton";
 
 async function getStory(slug: string): Promise<SuccessStory | null> {
     const query = `*[_type == "successStory" && slug.current == $slug][0] {
     _id,
-    storyTitle,
+    title,
     animalName,
     "slug": slug.current,
     adopterName,
@@ -29,7 +30,7 @@ async function getStory(slug: string): Promise<SuccessStory | null> {
 async function getRelatedStories(currentSlug: string): Promise<SuccessStory[]> {
     const query = `*[_type == "successStory" && slug.current != $currentSlug] | order(adoptionDate desc)[0...3] {
     _id,
-    storyTitle,
+    title,
     animalName,
     "slug": slug.current,
     adopterName,
@@ -106,7 +107,7 @@ export default async function SuccessStoryPage({ params }: { params: Promise<{ s
                 {/* Article */}
                 <article className="container mx-auto max-w-4xl px-4 pb-20">
                     {/* Title */}
-                    <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">{story.storyTitle}</h1>
+                    <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">{story.title}</h1>
 
                     {/* Meta */}
                     <div className="flex flex-wrap items-center gap-6 text-gray-600 mb-8 pb-8 border-b border-gray-200">
@@ -117,6 +118,9 @@ export default async function SuccessStoryPage({ params }: { params: Promise<{ s
                         <div className="flex items-center gap-2">
                             <Calendar size={20} />
                             <span>{formatDate(story.adoptionDate)}</span>
+                        </div>
+                        <div className="ml-auto">
+                            <ShareButton variant="ghost" title={story.title} text={story.excerpt} className="text-pink-600 hover:text-pink-700" />
                         </div>
                     </div>
 
@@ -182,7 +186,7 @@ export default async function SuccessStoryPage({ params }: { params: Promise<{ s
                                             </div>
 
                                             <div className="p-6">
-                                                <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-pink-600 transition-colors">{relatedStory.storyTitle}</h3>
+                                                <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-pink-600 transition-colors">{relatedStory.title}</h3>
                                                 <p className="text-sm text-gray-600 line-clamp-2">{relatedStory.excerpt}</p>
                                             </div>
                                         </article>

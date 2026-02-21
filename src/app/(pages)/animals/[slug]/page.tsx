@@ -50,8 +50,6 @@ export async function generateStaticParams() {
 export default async function AnimalPage({ params }: PageProps) {
     const { slug } = await params;
     const animal = await getAnimal(slug);
-    console.log(slug);
-    console.log(animal);
 
     if (!animal) {
         notFound();

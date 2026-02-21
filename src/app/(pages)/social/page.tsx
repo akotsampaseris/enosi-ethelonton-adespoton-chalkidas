@@ -20,7 +20,7 @@ export default function SocialPage() {
         {
             name: "Instagram",
             icon: Instagram,
-            url: "https://instagram.com/enosi_ethel_adespoton_chalkidas",
+            url: "https://instagram.com/enosi_ethel_adespoton_chalkida",
             handle: "@enosi_ethel_adespoton_chalkidas",
             color: "bg-gradient-to-br from-purple-600 via-pink-600 to-orange-500",
             followers: "84",

@@ -242,7 +242,7 @@ export default function ContactForm() {
                                     </svg>
                                 </a>
                                 <a
-                                    href="https://instagram.com/enosi_ethel_adespoton_chalkidas"
+                                    href="https://instagram.com/enosi_ethel_adespoton_chalkida"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="bg-gray-100 hover:bg-pink-100 p-3 rounded-full transition-colors"

@@ -90,7 +90,7 @@ export default function Footer() {
                                 <Facebook className="h-6 w-6" />
                             </a>
                             <a
-                                href="https://instagram.com/enosi_ethel_adespoton_chalkidas"
+                                href="https://instagram.com/enosi_ethel_adespoton_chalkida"
                                 className="text-gray-400 hover:text-pink-500 transition"
                             >
                                 <span className="sr-only">Instagram</span>

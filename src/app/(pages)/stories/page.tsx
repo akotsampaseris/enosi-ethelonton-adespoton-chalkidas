@@ -42,7 +42,8 @@ async function getSuccessStories(): Promise<{
 
 export default async function SuccessStoriesPage() {
     const { featured, stories } = await getSuccessStories();
-    const regularStories = stories.filter((story) => !story.featured);
+    // const regularStories = stories.filter((story) => !story.featured);
+    const regularStories = stories.filter((story) => !story.featured || story._id !== featured?._id);
 
     return (
         <PageLayout>

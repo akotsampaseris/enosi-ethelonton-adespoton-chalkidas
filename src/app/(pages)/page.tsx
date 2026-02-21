@@ -27,7 +27,7 @@ async function getAnimals(): Promise<AnimalType[]> {
 }
 
 async function getFeaturedStories(): Promise<SuccessStory[]> {
-    const query = `*[_type == "successStory" && featured == true] | order(adoptionDate desc)[0...3] {
+    const query = `*[_type == "successStory"] | order(adoptionDate desc)[0...3] {
     _id,
     storyTitle,
     animalName,

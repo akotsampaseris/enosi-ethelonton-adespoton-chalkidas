@@ -8,6 +8,8 @@ import ShareButton from "@/components/ShareButton";
 import { Button } from "@/components/ui/button";
 
 export default function SocialPage() {
+    const siteUrl = typeof window !== "undefined" ? window.location.origin : process.env.NEXT_PUBLIC_SITE_URL || "";
+
     const socialLinks = [
         {
             name: "Facebook",
@@ -27,24 +29,22 @@ export default function SocialPage() {
         },
     ];
 
-    const baseUrl = window.location.origin;
-
     const shareMessages = [
         {
             title: "Για την Οργάνωση",
-            message: `🐾 Η Ένωση Εθελοντών Αδέσποτων Χαλκίδας σώζει ζωές κάθε μέρα! Βοηθήστε μας να βρούμε σπίτια για αδέσποτα ζώα. Δείτε τα διαθέσιμα ζωάκια: ${baseUrl}/animals`,
+            message: `🐾 Η Ένωση Εθελοντών Αδέσποτων Χαλκίδας σώζει ζωές κάθε μέρα! Βοηθήστε μας να βρούμε σπίτια για αδέσποτα ζώα. Δείτε τα διαθέσιμα ζωάκια: ${siteUrl}/animals`,
         },
         {
             title: "Για Υιοθεσία",
-            message: `❤️ Ψάχνεις για έναν πιστό φίλο; Η Ένωση Εθελοντών Αδέσποτων Χαλκίδας έχει πολλά υπέροχα ζωάκια που περιμένουν το παντοτινό τους σπίτι! 🏡 ${baseUrl}/animals`,
+            message: `❤️ Ψάχνεις για έναν πιστό φίλο; Η Ένωση Εθελοντών Αδέσποτων Χαλκίδας έχει πολλά υπέροχα ζωάκια που περιμένουν το παντοτινό τους σπίτι! 🏡 ${siteUrl}/animals`,
         },
         {
             title: "Για Εθελοντισμό",
-            message: `🙌 Γίνε εθελοντής και κάνε τη διαφορά! Η Ένωση Εθελοντών Αδέσποτων Χαλκίδας χρειάζεται τη βοήθειά σου. Κάθε ώρα μετράει! ${baseUrl}/volunteer`,
+            message: `🙌 Γίνε εθελοντής και κάνε τη διαφορά! Η Ένωση Εθελοντών Αδέσποτων Χαλκίδας χρειάζεται τη βοήθειά σου. Κάθε ώρα μετράει! ${siteUrl}/volunteer`,
         },
         {
             title: "Για Δωρεές",
-            message: `💝 Κάθε δωρεά σώζει ζωές! Στήριξε το έργο της Ένωσης Εθελοντών Αδέσποτων Χαλκίδας και βοήθησε τα αδέσποτα ζώα της περιοχής μας. ${baseUrl}/donate`,
+            message: `💝 Κάθε δωρεά σώζει ζωές! Στήριξε το έργο της Ένωσης Εθελοντών Αδέσποτων Χαλκίδας και βοήθησε τα αδέσποτα ζώα της περιοχής μας. ${siteUrl}/donate`,
         },
     ];
 

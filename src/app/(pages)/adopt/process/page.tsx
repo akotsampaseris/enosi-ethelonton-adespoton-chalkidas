@@ -151,18 +151,19 @@ export default function AdoptionProcessPage() {
                                                         <p className="text-sm md:text-base text-gray-600 leading-relaxed">{step.description}</p>
                                                     </div>
                                                 </div>
+                                                {step.action && step.link && (
+                                                    <div className="pl-6 sm:pl-10 my-4">
+                                                        <Button asChild variant="outline" className="border-pink-200 text-pink-600 hover:bg-pink-50">
+                                                            <Link href={step.link}>{step.action}</Link>
+                                                        </Button>
+                                                    </div>
+                                                )}
 
-                                                <div className="space-y-4 pl-6 sm:pl-10 pt-2 border-t border-gray-100">
+                                                <div className="space-y-4 pl-6 sm:pl-10 pt-4 border-t border-gray-200">
                                                     <div className="flex items-center gap-2 text-sm text-gray-500">
                                                         <Clock size={14} className="text-pink-500" />
                                                         <span>{step.duration}</span>
                                                     </div>
-
-                                                    {step.action && step.link && (
-                                                        <Button asChild variant="outline" className="border-pink-200 text-pink-600 hover:bg-pink-50">
-                                                            <Link href={step.link}>{step.action}</Link>
-                                                        </Button>
-                                                    )}
                                                 </div>
                                             </div>
                                         </div>

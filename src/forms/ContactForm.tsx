@@ -190,7 +190,7 @@ export default function ContactForm() {
                         {/* Office Hours */}
                         <div className="bg-gray-50 rounded-2xl p-6">
                             <h3 className="font-semibold text-gray-900 mb-4">
-                                Ώρες Λειτουργίας
+                                Ώρες Επικοινωνίας
                             </h3>
                             <div className="space-y-2 text-sm">
                                 <div className="flex justify-between">
@@ -198,7 +198,7 @@ export default function ContactForm() {
                                         Δευτέρα - Παρασκευή
                                     </span>
                                     <span className="font-medium text-gray-900">
-                                        9:00 - 18:00
+                                        9:00 - 20:00
                                     </span>
                                 </div>
                                 <div className="flex justify-between">
@@ -207,14 +207,6 @@ export default function ContactForm() {
                                     </span>
                                     <span className="font-medium text-gray-900">
                                         10:00 - 14:00
-                                    </span>
-                                </div>
-                                <div className="flex justify-between">
-                                    <span className="text-gray-600">
-                                        Κυριακή
-                                    </span>
-                                    <span className="font-medium text-gray-900">
-                                        Κλειστά
                                     </span>
                                 </div>
                             </div>

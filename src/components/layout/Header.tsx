@@ -25,7 +25,8 @@ export default function Header() {
 
     const navLinks = [
         { name: "Σχετικά με εμάς", href: "/about" },
-        { name: "Υιοθέτησε", href: "/animals" },
+        { name: "Τα ζώα μας", href: "/animals" },
+        { name: "Υιοθέτησε", href: "/adopt" },
         { name: "Φιλοξένησε", href: "/foster" },
         { name: "Εθελοντισμός", href: "/volunteer" },
         { name: "Blog", href: "/blog" },

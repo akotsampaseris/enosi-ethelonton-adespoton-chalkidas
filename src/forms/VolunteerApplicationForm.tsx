@@ -461,13 +461,13 @@ export default function VolunteerApplicationForm() {
                                             </FormControl>
                                             <div className="space-y-1 leading-none">
                                                 <FormLabel className="font-normal cursor-pointer">
-                                                    <div>
+                                                    <span>
                                                         Καταλαβαίνω ότι ο εθελοντισμός απαιτεί δέσμευση και υπευθυνότητα. Συμφωνώ να ακολουθώ τις οδηγίες της οργάνωσης και να
                                                         σεβαστώ τους{" "}
-                                                        <Link href="/volunteer/terms" className="text-pink-600 underline">
+                                                        <Link href="/terms?section=volunteer" className="text-pink-600 underline" target="_blank">
                                                             όρους εθελοντισμού
                                                         </Link>
-                                                    </div>
+                                                    </span>
                                                 </FormLabel>
                                                 <FormMessage />
                                             </div>

@@ -23,7 +23,7 @@ const navigation = {
     help: [
         { name: "Συχνές Ερωτήσεις", href: "/faq" },
         { name: "Επικοινωνία", href: "/contact" },
-        { name: "Όροι & Προϋποθέσεις", href: "/faq" },
+        { name: "Όροι & Προϋποθέσεις", href: "/terms" },
     ],
 };
 

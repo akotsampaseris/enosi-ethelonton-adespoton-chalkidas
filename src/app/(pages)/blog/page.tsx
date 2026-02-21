@@ -1,30 +1,10 @@
 import { client } from "@/sanity/lib/client";
 import Image from "next/image";
 import Link from "next/link";
-import {
-    Calendar,
-    User,
-    ArrowRight,
-    ChevronLeft,
-    ChevronRight,
-} from "lucide-react";
+import { Calendar, User, ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import PageLayout from "@/components/PageLayout";
-
-interface BlogPost {
-    _id: string;
-    title: string;
-    slug: string;
-    excerpt: string;
-    mainImage: string;
-    publishedAt: string;
-    author?: {
-        name: string;
-        image?: string;
-    };
-    categories?: string[];
-    featured: boolean;
-}
+import { BlogPost } from "@/types/blogPost";
 
 const POSTS_PER_PAGE = 9;
 
@@ -90,16 +70,12 @@ const categoryLabels: Record<string, string> = {
     "volunteer-stories": "Ιστορίες Εθελοντών",
 };
 
-export default async function BlogPage({
-    searchParams,
-}: {
-    searchParams: Promise<{ page?: string }>;
-}) {
+export default async function BlogPage({ searchParams }: { searchParams: Promise<{ page?: string }> }) {
     const { page: pageParam } = await searchParams;
     const currentPage = Number(pageParam) || 1;
 
     const { featured, posts, totalPages } = await getPosts(currentPage);
-    const regularPosts = posts.filter((post) => !post.featured);
+    const regularPosts = posts.filter((post) => !post.featured || post._id !== featured?._id);
 
     return (
         <PageLayout>
@@ -107,13 +83,8 @@ export default async function BlogPage({
                 {/* Hero */}
                 <section className="bg-gradient-to-r from-pink-500 to-pink-600 text-white py-20">
                     <div className="container mx-auto max-w-6xl px-4 text-center">
-                        <h1 className="text-4xl md:text-5xl font-bold mb-4">
-                            Το Blog μας
-                        </h1>
-                        <p className="text-xl text-pink-100">
-                            Ιστορίες, συμβουλές και νέα από τον κόσμο της
-                            προστασίας των ζώων
-                        </p>
+                        <h1 className="text-4xl md:text-5xl font-bold mb-4">Το Blog μας</h1>
+                        <p className="text-xl text-pink-100">Ιστορίες, συμβουλές και νέα από τον κόσμο της προστασίας των ζώων</p>
                     </div>
                 </section>
 
@@ -131,54 +102,34 @@ export default async function BlogPage({
                                             className="object-cover group-hover:scale-105 transition-transform duration-500"
                                         />
                                         <div className="absolute top-4 left-4">
-                                            <span className="bg-pink-500 text-white px-4 py-2 rounded-full text-sm font-semibold">
-                                                Προτεινόμενο
-                                            </span>
+                                            <span className="bg-pink-500 text-white px-4 py-2 rounded-full text-sm font-semibold">Προτεινόμενο</span>
                                         </div>
                                     </div>
 
                                     <div className="p-8 lg:p-12 flex flex-col justify-center">
-                                        {featured.categories &&
-                                            featured.categories.length > 0 && (
-                                                <div className="flex flex-wrap gap-2 mb-4">
-                                                    {featured.categories
-                                                        .slice(0, 2)
-                                                        .map((cat) => (
-                                                            <span
-                                                                key={cat}
-                                                                className="text-sm text-pink-600 font-medium"
-                                                            >
-                                                                {categoryLabels[
-                                                                    cat
-                                                                ] || cat}
-                                                            </span>
-                                                        ))}
-                                                </div>
-                                            )}
+                                        {featured.categories && featured.categories.length > 0 && (
+                                            <div className="flex flex-wrap gap-2 mb-4">
+                                                {featured.categories.slice(0, 2).map((cat) => (
+                                                    <span key={cat} className="text-sm text-pink-600 font-medium">
+                                                        {categoryLabels[cat] || cat}
+                                                    </span>
+                                                ))}
+                                            </div>
+                                        )}
 
-                                        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 group-hover:text-pink-600 transition-colors">
-                                            {featured.title}
-                                        </h2>
+                                        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 group-hover:text-pink-600 transition-colors">{featured.title}</h2>
 
-                                        <p className="text-lg text-gray-700 mb-6 leading-relaxed">
-                                            {featured.excerpt}
-                                        </p>
+                                        <p className="text-lg text-gray-700 mb-6 leading-relaxed">{featured.excerpt}</p>
 
                                         <div className="flex items-center gap-6 text-sm text-gray-600 mb-6">
                                             <div className="flex items-center gap-2">
                                                 <Calendar size={18} />
-                                                <span>
-                                                    {formatDate(
-                                                        featured.publishedAt,
-                                                    )}
-                                                </span>
+                                                <span>{formatDate(featured.publishedAt)}</span>
                                             </div>
                                             {featured.author && (
                                                 <div className="flex items-center gap-2">
                                                     <User size={18} />
-                                                    <span>
-                                                        {featured.author.name}
-                                                    </span>
+                                                    <span>{featured.author.name}</span>
                                                 </div>
                                             )}
                                         </div>
@@ -201,49 +152,29 @@ export default async function BlogPage({
                             <Link key={post._id} href={`/blog/${post.slug}`}>
                                 <article className="group bg-white rounded-2xl overflow-hidden border border-gray-200 hover:border-pink-300 hover:shadow-xl transition-all duration-300">
                                     <div className="relative aspect-[4/3] overflow-hidden bg-gray-100">
-                                        <Image
-                                            src={post.mainImage}
-                                            alt={post.title}
-                                            fill
-                                            className="object-cover group-hover:scale-105 transition-transform duration-500"
-                                        />
+                                        <Image src={post.mainImage} alt={post.title} fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
                                     </div>
 
                                     <div className="p-6">
-                                        {post.categories &&
-                                            post.categories.length > 0 && (
-                                                <div className="mb-3">
-                                                    <span className="text-sm text-pink-600 font-medium">
-                                                        {categoryLabels[
-                                                            post.categories[0]
-                                                        ] || post.categories[0]}
-                                                    </span>
-                                                </div>
-                                            )}
+                                        {post.categories && post.categories.length > 0 && (
+                                            <div className="mb-3">
+                                                <span className="text-sm text-pink-600 font-medium">{categoryLabels[post.categories[0]] || post.categories[0]}</span>
+                                            </div>
+                                        )}
 
-                                        <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-pink-600 transition-colors line-clamp-2">
-                                            {post.title}
-                                        </h3>
+                                        <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-pink-600 transition-colors line-clamp-2">{post.title}</h3>
 
-                                        <p className="text-gray-600 mb-4 line-clamp-3 leading-relaxed">
-                                            {post.excerpt}
-                                        </p>
+                                        <p className="text-gray-600 mb-4 line-clamp-3 leading-relaxed">{post.excerpt}</p>
 
                                         <div className="flex items-center gap-4 text-sm text-gray-500">
                                             <div className="flex items-center gap-2">
                                                 <Calendar size={16} />
-                                                <span>
-                                                    {formatDate(
-                                                        post.publishedAt,
-                                                    )}
-                                                </span>
+                                                <span>{formatDate(post.publishedAt)}</span>
                                             </div>
                                             {post.author && (
                                                 <div className="flex items-center gap-2">
                                                     <User size={16} />
-                                                    <span>
-                                                        {post.author.name}
-                                                    </span>
+                                                    <span>{post.author.name}</span>
                                                 </div>
                                             )}
                                         </div>
@@ -255,9 +186,7 @@ export default async function BlogPage({
 
                     {regularPosts.length === 0 && !featured && (
                         <div className="text-center py-20">
-                            <p className="text-gray-500 text-lg">
-                                Δεν υπάρχουν άρθρα ακόμα. Ελέγξτε ξανά σύντομα!
-                            </p>
+                            <p className="text-gray-500 text-lg">Δεν υπάρχουν άρθρα ακόμα. Ελέγξτε ξανά σύντομα!</p>
                         </div>
                     )}
                 </section>
@@ -266,16 +195,9 @@ export default async function BlogPage({
                 {totalPages > 1 && (
                     <section className="container mx-auto max-w-6xl px-4 pb-20">
                         <div className="flex items-center justify-center gap-2">
-                            <Button
-                                variant="outline"
-                                disabled={currentPage <= 1}
-                                asChild={currentPage > 1}
-                                className="border-gray-300"
-                            >
+                            <Button variant="outline" disabled={currentPage <= 1} asChild={currentPage > 1} className="border-gray-300">
                                 {currentPage > 1 ? (
-                                    <Link
-                                        href={`/blog?page=${currentPage - 1}`}
-                                    >
+                                    <Link href={`/blog?page=${currentPage - 1}`}>
                                         <ChevronLeft size={20} />
                                         Προηγούμενη
                                     </Link>
@@ -288,41 +210,20 @@ export default async function BlogPage({
                             </Button>
 
                             <div className="flex items-center gap-2">
-                                {Array.from(
-                                    { length: totalPages },
-                                    (_, i) => i + 1,
-                                ).map((pageNum) => (
+                                {Array.from({ length: totalPages }, (_, i) => i + 1).map((pageNum) => (
                                     <Button
                                         key={pageNum}
-                                        variant={
-                                            currentPage === pageNum
-                                                ? "default"
-                                                : "outline"
-                                        }
-                                        className={
-                                            currentPage === pageNum
-                                                ? "bg-pink-500 hover:bg-pink-600"
-                                                : "border-gray-300"
-                                        }
-                                        asChild
-                                    >
-                                        <Link href={`/blog?page=${pageNum}`}>
-                                            {pageNum}
-                                        </Link>
+                                        variant={currentPage === pageNum ? "default" : "outline"}
+                                        className={currentPage === pageNum ? "bg-pink-500 hover:bg-pink-600" : "border-gray-300"}
+                                        asChild>
+                                        <Link href={`/blog?page=${pageNum}`}>{pageNum}</Link>
                                     </Button>
                                 ))}
                             </div>
 
-                            <Button
-                                variant="outline"
-                                disabled={currentPage >= totalPages}
-                                asChild={currentPage < totalPages}
-                                className="border-gray-300"
-                            >
+                            <Button variant="outline" disabled={currentPage >= totalPages} asChild={currentPage < totalPages} className="border-gray-300">
                                 {currentPage < totalPages ? (
-                                    <Link
-                                        href={`/blog?page=${currentPage + 1}`}
-                                    >
+                                    <Link href={`/blog?page=${currentPage + 1}`}>
                                         Επόμενη
                                         <ChevronRight size={20} />
                                     </Link>

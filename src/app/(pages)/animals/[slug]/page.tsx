@@ -62,5 +62,3 @@ export default async function AnimalPage({ params }: PageProps) {
     </PageLayout>
   );
 }
-
-export const revalidate = 60; // Revalidate every 60 seconds

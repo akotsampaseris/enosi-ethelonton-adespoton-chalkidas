@@ -311,5 +311,3 @@ export default async function BlogPostPage({
     </PageLayout>
   );
 }
-
-export const revalidate = 3600;

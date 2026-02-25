@@ -9,8 +9,6 @@ import type { AnimalType } from "@/types/animal";
 import PageLayout from "@/components/PageLayout";
 import type { SuccessStory } from "@/types/successStory";
 
-export const revalidate = 60;
-
 async function getAnimals(): Promise<AnimalType[]> {
     const query = `*[_type == "animal"] | order(_createdAt desc) {
     _id,

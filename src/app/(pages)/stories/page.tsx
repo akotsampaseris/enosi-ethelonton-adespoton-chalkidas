@@ -195,5 +195,3 @@ export default async function SuccessStoriesPage() {
     </PageLayout>
   );
 }
-
-export const revalidate = 3600; // Revalidate every hour

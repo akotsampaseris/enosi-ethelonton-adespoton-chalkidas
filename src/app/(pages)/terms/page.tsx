@@ -140,7 +140,7 @@ export default function TermsPage() {
                 href="/contact"
                 className="text-pink-600 hover:text-pink-700 underline"
               >
-                info@animalrescue.gr
+                info@eeach.gr
               </Link>
             </p>
           </div>

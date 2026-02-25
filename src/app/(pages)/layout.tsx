@@ -3,7 +3,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 
-export const revalidate = 300;
+export const revalidate = 0;
 
 export default function PagesLayout({ children }: { children: React.ReactNode }) {
     const includeProdOnlyScripts = () => {

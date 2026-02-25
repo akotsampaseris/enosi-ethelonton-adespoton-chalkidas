@@ -1,13 +1,19 @@
 import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 
 export const revalidate = 300;
 
 export default function PagesLayout({ children }: { children: React.ReactNode }) {
-    const includeAnalyticsOnlyInProduction = () => {
+    const includeProdOnlyScripts = () => {
         if (process.env.NODE_ENV === "production") {
-            return <Analytics />;
+            return (
+                <>
+                    <Analytics />
+                    <SpeedInsights />
+                </>
+            );
         }
     };
 
@@ -16,7 +22,7 @@ export default function PagesLayout({ children }: { children: React.ReactNode })
             <Header />
             {children}
             <Footer />
-            {includeAnalyticsOnlyInProduction()}
+            {includeProdOnlyScripts()}
         </>
     );
 }

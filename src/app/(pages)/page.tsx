@@ -9,8 +9,10 @@ import type { AnimalType } from "@/types/animal";
 import PageLayout from "@/components/PageLayout";
 import type { SuccessStory } from "@/types/successStory";
 
+export const revalidate = 60;
+
 async function getAnimals(): Promise<AnimalType[]> {
-  const query = `*[_type == "animal"] | order(_createdAt desc) {
+    const query = `*[_type == "animal"] | order(_createdAt desc) {
     _id,
     name,
     species,
@@ -22,12 +24,12 @@ async function getAnimals(): Promise<AnimalType[]> {
     "slug": slug.current
   }`;
 
-  const animals = await client.fetch(query);
-  return animals;
+    const animals = await client.fetch(query);
+    return animals;
 }
 
 async function getFeaturedStories(): Promise<SuccessStory[]> {
-  const query = `*[_type == "successStory"] | order(adoptionDate desc)[0...3] {
+    const query = `*[_type == "successStory"] | order(adoptionDate desc)[0...3] {
     _id,
     title,
     animalName,
@@ -38,24 +40,24 @@ async function getFeaturedStories(): Promise<SuccessStory[]> {
     excerpt
   }`;
 
-  const stories = await client.fetch(query);
-  return stories;
+    const stories = await client.fetch(query);
+    return stories;
 }
 
 export default async function Home() {
-  const animals = await getAnimals();
-  const successStories = await getFeaturedStories();
+    const animals = await getAnimals();
+    const successStories = await getFeaturedStories();
 
-  return (
-    <PageLayout hasHero={true}>
-      <main className="min-h-screen bg-white">
-        <Hero />
-        <FeaturedAnimals animals={animals} />
-        <ImpactStats />
-        <HowToHelp />
-        <FeaturedSuccessStories stories={successStories} />
-        <Newsletter />
-      </main>
-    </PageLayout>
-  );
+    return (
+        <PageLayout hasHero={true}>
+            <main className="min-h-screen bg-white">
+                <Hero />
+                <FeaturedAnimals animals={animals} />
+                <ImpactStats />
+                <HowToHelp />
+                <FeaturedSuccessStories stories={successStories} />
+                <Newsletter />
+            </main>
+        </PageLayout>
+    );
 }

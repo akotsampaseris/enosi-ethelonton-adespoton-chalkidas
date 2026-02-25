@@ -18,6 +18,7 @@ async function getAnimals(): Promise<AnimalType[]> {
     gender,
     location,
     status,
+    weight,
     "image": image.asset->url,
     "slug": slug.current
   }`;

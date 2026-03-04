@@ -64,7 +64,7 @@ export default function Footer() {
 
                         {/* Social links */}
                         <div className="flex-wrap gap-16">
-                            <h5 className="py-2 text-lg text-white font-bold">We are Social</h5>
+                            <h4 className="py-2 text-lg text-white font-bold">We are Social</h4>
                             <div className="flex gap-4">
                                 <a href="https://facebook.com/ethelontesadespotwnchalkidas" className="text-gray-400 hover:text-pink-500 transition">
                                     <span className="sr-only">Facebook</span>

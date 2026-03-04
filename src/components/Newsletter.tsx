@@ -68,6 +68,7 @@ export function Newsletter() {
                                 Διεύθυνση Email
                             </label>
                             <input
+                                id="newsletter-email"
                                 type="email"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}

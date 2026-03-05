@@ -92,7 +92,7 @@ export default function AnimalPage({ animal }: AnimalPageProps) {
                                     {animal.gender}
                                 </Badge>
                                 <Badge variant="secondary" className="text-base px-4 py-2 bg-gray-100">
-                                    {animal.weight} {animal.age === 1 ? "κιλό" : "κιλά"}
+                                    {animal.weight} {animal.weight === 1 ? "κιλό" : "κιλά"}
                                 </Badge>
                             </div>
 

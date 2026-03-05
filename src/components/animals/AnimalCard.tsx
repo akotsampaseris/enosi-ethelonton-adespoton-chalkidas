@@ -18,7 +18,7 @@ const AnimalCard = ({ animal }: AnimalCardProps) => {
         <motion.div key={animal._id} variants={item} className="group relative overflow-hidden rounded-2xl bg-white shadow-lg ring-1 ring-gray-900/5 transition hover:shadow-2xl">
             <Link href={`/animals/${animal.slug}`} className="block">
                 {/* Image */}
-                <div className="relative aspect-[4/3] overflow-hidden bg-gray-100">
+                <div className="relative aspect-[3/4] overflow-hidden bg-gray-100">
                     {animal.image ? (
                         <Image src={animal.image} alt={animal.name} fill className="object-cover transition duration-500 group-hover:scale-110" />
                     ) : (

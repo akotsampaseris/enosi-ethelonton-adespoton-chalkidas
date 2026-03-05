@@ -120,39 +120,18 @@ export default function DonatePage() {
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                             <div className="bg-white rounded-2xl p-8 border-2 transition-all border-pink-300 hover:shadow-2xl">
                                 <div className="bg-pink-100 rounded-full w-16 h-16 flex items-center justify-center mb-6">
-                                    <Building2 className="text-pink-600" size={28} />
+                                    <PawPrint className="text-pink-600" size={28} />
                                 </div>
-                                <h3 className="text-2xl font-bold text-gray-900 mb-3">Pet City Λιανής Άμμου</h3>
+                                <h3 className="text-lg font-bold text-gray-900 mb-3">Pet Shop Γαβριελάτος Ιωάννης</h3>
                                 <p className="text-gray-600 mb-6 font-medium">Κατάθεση στον τραπεζικό λογαριασμό της επιχείρησης</p>
                                 <div className="text-sm text-gray-700 space-y-4">
                                     <div className="flex flex-col gap-1">
                                         <p className="font-medium">Τράπεζα</p>
-                                        <p className="font-bold text-base">Alpha Bank</p>
+                                        <p className="font-bold text-base">Τράπεζα Πειραιώς</p>
                                     </div>
                                     <div className="flex flex-col gap-1">
                                         <p className="font-medium">IBAN</p>
-                                        <CopyButton text="GR16 0140 1234 1234 1234 1234 567">GR16 0140 1234 1234 1234 1234 567</CopyButton>
-                                    </div>
-                                    <div className="flex flex-col gap-1">
-                                        <p className="font-medium">Δικαιούχος</p>
-                                        <p className="font-bold text-base">Ένωση Εθελοντών Αδέσποτων Χαλκίδας</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="bg-white rounded-2xl p-8 border-2 transition-all border-pink-300 hover:shadow-2xl">
-                                <div className="bg-pink-100 rounded-full w-16 h-16 flex items-center justify-center mb-6">
-                                    <Hospital className="text-pink-600" size={28} />
-                                </div>
-                                <h3 className="text-2xl font-bold text-gray-900 mb-3">Pink Paws Vet Clinic</h3>
-                                <p className="text-gray-600 mb-6 font-medium">Κατάθεση στον τραπεζικό λογαριασμό του κτηνιατρείου</p>
-                                <div className="text-sm text-gray-700 space-y-4">
-                                    <div className="flex flex-col gap-1">
-                                        <p className="font-medium">Τράπεζα</p>
-                                        <p className="font-bold text-base">Alpha Bank</p>
-                                    </div>
-                                    <div className="flex flex-col gap-1">
-                                        <p className="font-medium">IBAN</p>
-                                        <CopyButton text="GR16 0140 1234 1234 1234 1234 567">GR16 0140 1234 1234 1234 1234 567</CopyButton>
+                                        <CopyButton text="GR78017215400005154088012157">GR78 0172 1540 0051 5408 8012 157</CopyButton>
                                     </div>
                                     <div className="flex flex-col gap-1">
                                         <p className="font-medium">Δικαιούχος</p>
@@ -164,16 +143,37 @@ export default function DonatePage() {
                                 <div className="bg-pink-100 rounded-full w-16 h-16 flex items-center justify-center mb-6">
                                     <PawPrint className="text-pink-600" size={28} />
                                 </div>
-                                <h3 className="text-2xl font-bold text-gray-900 mb-3">Example 3</h3>
+                                <h3 className="text-lg font-bold text-gray-900 mb-3">Pet Shop Γαβριελάτος Ιωάννης</h3>
                                 <p className="text-gray-600 mb-6 font-medium">Κατάθεση στον τραπεζικό λογαριασμό της επιχείρησης</p>
                                 <div className="text-sm text-gray-700 space-y-4">
                                     <div className="flex flex-col gap-1">
                                         <p className="font-medium">Τράπεζα</p>
-                                        <p className="font-bold text-base">Alpha Bank</p>
+                                        <p className="font-bold text-base">Εθνική Τράπεζα</p>
                                     </div>
                                     <div className="flex flex-col gap-1">
                                         <p className="font-medium">IBAN</p>
-                                        <CopyButton text="GR16 0140 1234 1234 1234 1234 567">GR16 0140 1234 1234 1234 1234 567</CopyButton>
+                                        <CopyButton text="GR1501104880000048870086278">GR15 0110 4880 0000 4887 0086 278</CopyButton>
+                                    </div>
+                                    <div className="flex flex-col gap-1">
+                                        <p className="font-medium">Δικαιούχος</p>
+                                        <p className="font-bold text-base">Ένωση Εθελοντών Αδέσποτων Χαλκίδας</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="bg-white rounded-2xl p-8 border-2 transition-all border-pink-300 hover:shadow-2xl">
+                                <div className="bg-pink-100 rounded-full w-16 h-16 flex items-center justify-center mb-6">
+                                    <PawPrint className="text-pink-600" size={28} />
+                                </div>
+                                <h3 className="text-lg font-bold text-gray-900 mb-3">Pet Shop Ζαχαροπούλου Μαρία</h3>
+                                <p className="text-gray-600 mb-6 font-medium">Κατάθεση στον τραπεζικό λογαριασμό της επιχείρησης</p>
+                                <div className="text-sm text-gray-700 space-y-4">
+                                    <div className="flex flex-col gap-1">
+                                        <p className="font-medium">Τράπεζα</p>
+                                        <p className="font-bold text-base">Τράπεζα Πειραιώς</p>
+                                    </div>
+                                    <div className="flex flex-col gap-1">
+                                        <p className="font-medium">IBAN</p>
+                                        <CopyButton text=" GR4401721530005153100637609">GR44 0172 1530 0051 5310 0637 609</CopyButton>
                                     </div>
                                     <div className="flex flex-col gap-1">
                                         <p className="font-medium">Δικαιούχος</p>

@@ -151,7 +151,7 @@ export default async function BlogPage({ searchParams }: { searchParams: Promise
                         {regularPosts.map((post) => (
                             <Link key={post._id} href={`/blog/${post.slug}`}>
                                 <article className="group bg-white rounded-2xl overflow-hidden border border-gray-200 hover:border-pink-300 hover:shadow-xl transition-all duration-300">
-                                    <div className="relative aspect-[4/3] overflow-hidden bg-gray-100">
+                                    <div className="relative aspect-[3/4] overflow-hidden bg-gray-100">
                                         <Image src={post.mainImage} alt={post.title} fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
                                     </div>
 

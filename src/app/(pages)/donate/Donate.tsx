@@ -134,7 +134,7 @@ export default function Donate() {
                                         <CopyButton text="GR78017215400005154088012157">GR78 0172 1540 0051 5408 8012 157</CopyButton>
                                     </div>
                                     <div className="flex flex-col gap-1">
-                                        <p className="font-medium">Δικαιούχος</p>
+                                        <p className="font-medium">Αναφορά στα σχόλια</p>
                                         <p className="font-bold text-base">Ένωση Εθελοντών Αδέσποτων Χαλκίδας</p>
                                     </div>
                                 </div>
@@ -155,7 +155,7 @@ export default function Donate() {
                                         <CopyButton text="GR1501104880000048870086278">GR15 0110 4880 0000 4887 0086 278</CopyButton>
                                     </div>
                                     <div className="flex flex-col gap-1">
-                                        <p className="font-medium">Δικαιούχος</p>
+                                        <p className="font-medium">Αναφορά στα σχόλια</p>
                                         <p className="font-bold text-base">Ένωση Εθελοντών Αδέσποτων Χαλκίδας</p>
                                     </div>
                                 </div>
@@ -176,7 +176,7 @@ export default function Donate() {
                                         <CopyButton text=" GR4401721530005153100637609">GR44 0172 1530 0051 5310 0637 609</CopyButton>
                                     </div>
                                     <div className="flex flex-col gap-1">
-                                        <p className="font-medium">Δικαιούχος</p>
+                                        <p className="font-medium">Αναφορά στα σχόλια</p>
                                         <p className="font-bold text-base">Ένωση Εθελοντών Αδέσποτων Χαλκίδας</p>
                                     </div>
                                 </div>

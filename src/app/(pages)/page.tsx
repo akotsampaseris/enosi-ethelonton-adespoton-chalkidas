@@ -10,7 +10,7 @@ import PageLayout from "@/components/PageLayout";
 import type { SuccessStory } from "@/types/successStory";
 
 async function getAnimals(): Promise<AnimalType[]> {
-    const query = `*[_type == "animal"] | order(_createdAt desc) {
+    const query = `*[_type == "animal"] | order(_createdAt desc)[0...3] {
     _id,
     name,
     species,

@@ -1,17 +1,36 @@
-import { client } from "@/sanity/lib/client";
 import { notFound } from "next/navigation";
+import { client } from "@/sanity/lib/client";
 import AnimalAdoptionForm from "@/forms/AnimalAdoptionForm";
 import { AnimalType } from "@/types/animal";
 import PageLayout from "@/components/PageLayout";
 
+import { Metadata } from "next";
+import { defaultMetadata } from "@/assets/metadata";
+
+export const metadata: Metadata = {
+    ...defaultMetadata,
+    title: "Αίτηση Υιοθεσίας",
+    description: "Συμπλήρωσε την αίτηση υιοθεσίας για να ξεκινήσεις τη διαδικασία. Βρες το νέο σου φίλο σήμερα.",
+    openGraph: {
+        ...defaultMetadata.openGraph,
+        title: "Αίτηση Υιοθεσίας",
+        description: "Συμπλήρωσε την αίτηση υιοθεσίας για να ξεκινήσεις τη διαδικασία. Βρες το νέο σου φίλο σήμερα.",
+    },
+    twitter: {
+        ...defaultMetadata.twitter,
+        title: "Αίτηση Υιοθεσίας",
+        description: "Συμπλήρωσε την αίτηση υιοθεσίας για να ξεκινήσεις τη διαδικασία. Βρες το νέο σου φίλο σήμερα.",
+    },
+};
+
 interface PageProps {
-  searchParams: Promise<{
-    animal?: string;
-  }>;
+    searchParams: Promise<{
+        animal?: string;
+    }>;
 }
 
 async function getAnimal(slug: string): Promise<AnimalType | null> {
-  const query = `*[_type == "animal" && slug.current == "${slug}"][0] {
+    const query = `*[_type == "animal" && slug.current == "${slug}"][0] {
     _id,
     name,
     species,
@@ -21,26 +40,26 @@ async function getAnimal(slug: string): Promise<AnimalType | null> {
     "slug": slug.current
   }`;
 
-  const animal = await client.fetch(query);
-  return animal;
+    const animal = await client.fetch(query);
+    return animal;
 }
 
 export default async function AdoptPage({ searchParams }: PageProps) {
-  const { animal: animalSlug } = await searchParams;
+    const { animal: animalSlug } = await searchParams;
 
-  let animal: AnimalType | undefined = undefined;
+    let animal: AnimalType | undefined = undefined;
 
-  if (animalSlug) {
-    const fetchedAnimal = await getAnimal(animalSlug);
-    if (!fetchedAnimal) {
-      notFound();
+    if (animalSlug) {
+        const fetchedAnimal = await getAnimal(animalSlug);
+        if (!fetchedAnimal) {
+            notFound();
+        }
+        animal = fetchedAnimal;
     }
-    animal = fetchedAnimal;
-  }
 
-  return (
-    <PageLayout>
-      <AnimalAdoptionForm animal={animal} />
-    </PageLayout>
-  );
+    return (
+        <PageLayout>
+            <AnimalAdoptionForm animal={animal} />
+        </PageLayout>
+    );
 }

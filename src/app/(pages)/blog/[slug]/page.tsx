@@ -9,6 +9,35 @@ import ShareButton from "@/components/ShareButton";
 import PageLayout from "@/components/PageLayout";
 import { BlogPost } from "@/types/blogPost";
 
+import { Metadata } from "next";
+import { defaultMetadata } from "@/assets/metadata";
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+    const { slug } = await params;
+    const post = await getPost(slug);
+
+    if (!post) return {};
+
+    return {
+        ...defaultMetadata,
+        title: `${post.title}`,
+        description: post.excerpt,
+        openGraph: {
+            ...defaultMetadata.openGraph,
+            title: `${post.title}`,
+            description: post.excerpt,
+            images: [
+                {
+                    url: post.mainImage,
+                    width: 1200,
+                    height: 630,
+                    alt: post.title,
+                },
+            ],
+        },
+    };
+}
+
 async function getPost(slug: string): Promise<BlogPost | null> {
     const query = `*[_type == "post" && slug.current == $slug][0] {
     _id,

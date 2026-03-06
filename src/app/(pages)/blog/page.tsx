@@ -6,6 +6,27 @@ import { Button } from "@/components/ui/button";
 import PageLayout from "@/components/PageLayout";
 import { BlogPost } from "@/types/blogPost";
 
+import type { Metadata } from "next";
+import { defaultMetadata } from "@/assets/metadata";
+
+export async function generateMetadata(): Promise<Metadata> {
+    return {
+        ...defaultMetadata,
+        title: "Blog & Νέα",
+        description: "Διάβασε τα τελευταία νέα μας, συμβουλές φροντίδας ζώων, ιστορίες διάσωσης και ενημερώσεις από την οργάνωσή μας.",
+        openGraph: {
+            ...defaultMetadata.openGraph,
+            title: "Blog & Νέα",
+            description: "Διάβασε τα τελευταία νέα μας, συμβουλές φροντίδας ζώων, ιστορίες διάσωσης και ενημερώσεις από την οργάνωσή μας.",
+        },
+        twitter: {
+            ...defaultMetadata.twitter,
+            title: "Blog & Νέα",
+            description: "Διάβασε τα τελευταία νέα μας, συμβουλές φροντίδας ζώων, ιστορίες διάσωσης και ενημερώσεις από την οργάνωσή μας.",
+        },
+    };
+}
+
 const POSTS_PER_PAGE = 9;
 
 async function getPosts(page: number = 1): Promise<{

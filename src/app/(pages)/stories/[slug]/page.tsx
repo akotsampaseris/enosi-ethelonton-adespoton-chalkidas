@@ -9,6 +9,35 @@ import PageLayout from "@/components/PageLayout";
 import { SuccessStory } from "@/types/successStory";
 import ShareButton from "@/components/ShareButton";
 
+import { Metadata } from "next";
+import { defaultMetadata } from "@/assets/metadata";
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+    const { slug } = await params;
+    const story = await getStory(slug);
+
+    if (!story) return {};
+
+    return {
+        ...defaultMetadata,
+        title: `${story.animalName}`,
+        description: story.excerpt,
+        openGraph: {
+            ...defaultMetadata.openGraph,
+            title: `${story.animalName}`,
+            description: story.excerpt,
+            images: [
+                {
+                    url: story.mainImage,
+                    width: 1200,
+                    height: 630,
+                    alt: story.animalName,
+                },
+            ],
+        },
+    };
+}
+
 async function getStory(slug: string): Promise<SuccessStory | null> {
     const query = `*[_type == "successStory" && slug.current == $slug][0] {
     _id,

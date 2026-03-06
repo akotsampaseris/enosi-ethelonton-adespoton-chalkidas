@@ -3,6 +3,25 @@ import { Button } from "@/components/ui/button";
 import { Search, FileText, Home, Heart, PenTool, CheckCircle, Clock, Info } from "lucide-react";
 import PageLayout from "@/components/PageLayout";
 
+import { Metadata } from "next";
+import { defaultMetadata } from "@/assets/metadata";
+
+export const metadata: Metadata = {
+    ...defaultMetadata,
+    title: "Διαδικασία Υιοθεσίας",
+    description: "Μάθε πώς λειτουργεί η διαδικασία υιοθεσίας σε 6 απλά βήματα. Από την πρώτη γνωριμία μέχρι το νέο σπίτι.",
+    openGraph: {
+        ...defaultMetadata.openGraph,
+        title: "Διαδικασία Υιοθεσίας",
+        description: "Μάθε πώς λειτουργεί η διαδικασία υιοθεσίας σε 6 απλά βήματα. Από την πρώτη γνωριμία μέχρι το νέο σπίτι.",
+    },
+    twitter: {
+        ...defaultMetadata.twitter,
+        title: "Διαδικασία Υιοθεσίας",
+        description: "Μάθε πώς λειτουργεί η διαδικασία υιοθεσίας σε 6 απλά βήματα. Από την πρώτη γνωριμία μέχρι το νέο σπίτι.",
+    },
+};
+
 export default function AdoptionProcessPage() {
     const steps = [
         {

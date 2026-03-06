@@ -82,7 +82,7 @@ export async function POST(request: NextRequest) {
           <li>Αν όλα πάνε καλά, θα προχωρήσουμε στην υιοθεσία!</li>
         </ol>
         
-        <p>Μπορείτε να μας καλέσετε στο <strong>+30 210 210 2100</strong> για οποιαδήποτε ερώτηση.</p>
+        <p>Εάν έχετε ερωτήσεις, στείλτε μας ένα μήνυμα στο <a href="mailto:contact@eeach.gr">contact@eeach.gr</a></p>
         
         <p>Με αγάπη για τα ζώα,<br/>
         Ένωση Εθελοντών Αδέσποτων Χαλκίδας</p>
@@ -91,7 +91,6 @@ export async function POST(request: NextRequest) {
 
         if (confirmError) {
             console.error("Error sending confirmation email:", confirmError);
-            // Don't throw here - org email was sent successfully
         }
 
         return NextResponse.json({

@@ -65,8 +65,6 @@ export async function POST(request: NextRequest) {
           <p style="white-space: pre-wrap; margin: 0;">${message}</p>
         </div>
         
-        <p>Αν έχετε επείγον θέμα, μπορείτε να μας καλέσετε στο <strong>+30 210 210 2100</strong>.</p>
-        
         <p>Με εκτίμηση,<br/>
         Ένωση Εθελοντών Αδέσποτων Χαλκίδας</p>
       `,

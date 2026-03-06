@@ -97,11 +97,6 @@ export default async function FAQPage() {
                                 className="inline-flex items-center justify-center px-6 py-3 bg-pink-500 hover:bg-pink-600 text-white font-semibold rounded-lg transition-colors">
                                 Επικοινωνία
                             </a>
-                            <a
-                                href="tel:+302102102100"
-                                className="inline-flex items-center justify-center px-6 py-3 border-2 border-gray-300 hover:border-pink-500 text-gray-700 hover:text-pink-600 font-semibold rounded-lg transition-colors">
-                                +30 210 210 2100
-                            </a>
                         </div>
                     </div>
                 </div>

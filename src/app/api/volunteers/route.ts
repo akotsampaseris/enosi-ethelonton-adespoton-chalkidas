@@ -123,7 +123,7 @@ export async function POST(request: NextRequest) {
           ${interests.map((i: string) => `<li>${roleLabels[i]}</li>`).join("")}
         </ul>
         
-        <p>Αν έχετε οποιεσδήποτε ερωτήσεις, μπορείτε να μας καλέσετε στο <strong>+30 210 210 2100</strong>.</p>
+        <p>Εάν έχετε ερωτήσεις, στείλτε μας ένα μήνυμα στο <a href="mailto:contact@eeach.gr">contact@eeach.gr</a></p>
         
         <p>Ανυπομονούμε να σας γνωρίσουμε!<br/>
         Ένωση Εθελοντών Αδέσποτων Χαλκίδας</p>

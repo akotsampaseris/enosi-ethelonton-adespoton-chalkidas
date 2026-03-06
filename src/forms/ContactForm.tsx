@@ -98,18 +98,6 @@ export default function ContactForm() {
                             <h2 className="text-2xl font-bold text-gray-900 mb-6">Στοιχεία Επικοινωνίας</h2>
 
                             <div className="space-y-6">
-                                {/* <div className="flex items-start gap-4">
-                                    <div className="bg-pink-100 rounded-full p-3 flex-shrink-0">
-                                        <Phone className="text-pink-600" size={24} />
-                                    </div>
-                                    <div>
-                                        <h3 className="font-semibold text-gray-900 mb-1">Τηλέφωνο</h3>
-                                        <a href="tel:+302102102100" className="text-gray-600 hover:text-pink-600">
-                                            +30 210 210 2100
-                                        </a>
-                                    </div>
-                                </div> */}
-
                                 <div className="flex items-start gap-4">
                                     <div className="bg-pink-100 rounded-full p-3 flex-shrink-0">
                                         <Mail className="text-pink-600" size={24} />
@@ -121,33 +109,8 @@ export default function ContactForm() {
                                         </a>
                                     </div>
                                 </div>
-
-                                {/* <div className="flex items-start gap-4">
-                                    <div className="bg-pink-100 rounded-full p-3 flex-shrink-0">
-                                        <MapPin className="text-pink-600" size={24} />
-                                    </div>
-                                    <div>
-                                        <h3 className="font-semibold text-gray-900 mb-1">Διεύθυνση</h3>
-                                        <p className="text-gray-600">Χαλκίδα, Ελλάδα</p>
-                                    </div>
-                                </div> */}
                             </div>
                         </div>
-
-                        {/* Office Hours */}
-                        {/* <div className="bg-gray-50 rounded-2xl p-6">
-                            <h3 className="font-semibold text-gray-900 mb-4">Ώρες Επικοινωνίας</h3>
-                            <div className="space-y-2 text-sm">
-                                <div className="flex justify-between">
-                                    <span className="text-gray-600">Δευτέρα - Παρασκευή</span>
-                                    <span className="font-medium text-gray-900">9:00 - 20:00</span>
-                                </div>
-                                <div className="flex justify-between">
-                                    <span className="text-gray-600">Σάββατο</span>
-                                    <span className="font-medium text-gray-900">10:00 - 14:00</span>
-                                </div>
-                            </div>
-                        </div> */}
 
                         {/* Social Media */}
                         <div>

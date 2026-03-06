@@ -8,6 +8,7 @@ import { Newsletter } from "@/components/Newsletter";
 import type { AnimalType } from "@/types/animal";
 import PageLayout from "@/components/PageLayout";
 import type { SuccessStory } from "@/types/successStory";
+import RecentBlogPosts from "@/components/RecentBlogPosts";
 
 async function getAnimals(): Promise<AnimalType[]> {
     const query = `*[_type == "animal"] | order(_createdAt desc)[0...3] {
@@ -55,6 +56,7 @@ export default async function Home() {
                 <ImpactStats />
                 <HowToHelp />
                 <FeaturedSuccessStories stories={successStories} />
+                <RecentBlogPosts />
                 <Newsletter />
             </main>
         </PageLayout>

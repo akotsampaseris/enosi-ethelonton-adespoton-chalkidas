@@ -47,16 +47,16 @@ export function Hero() {
                         {/* Quick stats */}
                         <div className="mt-12 grid grid-cols-3 gap-6 border-t border-gray-200 pt-8">
                             <div>
-                                <div className="text-3xl font-bold text-pink-600">500+</div>
+                                <div className="text-3xl font-bold text-pink-600">300+</div>
                                 <div className="mt-1 text-sm text-gray-600">Ζώα Διασώθηκαν</div>
                             </div>
                             <div>
-                                <div className="text-3xl font-bold text-pink-600">300+</div>
+                                <div className="text-3xl font-bold text-pink-600">150+</div>
                                 <div className="mt-1 text-sm text-gray-600">Υιοθεσίες</div>
                             </div>
                             <div>
-                                <div className="text-3xl font-bold text-pink-600">24/7</div>
-                                <div className="mt-1 text-sm text-gray-600">Φροντίδα & Στήριξη</div>
+                                <div className="text-3xl font-bold text-pink-600">13+</div>
+                                <div className="mt-1 text-sm text-gray-600">Χρόνια Λειτουργίας</div>
                             </div>
                         </div>
                     </motion.div>

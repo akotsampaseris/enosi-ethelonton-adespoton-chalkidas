@@ -8,10 +8,10 @@ import { Heart, Users, Home, Award, Target, Sparkles } from "lucide-react";
 
 export default function AboutPage() {
     const stats = [
-        { number: "500+", label: "Ζώα Διασώθηκαν", icon: Heart },
-        { number: "300+", label: "Επιτυχημένες Υιοθεσίες", icon: Home },
+        { number: "300+", label: "Ζώα Διασώθηκαν", icon: Heart },
+        { number: "150+", label: "Επιτυχημένες Υιοθεσίες", icon: Home },
         { number: "50+", label: "Ενεργοί Εθελοντές", icon: Users },
-        { number: "16+", label: "Χρόνια Λειτουργίας", icon: Award },
+        { number: "13+", label: "Χρόνια Λειτουργίας", icon: Award },
     ];
 
     const values = [
@@ -64,8 +64,8 @@ export default function AboutPage() {
                         <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.6 }} viewport={{ once: true }}>
                             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">Η Αποστολή μας</h2>
                             <p className="text-lg text-gray-700 leading-relaxed mb-6">
-                                Ιδρυθήκαμε το 2010 και είμαστε μια μη κερδοσκοπική οργάνωση αφοσιωμένη στη διάσωση, αποκατάσταση και επανένταξη εγκαταλελειμμένων και αδέσποτων ζώων
-                                στη Χαλκίδα και τις γύρω περιοχές.
+                                Δραστηριοποιούμαστε από το 2013 και είμαστε αφοσιωμένοι στη διάσωση, αποκατάσταση και επανένταξη εγκαταλελειμμένων και αδέσποτων ζώων στη Χαλκίδα
+                                και τις γύρω περιοχές.
                             </p>
                             <p className="text-lg text-gray-700 leading-relaxed mb-6">
                                 Πιστεύουμε ότι κάθε ζώο αξίζει ένα σπίτι γεμάτο αγάπη και συμπονετική φροντίδα. Μέσω των προσπαθειών διάσωσης, του προγράμματος φιλοξενίας και των

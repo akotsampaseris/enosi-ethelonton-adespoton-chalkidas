@@ -9,6 +9,7 @@ import { Badge } from "@/components/ui/badge";
 import { MapPin, Calendar, Heart, CheckCircle, XCircle, ArrowLeft, Sparkles } from "lucide-react";
 import { AnimalType } from "@/types/animal";
 import ShareButton from "@/components/ShareButton";
+import { formatAge } from "@/lib/utils";
 
 interface AnimalPageProps {
     animal: AnimalType;
@@ -86,7 +87,7 @@ export default function AnimalPage({ animal }: AnimalPageProps) {
                                     {animal.species}
                                 </Badge>
                                 <Badge variant="secondary" className="text-base px-4 py-2 bg-gray-100">
-                                    {animal.age} {animal.age === 1 ? "έτους" : "χρονών"}
+                                    {formatAge(animal.age, animal.ageUnit)}
                                 </Badge>
                                 <Badge variant="secondary" className="text-base px-4 py-2 bg-gray-100">
                                     {animal.gender}

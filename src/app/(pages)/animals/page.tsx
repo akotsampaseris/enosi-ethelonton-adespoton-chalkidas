@@ -30,6 +30,7 @@ async function getAnimals(): Promise<AnimalType[]> {
     name,
     species,
     age,
+    ageUnit,
     weight,
     gender,
     location,

@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import type { AnimalType } from "@/types/animal";
 import { Heart, Calendar, MapPin } from "lucide-react";
+import { formatAge } from "@/lib/utils";
 
 interface AnimalCardProps {
     animal: AnimalType;
@@ -34,7 +35,7 @@ const AnimalCard = ({ animal }: AnimalCardProps) => {
                         <div>
                             <h3 className="text-xl font-bold text-gray-900 group-hover:text-pink-600 transition">{animal.name}</h3>
                             <p className="mt-1 text-sm text-gray-600">
-                                {animal.species} • {animal.age} {animal.age === 1 ? "έτους" : "χρονών"} • {animal.gender} • {animal.weight} {animal.weight === 1 ? "κιλό" : "κιλά"}
+                                {animal.species} • {formatAge(animal.age, animal.ageUnit)} • {animal.gender} • {animal.weight} {animal.weight === 1 ? "κιλό" : "κιλά"}
                             </p>
                         </div>
                     </div>

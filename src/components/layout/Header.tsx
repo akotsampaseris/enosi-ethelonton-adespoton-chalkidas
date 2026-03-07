@@ -58,7 +58,7 @@ export default function Header() {
                             </Link>
                         ))}
 
-                        <Button asChild className="bg-[#7F0546] hover:bg-pink-600 text-white font-bold">
+                        <Button asChild className="bg-pink-700 hover:bg-pink-600 text-white font-bold">
                             <Link href="/donate">Δωρεά</Link>
                         </Button>
                     </div>
@@ -86,7 +86,7 @@ export default function Header() {
                                 </Link>
                             ))}
                             <div className="px-4 pt-2">
-                                <Button asChild className="w-full bg-[#7F0546] hover:bg-pink-600 text-white" onClick={() => setIsOpen(false)}>
+                                <Button asChild className="w-full bg-pink-700 hover:bg-pink-600 text-white" onClick={() => setIsOpen(false)}>
                                     <Link href="/donate">Δωρεά</Link>
                                 </Button>
                             </div>

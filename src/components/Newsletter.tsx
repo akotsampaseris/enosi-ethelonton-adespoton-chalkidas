@@ -114,8 +114,8 @@ export function Newsletter() {
                 {/* Social proof */}
                 <div className="mt-12 flex items-center justify-center gap-8 text-sm text-gray-600">
                     <div>
-                        <div className="text-lg lg:text-2xl font-bold text-pink-600">2,000+</div>
-                        <div>Subscribers</div>
+                        <div className="text-lg lg:text-2xl font-bold text-pink-600">14,000+</div>
+                        <div>Followers</div>
                     </div>
                     <div className="h-12 w-px bg-gray-300" />
                     <div>

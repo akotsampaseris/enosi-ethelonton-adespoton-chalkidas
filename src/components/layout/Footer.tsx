@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Facebook, Instagram, Mail, MapPin, Heart } from "lucide-react";
+import { Facebook, Instagram, Linkedin, Twitter, Mail, MapPin, Heart } from "lucide-react";
 
 const navigation = {
     adopt: [
@@ -73,6 +73,14 @@ export default function Footer() {
                                 <a href="https://instagram.com/enosi_ethel_adespoton_chalkida" className="text-gray-400 hover:text-pink-500 transition">
                                     <span className="sr-only">Instagram</span>
                                     <Instagram className="h-6 w-6" />
+                                </a>
+                                <a href="https://x.com/enethadchal" className="text-gray-400 hover:text-pink-500 transition">
+                                    <span className="sr-only">X (Twitter)</span>
+                                    <Twitter className="h-6 w-6" />
+                                </a>
+                                <a href="https://linkedin.com/in/eeach" className="text-gray-400 hover:text-pink-500 transition">
+                                    <span className="sr-only">LinkedIn</span>
+                                    <Linkedin className="h-6 w-6" />
                                 </a>
                             </div>
                         </div>

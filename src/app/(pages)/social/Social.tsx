@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { Facebook, Instagram, Share2, Copy, Heart, Check } from "lucide-react";
+import { Facebook, Instagram, Twitter, Linkedin, Share2, Copy, Heart, Check } from "lucide-react";
 import ShareButton from "@/components/ShareButton";
 import { Button } from "@/components/ui/button";
 
@@ -24,8 +24,24 @@ export default function Social() {
             icon: Instagram,
             url: "https://instagram.com/enosi_ethel_adespoton_chalkida",
             handle: "@enosi_ethel_adespoton_chalkidas",
-            color: "bg-gradient-to-br from-purple-600 via-pink-600 to-orange-500",
+            color: "bg-gradient-to-br from-purple-600 via-pink-600 to-orange-500 hover:via-pink-700",
             followers: "84",
+        },
+        {
+            name: "X (Twitter)",
+            icon: Twitter,
+            url: "https://x.com/enethadchal",
+            handle: "@enethadchal",
+            color: "bg-[#52a7e6] hover:bg-[#52bbe6]",
+            followers: "11",
+        },
+        {
+            name: "LinkedIn",
+            icon: Linkedin,
+            url: "https://linkedin.com/in/eeach",
+            handle: "@eeach",
+            color: "bg-[#08529b] hover:bg-[#0852fb]",
+            followers: "1",
         },
     ];
 
@@ -86,7 +102,7 @@ export default function Social() {
                         <p className="text-xl text-gray-600 max-w-2xl mx-auto">Μείνε ενημερωμένος/η για νέα ζωάκια, υιοθεσίες και εκδηλώσεις</p>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mx-auto">
                         {socialLinks.map((social) => (
                             <motion.a
                                 key={social.name}

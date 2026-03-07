@@ -95,13 +95,13 @@ export default async function RecentBlogPosts() {
                 </div>
 
                 {/* View All Link */}
-                <div className="text-center">
-                    <Button asChild variant="outline" size="lg" className="border-pink-300 text-pink-600 hover:bg-pink-50">
-                        <Link href="/blog" className="flex items-center gap-2">
-                            Δες όλες τις αναρτήσεις
-                            <ArrowRight size={20} />
-                        </Link>
-                    </Button>
+                <div className="mt-12 text-center">
+                    <Link
+                        href="/blog"
+                        className="inline-flex items-center gap-2 rounded-full border-2 border-pink-600 px-8 py-3 text-sm font-semibold text-pink-600 transition hover:bg-pink-50">
+                        Δες όλες τις αναρτήσεις
+                        <span aria-hidden="true">→</span>
+                    </Link>
                 </div>
             </div>
         </section>

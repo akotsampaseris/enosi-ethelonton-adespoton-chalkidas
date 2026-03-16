@@ -15,7 +15,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
     if (!animal) return {};
 
-    const ogImageUrl = `https://eeach.gr/api/og?name=${animal.name}&age=${animal.age}&image=${animal.image}`;
+    const ogImageUrl = `https://eeach.gr/api/og?name=${animal.name}&formattedAge=${formatAge(animal.age, animal.ageUnit)}&image=${animal.image}`;
     const shortDescription = `${animal.name}, ${formatAge(animal.age, animal.ageUnit)}, αναζητά οικογένεια! ${animal.description?.slice(0, 100)}...`;
 
     return {

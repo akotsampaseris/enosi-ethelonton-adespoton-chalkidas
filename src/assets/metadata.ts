@@ -63,20 +63,4 @@ export const defaultMetadata: Metadata = {
         description,
         images: ["/logo.jpg"],
     },
-    robots: {
-        index: true,
-        follow: true,
-        googleBot: {
-            index: true,
-            follow: true,
-            "max-video-preview": -1,
-            "max-image-preview": "large",
-            "max-snippet": -1,
-        },
-    },
-    icons: {
-        icon: [{ url: "/favicon.ico" }, { url: "/icon.png", type: "image/png" }],
-        apple: [{ url: "/apple-icon.png", type: "image/png" }],
-    },
-    manifest: "/site.webmanifest",
 };

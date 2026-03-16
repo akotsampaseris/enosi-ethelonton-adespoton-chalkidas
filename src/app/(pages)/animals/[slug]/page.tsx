@@ -19,6 +19,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
         description: animal.description,
         openGraph: {
             ...defaultMetadata.openGraph,
+            url: `https://eeach.gr/animals/${slug}`,
             title: `${animal.name} - Διαθέσιμο για Υιοθεσία`,
             description: animal.description,
             images: [

@@ -7,7 +7,7 @@ import PageLayout from "@/components/PageLayout";
 import { Metadata } from "next";
 import { defaultMetadata } from "@/assets/metadata";
 
-import { formatAge } from "@/lib/utils";
+import { formatAge, formatWeight } from "@/lib/utils";
 import { generateAnimalOgImage } from "@/lib/ogImageGeneration";
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
@@ -17,7 +17,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     if (!animal) return {};
 
     const formattedAge = formatAge(animal.age, animal.ageUnit);
-    const ogImageUrl = generateAnimalOgImage(animal.name, formattedAge, animal.image);
+    const formattedWeight = formatWeight(animal.weight);
+
+    const ogImageUrl = generateAnimalOgImage(animal.name, animal.gender, formattedAge, formattedWeight, animal.image);
     const shortDescription = `${animal.name}, ${formattedAge}, αναζητά οικογένεια! ${animal.description?.slice(0, 100)}...`;
 
     return {

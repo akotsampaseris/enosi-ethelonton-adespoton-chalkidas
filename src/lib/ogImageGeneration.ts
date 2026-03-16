@@ -11,12 +11,20 @@ export function generatePageOgImage(title: string, description?: string): string
     return url.toString();
 }
 
-export function generateAnimalOgImage(name: string, age?: string, image?: string): string {
+export function generateAnimalOgImage(name: string, gender?: string, age?: string, weight?: string, image?: string): string {
     const url = new URL(`${siteUrl}/api/og/animal`);
     url.searchParams.set("name", name);
 
+    if (gender) {
+        url.searchParams.set("gender", gender);
+    }
+
     if (age) {
         url.searchParams.set("age", age);
+    }
+
+    if (weight) {
+        url.searchParams.set("weight", weight);
     }
 
     if (image) {

@@ -8,7 +8,7 @@ export async function GET(request: Request) {
     const { searchParams } = new URL(request.url);
 
     const title = searchParams.get("title") || "Blog Post";
-    const image = searchParams.get("image") || "";
+    const image = searchParams.get("image") || "https://eeach.gr/logo.png";
     const category = searchParams.get("category") || "";
     const date = searchParams.get("date") || "";
 
@@ -27,8 +27,9 @@ export async function GET(request: Request) {
                     flex: 1,
                     display: "flex",
                     flexDirection: "column",
-                    padding: "80px",
+                    padding: "60px 70px",
                     justifyContent: "space-between",
+                    background: "linear-gradient(135deg, #fdf2f8 0%, #fce7f3 100%)",
                 }}>
                 {/* Top - Logo */}
                 <div
@@ -36,23 +37,24 @@ export async function GET(request: Request) {
                         display: "flex",
                         alignItems: "center",
                     }}>
-                    <img src="https://eeach.gr/logo.png" alt="Logo" width="150" height="150" />
+                    <img src="https://eeach.gr/logo.png" alt="Logo" width="120" height="120" />
                 </div>
 
                 {/* Middle - Content */}
-                <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
+                <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
                     {/* Category Badge */}
                     {category && (
                         <div
                             style={{
                                 display: "flex",
                                 alignSelf: "flex-start",
-                                background: "#f3f4f6",
-                                color: "#6b7280",
-                                padding: "8px 20px",
+                                background: "rgba(236, 72, 153, 0.1)",
+                                color: "#ec4899",
+                                padding: "10px 24px",
                                 borderRadius: "999px",
-                                fontSize: "16px",
-                                fontWeight: "500",
+                                fontSize: "18px",
+                                fontWeight: "600",
+                                border: "2px solid rgba(236, 72, 153, 0.2)",
                             }}>
                             {category}
                         </div>
@@ -61,12 +63,14 @@ export async function GET(request: Request) {
                     {/* Title */}
                     <div
                         style={{
-                            fontSize: "52px",
-                            fontWeight: "bold",
-                            color: "#111827",
-                            lineHeight: 1.2,
+                            fontSize: "64px",
+                            fontWeight: "900",
+                            color: "#881337",
+                            lineHeight: 1.1,
                             display: "flex",
-                            maxWidth: "600px",
+                            maxWidth: "500px",
+                            letterSpacing: "-0.02em",
+                            textShadow: "0 2px 12px rgba(136, 19, 55, 0.1)",
                         }}>
                         {title}
                     </div>
@@ -76,55 +80,68 @@ export async function GET(request: Request) {
                 <div
                     style={{
                         display: "flex",
-                        alignItems: "center",
+                        flexDirection: "column",
                         gap: "16px",
+                        background: "rgba(255, 255, 255, 0.6)",
+                        padding: "28px",
+                        borderRadius: "20px",
+                        border: "1px solid rgba(236, 72, 153, 0.1)",
                     }}>
-                    {/* Avatar */}
                     <div
                         style={{
-                            width: "48px",
-                            height: "48px",
-                            background: "#fce7f3",
-                            borderRadius: "999px",
-                            border: "2px solid #ec4899",
                             display: "flex",
                             alignItems: "center",
-                            justifyContent: "center",
-                            fontSize: "24px",
+                            gap: "16px",
                         }}>
-                        🐕
-                    </div>
-
-                    <div style={{ display: "flex", flexDirection: "column" }}>
+                        {/* Avatar */}
                         <div
                             style={{
-                                fontSize: "18px",
-                                fontWeight: "600",
-                                color: "#111827",
+                                width: "48px",
+                                height: "48px",
+                                background: "#fce7f3",
+                                borderRadius: "999px",
+                                border: "2px solid #ec4899",
+                                display: "flex",
+                                alignItems: "center",
+                                justifyContent: "center",
+                                fontSize: "24px",
                             }}>
-                            Ένωση Εθελοντών Αδέσποτων Χαλκίδας
+                            🐕
                         </div>
-                        <div
-                            style={{
-                                fontSize: "16px",
-                                color: "#6b7280",
-                            }}>
-                            {date}
+
+                        <div style={{ display: "flex", flexDirection: "column" }}>
+                            <div
+                                style={{
+                                    fontSize: "18px",
+                                    fontWeight: "600",
+                                    color: "#111827",
+                                }}>
+                                Ένωση Εθελοντών Αδέσποτων Χαλκίδας
+                            </div>
+                            {date && (
+                                <div
+                                    style={{
+                                        fontSize: "16px",
+                                        color: "#6b7280",
+                                    }}>
+                                    {date}
+                                </div>
+                            )}
                         </div>
                     </div>
                 </div>
             </div>
 
-            {/* Right Column - Visual */}
+            {/* Right Column - Image */}
             {image && (
                 <div
                     style={{
                         width: "480px",
-                        background: "#fafafa",
                         display: "flex",
                         alignItems: "center",
                         justifyContent: "center",
                         position: "relative",
+                        overflow: "hidden",
                     }}>
                     <img
                         src={image}
@@ -132,6 +149,8 @@ export async function GET(request: Request) {
                         width={480}
                         height={630}
                         style={{
+                            width: "100%",
+                            height: "100%",
                             objectFit: "cover",
                         }}
                     />

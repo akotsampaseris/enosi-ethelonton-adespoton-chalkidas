@@ -26,3 +26,14 @@ export function formatAge(age: number, unit: "Χρόνια" | "Μήνες" = "Χ
     }
     return `${age} χρονών`;
 }
+
+export function formatWeight(weight: number): string {
+    if (weight < 1) {
+        return `${weight * 100} γραμμάρια`;
+    }
+
+    if (weight == 1) {
+        return "1 κιλό";
+    }
+    return `${weight} κιλά`;
+}

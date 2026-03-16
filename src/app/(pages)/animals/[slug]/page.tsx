@@ -24,12 +24,12 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
     return {
         ...defaultMetadata,
-        title: `${animal.name} - Διαθέσιμο για Υιοθεσία`,
+        title: `${animal.name} | Προς Υιοθεσία`,
         description: shortDescription,
         openGraph: {
             ...defaultMetadata.openGraph,
             url: `https://eeach.gr/animals/${slug}`,
-            title: `${animal.name} - Διαθέσιμο για Υιοθεσία`,
+            title: `${animal.name} | Προς Υιοθεσία`,
             description: shortDescription,
             images: [
                 {
@@ -42,7 +42,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
         },
         twitter: {
             ...defaultMetadata.twitter,
-            title: `${animal.name} - Διαθέσιμο για Υιοθεσία`,
+            title: `${animal.name} | Προς Υιοθεσία`,
             description: shortDescription,
             images: [ogImageUrl],
         },

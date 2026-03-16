@@ -7,21 +7,25 @@ import PageLayout from "@/components/PageLayout";
 import { Metadata } from "next";
 import { defaultMetadata } from "@/assets/metadata";
 
+import { formatAge } from "@/lib/utils";
+
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
     const { slug } = await params;
     const animal = await getAnimal(slug);
 
     if (!animal) return {};
 
+    const shortDescription = animal.description?.slice(0, 150) + "..." || `${animal.name}, ${formatAge(animal.age, animal.ageUnit)}, αναζητά οικογένεια!`;
+
     return {
         ...defaultMetadata,
         title: `${animal.name} - Διαθέσιμο για Υιοθεσία`,
-        description: animal.description,
+        description: shortDescription,
         openGraph: {
             ...defaultMetadata.openGraph,
             url: `https://eeach.gr/animals/${slug}`,
             title: `${animal.name} - Διαθέσιμο για Υιοθεσία`,
-            description: animal.description,
+            description: shortDescription,
             images: [
                 {
                     url: animal.image,
@@ -34,15 +38,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
         twitter: {
             ...defaultMetadata.twitter,
             title: `${animal.name} - Διαθέσιμο για Υιοθεσία`,
-            description: animal.description,
-            images: [
-                {
-                    url: animal.image,
-                    width: 1200,
-                    height: 630,
-                    alt: animal.name,
-                },
-            ],
+            description: shortDescription,
+            images: [animal.image],
         },
     };
 }

@@ -11,7 +11,7 @@ import { BlogPost } from "@/types/blogPost";
 
 import { Metadata } from "next";
 import { defaultMetadata } from "@/assets/metadata";
-import { generateBlogOgImage } from "@/lib/ogImageGeneration";
+import { generateBlogPostOgImage } from "@/lib/ogImageGeneration";
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
     const { slug } = await params;
@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
     if (!post) return {};
 
-    const ogImage = generateBlogOgImage(post.title, post.excerpt, post.mainImage);
+    const ogImage = generateBlogPostOgImage(post.title, post.categories?.[0], post.mainImage, post.publishedAt);
 
     return {
         ...defaultMetadata,

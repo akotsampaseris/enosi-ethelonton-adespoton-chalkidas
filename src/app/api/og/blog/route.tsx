@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 // app/api/og/blog/route.tsx
 import { ImageResponse } from "next/og";
 
@@ -7,6 +8,7 @@ export async function GET(request: Request) {
     const { searchParams } = new URL(request.url);
 
     const title = searchParams.get("title") || "Blog Post";
+    const image = searchParams.get("image") || "";
     const category = searchParams.get("category") || "";
     const date = searchParams.get("date") || "";
 
@@ -34,19 +36,7 @@ export async function GET(request: Request) {
                         display: "flex",
                         alignItems: "center",
                     }}>
-                    <div
-                        style={{
-                            width: "56px",
-                            height: "56px",
-                            background: "#ec4899",
-                            borderRadius: "12px",
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "center",
-                            fontSize: "32px",
-                        }}>
-                        🐾
-                    </div>
+                    <img src="https://eeach.gr/logo.png" alt="Logo" width="150" height="150" />
                 </div>
 
                 {/* Middle - Content */}
@@ -55,7 +45,7 @@ export async function GET(request: Request) {
                     {category && (
                         <div
                             style={{
-                                display: "inline-flex",
+                                display: "flex",
                                 alignSelf: "flex-start",
                                 background: "#f3f4f6",
                                 color: "#6b7280",
@@ -112,7 +102,7 @@ export async function GET(request: Request) {
                                 fontWeight: "600",
                                 color: "#111827",
                             }}>
-                            ΕΕΑΧ
+                            Ένωση Εθελοντών Αδέσποτων Χαλκίδας
                         </div>
                         <div
                             style={{
@@ -126,62 +116,27 @@ export async function GET(request: Request) {
             </div>
 
             {/* Right Column - Visual */}
-            <div
-                style={{
-                    width: "480px",
-                    background: "#fafafa",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    position: "relative",
-                }}>
-                {/* Large Circle with Icon */}
+            {image && (
                 <div
                     style={{
-                        width: "280px",
-                        height: "280px",
-                        background: "#111827",
-                        borderRadius: "50%",
+                        width: "480px",
+                        background: "#fafafa",
                         display: "flex",
                         alignItems: "center",
                         justifyContent: "center",
-                        fontSize: "140px",
+                        position: "relative",
                     }}>
-                    ❤️
-                </div>
-
-                {/* Decorative Icons */}
-                <div
-                    style={{
-                        position: "absolute",
-                        top: "100px",
-                        left: "80px",
-                        fontSize: "48px",
-                        opacity: 0.3,
-                    }}>
-                    📝
-                </div>
-
-                <div
-                    style={{
-                        position: "absolute",
-                        bottom: "80px",
-                        right: "60px",
-                        display: "flex",
-                        flexDirection: "column",
-                        alignItems: "flex-end",
-                        gap: "8px",
-                    }}>
-                    <div
+                    <img
+                        src={image}
+                        alt={title}
+                        width={480}
+                        height={630}
                         style={{
-                            fontSize: "24px",
-                            fontWeight: "bold",
-                            color: "#ec4899",
-                        }}>
-                        eeach.gr
-                    </div>
+                            objectFit: "cover",
+                        }}
+                    />
                 </div>
-            </div>
+            )}
         </div>,
         {
             width: 1200,

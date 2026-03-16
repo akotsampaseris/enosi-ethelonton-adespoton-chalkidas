@@ -5,6 +5,9 @@ import PageLayout from "@/components/PageLayout";
 
 import { Metadata } from "next";
 import { defaultMetadata } from "@/assets/metadata";
+import { generatePageOgImage } from "@/lib/ogImageGeneration";
+
+const ogImage = generatePageOgImage("Διαδικασία Υιοθεσίας", "Μάθε πώς λειτουργεί η διαδικασία υιοθεσίας σε 6 απλά βήματα. Από την πρώτη γνωριμία μέχρι το νέο σπίτι.");
 
 export const metadata: Metadata = {
     ...defaultMetadata,
@@ -15,11 +18,20 @@ export const metadata: Metadata = {
         url: "https://eeach.gr/adopt/process",
         title: "Διαδικασία Υιοθεσίας",
         description: "Μάθε πώς λειτουργεί η διαδικασία υιοθεσίας σε 6 απλά βήματα. Από την πρώτη γνωριμία μέχρι το νέο σπίτι.",
+        images: [
+            {
+                url: ogImage,
+                width: 1200,
+                height: 630,
+                alt: "Διαδικασία Υιοθεσίας",
+            },
+        ],
     },
     twitter: {
         ...defaultMetadata.twitter,
         title: "Διαδικασία Υιοθεσίας",
         description: "Μάθε πώς λειτουργεί η διαδικασία υιοθεσίας σε 6 απλά βήματα. Από την πρώτη γνωριμία μέχρι το νέο σπίτι.",
+        images: [ogImage],
     },
 };
 

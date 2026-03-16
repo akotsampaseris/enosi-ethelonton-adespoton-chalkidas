@@ -1,8 +1,10 @@
 import { Metadata } from "next";
+import { generatePageOgImage } from "@/lib/ogImageGeneration";
 
 const siteName = "Ένωση Εθελοντών Αδέσποτων Χαλκίδας";
 const siteUrl = "https://eeach.gr";
 const description = "Διασώζουμε, φροντίζουμε και βρίσκουμε οικογένειες για αδέσποτα ζώα στη Χαλκίδα. Υιοθέτησε, φιλοξένησε ή γίνε εθελοντής σήμερα.";
+const ogImage = generatePageOgImage(siteName, description);
 
 export const defaultMetadata: Metadata = {
     metadataBase: new URL(siteUrl),
@@ -47,7 +49,7 @@ export const defaultMetadata: Metadata = {
         description,
         images: [
             {
-                url: "/logo.jpg",
+                url: ogImage,
                 width: 1200,
                 height: 630,
                 alt: siteName,
@@ -61,6 +63,6 @@ export const defaultMetadata: Metadata = {
             template: `%s | ${siteName}`,
         },
         description,
-        images: ["/logo.jpg"],
+        images: [ogImage],
     },
 };

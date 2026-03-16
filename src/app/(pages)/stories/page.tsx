@@ -4,13 +4,17 @@ import Link from "next/link";
 import { Calendar, Heart, ArrowRight } from "lucide-react";
 import PageLayout from "@/components/PageLayout";
 import { SuccessStory } from "@/types/successStory";
-
 import { formatDate } from "@/lib/utils";
-
 import type { Metadata } from "next";
 import { defaultMetadata } from "@/assets/metadata";
+import { generatePageOgImage } from "@/lib/ogImageGeneration";
 
 export async function generateMetadata(): Promise<Metadata> {
+    const ogImage = generatePageOgImage(
+        "Ιστορίες Επιτυχίας",
+        "Διάβασε τις συγκινητικές ιστορίες των ζώων που βρήκαν το παντοτινό τους σπίτι. Κάθε υιοθεσία είναι μια ευτυχισμένη κατάληξη.",
+    );
+
     return {
         ...defaultMetadata,
         title: "Ιστορίες Επιτυχίας",
@@ -20,11 +24,20 @@ export async function generateMetadata(): Promise<Metadata> {
             url: "https://eeach.gr/stories",
             title: "Ιστορίες Επιτυχίας",
             description: "Διάβασε τις συγκινητικές ιστορίες των ζώων που βρήκαν το παντοτινό τους σπίτι. Κάθε υιοθεσία είναι μια ευτυχισμένη κατάληξη.",
+            images: [
+                {
+                    url: ogImage,
+                    width: 1200,
+                    height: 630,
+                    alt: "Ιστορίες Επιτυχίας",
+                },
+            ],
         },
         twitter: {
             ...defaultMetadata.twitter,
             title: "Ιστορίες Επιτυχίας",
             description: "Διάβασε τις συγκινητικές ιστορίες των ζώων που βρήκαν το παντοτινό τους σπίτι. Κάθε υιοθεσία είναι μια ευτυχισμένη κατάληξη.",
+            images: [ogImage],
         },
     };
 }

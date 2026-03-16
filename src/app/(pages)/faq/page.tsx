@@ -3,8 +3,11 @@ import FAQAccordion from "@/components/FaqAccordion";
 
 import type { Metadata } from "next";
 import { defaultMetadata } from "@/assets/metadata";
+import { generatePageOgImage } from "@/lib/ogImageGeneration";
 
 export async function generateMetadata(): Promise<Metadata> {
+    const ogImage = generatePageOgImage("Συχνές Ερωτήσεις", "Βρες απαντήσεις στις πιο συχνές ερωτήσεις για υιοθεσία, φιλοξενία, εθελοντισμό και δωρεές.");
+
     return {
         ...defaultMetadata,
         title: "Συχνές Ερωτήσεις",
@@ -14,11 +17,20 @@ export async function generateMetadata(): Promise<Metadata> {
             url: "https://eeach.gr/faq",
             title: "Συχνές Ερωτήσεις",
             description: "Βρες απαντήσεις στις πιο συχνές ερωτήσεις για υιοθεσία, φιλοξενία, εθελοντισμό και δωρεές.",
+            images: [
+                {
+                    url: ogImage,
+                    width: 1200,
+                    height: 630,
+                    alt: "Συχνές Ερωτήσεις",
+                },
+            ],
         },
         twitter: {
             ...defaultMetadata.twitter,
             title: "Συχνές Ερωτήσεις",
             description: "Βρες απαντήσεις στις πιο συχνές ερωτήσεις για υιοθεσία, φιλοξενία, εθελοντισμό και δωρεές.",
+            images: [ogImage],
         },
     };
 }

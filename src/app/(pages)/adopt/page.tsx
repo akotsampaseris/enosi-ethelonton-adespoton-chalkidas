@@ -6,6 +6,9 @@ import PageLayout from "@/components/PageLayout";
 
 import { Metadata } from "next";
 import { defaultMetadata } from "@/assets/metadata";
+import { generatePageOgImage } from "@/lib/ogImageGeneration";
+
+const ogImage = generatePageOgImage("Αίτηση Υιοθεσίας", "Συμπλήρωσε την αίτηση υιοθεσίας για να ξεκινήσεις τη διαδικασία. Βρες το νέο σου φίλο σήμερα.");
 
 export const metadata: Metadata = {
     ...defaultMetadata,
@@ -16,11 +19,20 @@ export const metadata: Metadata = {
         url: "https://eeach.gr/adopt",
         title: "Αίτηση Υιοθεσίας",
         description: "Συμπλήρωσε την αίτηση υιοθεσίας για να ξεκινήσεις τη διαδικασία. Βρες το νέο σου φίλο σήμερα.",
+        images: [
+            {
+                url: ogImage,
+                width: 1200,
+                height: 630,
+                alt: "Αίτηση Υιοθεσίας",
+            },
+        ],
     },
     twitter: {
         ...defaultMetadata.twitter,
         title: "Αίτηση Υιοθεσίας",
         description: "Συμπλήρωσε την αίτηση υιοθεσίας για να ξεκινήσεις τη διαδικασία. Βρες το νέο σου φίλο σήμερα.",
+        images: [ogImage],
     },
 };
 

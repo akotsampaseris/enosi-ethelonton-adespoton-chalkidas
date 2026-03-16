@@ -6,22 +6,34 @@ import PageLayout from "@/components/PageLayout";
 
 import type { Metadata } from "next";
 import { defaultMetadata } from "@/assets/metadata";
+import { generatePageOgImage } from "@/lib/ogImageGeneration";
 
 export async function generateMetadata(): Promise<Metadata> {
+    const ogImage = generatePageOgImage("Φιλοξενία Ζώων", "Γίνε προσωρινός κηδεμόνας και βοήθησε ένα ζώο μέχρι να βρει το μόνιμο σπίτι του. Η φιλοξενία σώζει ζωές.");
+
     return {
         ...defaultMetadata,
         title: "Φιλοξενία Ζώων",
-        description: "Βρες απαντήσεις στις πιο συχνές ερωτήσεις για υιοθεσία, φιλοξενία, εθελοντισμό και δωρεές.",
+        description: "Γίνε προσωρινός κηδεμόνας και βοήθησε ένα ζώο μέχρι να βρει το μόνιμο σπίτι του. Η φιλοξενία σώζει ζωές.",
         openGraph: {
             ...defaultMetadata.openGraph,
             url: "https://eeach.gr/foster",
             title: "Φιλοξενία Ζώων",
-            description: "Βρες απαντήσεις στις πιο συχνές ερωτήσεις για υιοθεσία, φιλοξενία, εθελοντισμό και δωρεές.",
+            description: "Γίνε προσωρινός κηδεμόνας και βοήθησε ένα ζώο μέχρι να βρει το μόνιμο σπίτι του. Η φιλοξενία σώζει ζωές.",
+            images: [
+                {
+                    url: ogImage,
+                    width: 1200,
+                    height: 630,
+                    alt: "Φιλοξενία Ζώων",
+                },
+            ],
         },
         twitter: {
             ...defaultMetadata.twitter,
             title: "Φιλοξενία Ζώων",
             description: "Γίνε προσωρινός κηδεμόνας και βοήθησε ένα ζώο μέχρι να βρει το μόνιμο σπίτι του. Η φιλοξενία σώζει ζωές.",
+            images: [ogImage],
         },
     };
 }

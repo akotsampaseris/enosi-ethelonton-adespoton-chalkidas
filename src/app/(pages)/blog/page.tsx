@@ -14,6 +14,7 @@ import { generatePageOgImage } from "@/lib/ogImageGeneration";
 
 export async function generateMetadata(): Promise<Metadata> {
     const ogImage = generatePageOgImage("Blog & Νέα", "Διάβασε τα τελευταία νέα μας, συμβουλές φροντίδας ζώων, ιστορίες διάσωσης και ενημερώσεις από την οργάνωσή μας.");
+
     return {
         ...defaultMetadata,
         title: "Blog & Νέα",

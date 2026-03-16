@@ -3,6 +3,9 @@ import PageLayout from "@/components/PageLayout";
 
 import type { Metadata } from "next";
 import { defaultMetadata } from "@/assets/metadata";
+import { generatePageOgImage } from "@/lib/ogImageGeneration";
+
+const ogImage = generatePageOgImage("Αίτηση Εθελοντισμού", "Συμπλήρωσε την αίτηση εθελοντισμού και γίνε μέρος της ομάδας μας. Κάνε τη διαφορά στη ζωή των αδέσποτων ζώων.");
 
 export const metadata: Metadata = {
     ...defaultMetadata,
@@ -13,11 +16,20 @@ export const metadata: Metadata = {
         url: "https://eeach.gr/volunteer/apply",
         title: "Αίτηση Εθελοντισμού",
         description: "Συμπλήρωσε την αίτηση εθελοντισμού και γίνε μέρος της ομάδας μας. Κάνε τη διαφορά στη ζωή των αδέσποτων ζώων.",
+        images: [
+            {
+                url: ogImage,
+                width: 1200,
+                height: 630,
+                alt: "Αίτηση Εθελοντισμού",
+            },
+        ],
     },
     twitter: {
         ...defaultMetadata.twitter,
         title: "Αίτηση Εθελοντισμού",
         description: "Συμπλήρωσε την αίτηση εθελοντισμού και γίνε μέρος της ομάδας μας. Κάνε τη διαφορά στη ζωή των αδέσποτων ζώων.",
+        images: [ogImage],
     },
 };
 

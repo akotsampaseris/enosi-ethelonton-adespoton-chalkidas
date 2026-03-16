@@ -15,6 +15,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
     if (!animal) return {};
 
+    const ogImageUrl = `https://eeach.gr/api/og?name=${animal.name}&age=${animal.age}&image=${animal.image}`;
     const shortDescription = `${animal.name}, ${formatAge(animal.age, animal.ageUnit)}, αναζητά οικογένεια!`;
 
     return {
@@ -28,7 +29,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
             description: shortDescription,
             images: [
                 {
-                    url: animal.image,
+                    url: ogImageUrl,
                     width: 1200,
                     height: 630,
                     alt: animal.name,
@@ -39,7 +40,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
             ...defaultMetadata.twitter,
             title: `${animal.name} - Διαθέσιμο για Υιοθεσία`,
             description: shortDescription,
-            images: [animal.image],
+            images: [ogImageUrl],
         },
     };
 }

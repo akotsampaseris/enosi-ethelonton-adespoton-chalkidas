@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import { client } from "@/sanity/lib/client";
 import AnimalAdoptionForm from "@/forms/AnimalAdoptionForm";
-import { AnimalType } from "@/types/animal";
+import { Animal } from "@/types/animal";
 import PageLayout from "@/components/PageLayout";
 
 import { Metadata } from "next";
@@ -30,7 +30,7 @@ interface PageProps {
     }>;
 }
 
-async function getAnimal(slug: string): Promise<AnimalType | null> {
+async function getAnimal(slug: string): Promise<Animal | null> {
     const query = `*[_type == "animal" && slug.current == "${slug}"][0] {
     _id,
     name,
@@ -48,7 +48,7 @@ async function getAnimal(slug: string): Promise<AnimalType | null> {
 export default async function AdoptPage({ searchParams }: PageProps) {
     const { animal: animalSlug } = await searchParams;
 
-    let animal: AnimalType | undefined = undefined;
+    let animal: Animal | undefined = undefined;
 
     if (animalSlug) {
         const fetchedAnimal = await getAnimal(animalSlug);

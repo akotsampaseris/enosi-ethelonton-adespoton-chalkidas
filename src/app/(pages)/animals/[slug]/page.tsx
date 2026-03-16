@@ -1,7 +1,7 @@
 import { client } from "@/sanity/lib/client";
 import { notFound } from "next/navigation";
 import AnimalDetails from "@/components/animals/AnimalDetails";
-import { AnimalType } from "@/types/animal";
+import { Animal } from "@/types/animal";
 import PageLayout from "@/components/PageLayout";
 
 import { Metadata } from "next";
@@ -51,7 +51,7 @@ interface PageProps {
     };
 }
 
-async function getAnimal(slug: string): Promise<AnimalType | null> {
+async function getAnimal(slug: string): Promise<Animal | null> {
     const query = `*[_type == "animal" && slug.current == $slug][0] {
     _id,
     name,

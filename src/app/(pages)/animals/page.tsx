@@ -1,6 +1,6 @@
 import { client } from "@/sanity/lib/client";
 import AnimalsGallery from "@/components/animals/AnimalsGallery";
-import type { AnimalType } from "@/types/animal";
+import type { Animal } from "@/types/animal";
 import PageLayout from "@/components/PageLayout";
 
 import { Metadata } from "next";
@@ -25,7 +25,7 @@ export async function generateMetadata(): Promise<Metadata> {
     };
 }
 
-async function getAnimals(): Promise<AnimalType[]> {
+async function getAnimals(): Promise<Animal[]> {
     const query = `*[_type == "animal"] | order(_createdAt desc) {
     _id,
     name,

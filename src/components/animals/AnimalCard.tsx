@@ -1,12 +1,12 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
-import type { AnimalType } from "@/types/animal";
+import type { Animal } from "@/types/animal";
 import { Heart, Calendar, MapPin } from "lucide-react";
 import { formatAge } from "@/lib/utils";
 
 interface AnimalCardProps {
-    animal: AnimalType;
+    animal: Animal;
 }
 
 const AnimalCard = ({ animal }: AnimalCardProps) => {

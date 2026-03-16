@@ -7,12 +7,12 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { MapPin, Calendar, Heart, CheckCircle, XCircle, ArrowLeft, Sparkles } from "lucide-react";
-import { AnimalType } from "@/types/animal";
+import { Animal } from "@/types/animal";
 import ShareButton from "@/components/ShareButton";
 import { formatAge } from "@/lib/utils";
 
 interface AnimalPageProps {
-    animal: AnimalType;
+    animal: Animal;
 }
 
 export default function AnimalPage({ animal }: AnimalPageProps) {

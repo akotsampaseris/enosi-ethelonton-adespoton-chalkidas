@@ -56,8 +56,10 @@ export interface MedicalInfo {
 }
 
 // Frontend type (what we use in components after GROQ transformation)
-export type AnimalType = {
+export type Animal = {
     _id: string;
+    _createdAt: string;
+    _updatedAt: string;
     name: string;
     species: "Σκύλος" | "Γάτα";
     age: number;

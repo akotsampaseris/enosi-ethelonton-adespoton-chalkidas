@@ -13,6 +13,7 @@ export async function generateMetadata(): Promise<Metadata> {
         description: "Δες όλα τα αδέσποτα ζώα που αναζητούν ένα αγαπημένο σπίτι. Σκύλοι, γάτες και άλλα ζώα περιμένουν να γνωρίσουν τη νέα τους οικογένεια",
         openGraph: {
             ...defaultMetadata.openGraph,
+            url: "https://eeach.gr/animals",
             title: "Διαθέσιμα Ζώα για Υιοθεσία",
             description: "Δες όλα τα αδέσποτα ζώα που αναζητούν ένα αγαπημένο σπίτι. Σκύλοι, γάτες και άλλα ζώα περιμένουν να γνωρίσουν τη νέα τους οικογένεια",
         },

@@ -11,6 +11,7 @@ export async function generateMetadata(): Promise<Metadata> {
         description: "Βρες απαντήσεις στις πιο συχνές ερωτήσεις για υιοθεσία, φιλοξενία, εθελοντισμό και δωρεές.",
         openGraph: {
             ...defaultMetadata.openGraph,
+            url: "https://eeach.gr/faq",
             title: "Συχνές Ερωτήσεις",
             description: "Βρες απαντήσεις στις πιο συχνές ερωτήσεις για υιοθεσία, φιλοξενία, εθελοντισμό και δωρεές.",
         },

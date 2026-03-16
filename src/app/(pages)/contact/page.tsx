@@ -11,6 +11,7 @@ export async function generateMetadata(): Promise<Metadata> {
         description: "Έλα σε επαφή μαζί μας για ερωτήσεις, υιοθεσίες, εθελοντισμό ή οτιδήποτε άλλο. Είμαστε εδώ να βοηθήσουμε.",
         openGraph: {
             ...defaultMetadata.openGraph,
+            url: "https://eeach.gr/contact",
             title: "Επικοινωνία",
             description: "Έλα σε επαφή μαζί μας για ερωτήσεις, υιοθεσίες, εθελοντισμό ή οτιδήποτε άλλο. Είμαστε εδώ να βοηθήσουμε.",
         },

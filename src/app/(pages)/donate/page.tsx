@@ -9,6 +9,7 @@ export async function generateMetadata(): Promise<Metadata> {
         description: "Η δωρεά σου βοηθά να παρέχουμε κτηνιατρική φροντίδα, τροφή και καταφύγιο σε εκατοντάδες ζώα. Κάθε ευρώ κάνει τη διαφορά.",
         openGraph: {
             ...defaultMetadata.openGraph,
+            url: "https://eeach.gr/donate",
             title: "Υποστήριξε το Έργο μας",
             description: "Η δωρεά σου βοηθά να παρέχουμε κτηνιατρική φροντίδα, τροφή και καταφύγιο σε εκατοντάδες ζώα. Κάθε ευρώ κάνει τη διαφορά.",
         },

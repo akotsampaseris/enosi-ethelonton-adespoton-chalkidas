@@ -10,6 +10,7 @@ export const metadata: Metadata = {
     description: "Συμπλήρωσε την αίτηση εθελοντισμού και γίνε μέρος της ομάδας μας. Κάνε τη διαφορά στη ζωή των αδέσποτων ζώων.",
     openGraph: {
         ...defaultMetadata.openGraph,
+        url: "https://eeach.gr/volunteer/apply",
         title: "Αίτηση Εθελοντισμού",
         description: "Συμπλήρωσε την αίτηση εθελοντισμού και γίνε μέρος της ομάδας μας. Κάνε τη διαφορά στη ζωή των αδέσποτων ζώων.",
     },

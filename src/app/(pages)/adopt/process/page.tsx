@@ -12,6 +12,7 @@ export const metadata: Metadata = {
     description: "Μάθε πώς λειτουργεί η διαδικασία υιοθεσίας σε 6 απλά βήματα. Από την πρώτη γνωριμία μέχρι το νέο σπίτι.",
     openGraph: {
         ...defaultMetadata.openGraph,
+        url: "https://eeach.gr/adopt/process",
         title: "Διαδικασία Υιοθεσίας",
         description: "Μάθε πώς λειτουργεί η διαδικασία υιοθεσίας σε 6 απλά βήματα. Από την πρώτη γνωριμία μέχρι το νέο σπίτι.",
     },

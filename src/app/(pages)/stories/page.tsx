@@ -17,6 +17,7 @@ export async function generateMetadata(): Promise<Metadata> {
         description: "Διάβασε τις συγκινητικές ιστορίες των ζώων που βρήκαν το παντοτινό τους σπίτι. Κάθε υιοθεσία είναι μια ευτυχισμένη κατάληξη.",
         openGraph: {
             ...defaultMetadata.openGraph,
+            url: "https://eeach.gr/stories",
             title: "Ιστορίες Επιτυχίας",
             description: "Διάβασε τις συγκινητικές ιστορίες των ζώων που βρήκαν το παντοτινό τους σπίτι. Κάθε υιοθεσία είναι μια ευτυχισμένη κατάληξη.",
         },

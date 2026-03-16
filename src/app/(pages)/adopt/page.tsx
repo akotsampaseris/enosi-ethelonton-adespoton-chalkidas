@@ -13,6 +13,7 @@ export const metadata: Metadata = {
     description: "Συμπλήρωσε την αίτηση υιοθεσίας για να ξεκινήσεις τη διαδικασία. Βρες το νέο σου φίλο σήμερα.",
     openGraph: {
         ...defaultMetadata.openGraph,
+        url: "https://eeach.gr/adopt",
         title: "Αίτηση Υιοθεσίας",
         description: "Συμπλήρωσε την αίτηση υιοθεσίας για να ξεκινήσεις τη διαδικασία. Βρες το νέο σου φίλο σήμερα.",
     },

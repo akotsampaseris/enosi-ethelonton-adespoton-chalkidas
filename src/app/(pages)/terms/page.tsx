@@ -8,6 +8,7 @@ export const metadata: Metadata = {
     description: "Διάβασε τους όρους χρήσης, υιοθεσίας, φιλοξενίας και εθελοντισμού της οργάνωσής μας.",
     openGraph: {
         ...defaultMetadata.openGraph,
+        url: "https://eeach.gr/terms",
         title: "Όροι & Προϋποθέσεις",
         description: "Διάβασε τους όρους χρήσης, υιοθεσίας, φιλοξενίας και εθελοντισμού της οργάνωσής μας.",
     },

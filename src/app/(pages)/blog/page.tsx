@@ -16,6 +16,7 @@ export async function generateMetadata(): Promise<Metadata> {
         description: "Διάβασε τα τελευταία νέα μας, συμβουλές φροντίδας ζώων, ιστορίες διάσωσης και ενημερώσεις από την οργάνωσή μας.",
         openGraph: {
             ...defaultMetadata.openGraph,
+            url: "https://eeach.gr/blog",
             title: "Blog & Νέα",
             description: "Διάβασε τα τελευταία νέα μας, συμβουλές φροντίδας ζώων, ιστορίες διάσωσης και ενημερώσεις από την οργάνωσή μας.",
         },

@@ -30,6 +30,19 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
                 },
             ],
         },
+        twitter: {
+            ...defaultMetadata.twitter,
+            title: `${animal.name} - Διαθέσιμο για Υιοθεσία`,
+            description: animal.description,
+            images: [
+                {
+                    url: animal.image,
+                    width: 1200,
+                    height: 630,
+                    alt: animal.name,
+                },
+            ],
+        },
     };
 }
 

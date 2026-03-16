@@ -15,7 +15,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
     if (!animal) return {};
 
-    const shortDescription = animal.description?.slice(0, 150) + "..." || `${animal.name}, ${formatAge(animal.age, animal.ageUnit)}, αναζητά οικογένεια!`;
+    const shortDescription = `${animal.name}, ${formatAge(animal.age, animal.ageUnit)}, αναζητά οικογένεια!`;
 
     return {
         ...defaultMetadata,

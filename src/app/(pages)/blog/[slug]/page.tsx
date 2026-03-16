@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import ShareButton from "@/components/ShareButton";
 import PageLayout from "@/components/PageLayout";
 import { BlogPost, CategoryLabels } from "@/types/blogPost";
-
+import { formatDate } from "@/lib/utils";
 import { Metadata } from "next";
 import { defaultMetadata } from "@/assets/metadata";
 import { generateBlogPostOgImage } from "@/lib/ogImageGeneration";
@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
     if (!post) return {};
 
-    const ogImage = generateBlogPostOgImage(post.title, post.categories, post.mainImage, post.publishedAt);
+    const ogImage = generateBlogPostOgImage(post.title, post.categories, post.mainImage, formatDate(post.publishedAt));
 
     return {
         ...defaultMetadata,

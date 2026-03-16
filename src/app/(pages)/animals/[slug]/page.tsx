@@ -8,6 +8,7 @@ import { Metadata } from "next";
 import { defaultMetadata } from "@/assets/metadata";
 
 import { formatAge } from "@/lib/utils";
+import { generateAnimalOgImage } from "@/lib/ogImageGeneration";
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
     const { slug } = await params;
@@ -15,8 +16,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
     if (!animal) return {};
 
-    const ogImageUrl = `https://eeach.gr/api/og?name=${animal.name}&formattedAge=${formatAge(animal.age, animal.ageUnit)}&image=${animal.image}`;
-    const shortDescription = `${animal.name}, ${formatAge(animal.age, animal.ageUnit)}, αναζητά οικογένεια! ${animal.description?.slice(0, 100)}...`;
+    const formattedAge = formatAge(animal.age, animal.ageUnit);
+    const ogImageUrl = generateAnimalOgImage(animal.name, formattedAge, animal.image);
+    const shortDescription = `${animal.name}, ${formattedAge}, αναζητά οικογένεια! ${animal.description?.slice(0, 100)}...`;
 
     return {
         ...defaultMetadata,

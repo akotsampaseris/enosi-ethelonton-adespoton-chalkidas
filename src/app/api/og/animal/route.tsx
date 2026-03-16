@@ -14,7 +14,7 @@ export async function GET(request: Request) {
                 width: "100%",
                 height: "100%",
                 display: "flex",
-                background: "linear-gradient(to bottom right, #dd2a84, #81385e)",
+                background: "linear-gradient(to bottom right, #fecac8, #ff8f8b)",
                 color: "white",
                 padding: "60px",
             }}>

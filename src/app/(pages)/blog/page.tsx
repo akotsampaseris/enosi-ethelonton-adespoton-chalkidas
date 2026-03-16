@@ -9,7 +9,10 @@ import { BlogPost } from "@/types/blogPost";
 import type { Metadata } from "next";
 import { defaultMetadata } from "@/assets/metadata";
 
+import { generatePageOgImage } from "@/lib/ogImageGeneration";
+
 export async function generateMetadata(): Promise<Metadata> {
+    const ogImage = generatePageOgImage("Blog & Νέα", "Διάβασε τα τελευταία νέα μας, συμβουλές φροντίδας ζώων, ιστορίες διάσωσης και ενημερώσεις από την οργάνωσή μας.");
     return {
         ...defaultMetadata,
         title: "Blog & Νέα",
@@ -18,12 +21,21 @@ export async function generateMetadata(): Promise<Metadata> {
             ...defaultMetadata.openGraph,
             url: "https://eeach.gr/blog",
             title: "Blog & Νέα",
+            images: [
+                {
+                    url: ogImage,
+                    width: 1200,
+                    height: 630,
+                    alt: "Blog & Νέα",
+                },
+            ],
             description: "Διάβασε τα τελευταία νέα μας, συμβουλές φροντίδας ζώων, ιστορίες διάσωσης και ενημερώσεις από την οργάνωσή μας.",
         },
         twitter: {
             ...defaultMetadata.twitter,
             title: "Blog & Νέα",
             description: "Διάβασε τα τελευταία νέα μας, συμβουλές φροντίδας ζώων, ιστορίες διάσωσης και ενημερώσεις από την οργάνωσή μας.",
+            images: [ogImage],
         },
     };
 }

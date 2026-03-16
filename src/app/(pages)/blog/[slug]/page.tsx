@@ -11,12 +11,15 @@ import { BlogPost } from "@/types/blogPost";
 
 import { Metadata } from "next";
 import { defaultMetadata } from "@/assets/metadata";
+import { generateBlogOgImage } from "@/lib/ogImageGeneration";
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
     const { slug } = await params;
     const post = await getPost(slug);
 
     if (!post) return {};
+
+    const ogImage = generateBlogOgImage(post.title, post.excerpt, post.mainImage);
 
     return {
         ...defaultMetadata,
@@ -29,7 +32,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
             description: post.excerpt,
             images: [
                 {
-                    url: post.mainImage,
+                    url: ogImage,
                     width: 1200,
                     height: 630,
                     alt: post.title,
@@ -40,14 +43,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
             ...defaultMetadata.twitter,
             title: `${post.title} - Διαθέσιμο για Υιοθεσία`,
             description: post.excerpt,
-            images: [
-                {
-                    url: post.mainImage,
-                    width: 1200,
-                    height: 630,
-                    alt: post.title,
-                },
-            ],
+            images: [ogImage],
         },
     };
 }

@@ -1,0 +1,41 @@
+const siteUrl = "https://eeach.gr";
+
+export function generatePageOgImage(title: string, description?: string): string {
+    const url = new URL(`${siteUrl}/api/og/page`);
+    url.searchParams.set("title", title);
+
+    if (description) {
+        url.searchParams.set("description", description);
+    }
+
+    return url.toString();
+}
+
+export function generateAnimalOgImage(name: string, age?: string, image?: string): string {
+    const url = new URL(`${siteUrl}/api/og/animal`);
+    url.searchParams.set("name", name);
+
+    if (age) {
+        url.searchParams.set("age", age);
+    }
+
+    if (image) {
+        url.searchParams.set("image", image);
+    }
+    return url.toString();
+}
+
+export function generateBlogOgImage(title: string, category?: string, date?: string): string {
+    const url = new URL(`${siteUrl}/api/og/blog`);
+    url.searchParams.set("title", title);
+
+    if (category) {
+        url.searchParams.set("category", category);
+    }
+
+    if (date) {
+        url.searchParams.set("date", date);
+    }
+
+    return url.toString();
+}

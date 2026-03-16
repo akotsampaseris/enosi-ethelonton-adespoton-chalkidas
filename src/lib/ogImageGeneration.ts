@@ -37,8 +37,10 @@ export function generateBlogPostOgImage(title: string, categories?: string[], im
     const url = new URL(`${siteUrl}/api/og/blog`);
     url.searchParams.set("title", title);
 
-    if (categories) {
-        url.searchParams.set("categories", categories);
+    if (categories && categories.length) {
+        categories.map((category) => {
+            url.searchParams.set("category", category);
+        });
     }
 
     if (image) {

@@ -20,16 +20,9 @@ export default function Donate() {
         },
         {
             icon: Heart,
-            title: "Χορηγία Ζώου",
-            description: "Υιοθετήστε εξ αποστάσεως ένα ζώο καλύπτοντας τα έξοδά του",
+            title: "Νοσηλεία Ζώου",
+            description: "Βοηθήστε μας να καλύψουμε τα έξοδά θεραπείας ενός ζώου",
         },
-    ];
-
-    const impacts = [
-        { amount: "20€", description: "Εμβόλια για 1 ζώο" },
-        { amount: "50€", description: "Στείρωση 1 γάτας" },
-        { amount: "100€", description: "Πλήρης κτηνιατρική εξέταση" },
-        { amount: "200€", description: "Ένας μήνας φροντίδας για 1 ζώο" },
     ];
 
     return (
@@ -84,27 +77,6 @@ export default function Donate() {
                                     Χωρίς τη γενναιοδωρία των δωρητών μας, δεν θα μπορούσαμε να συνεχίσουμε αυτό το σημαντικό έργο.
                                 </p>
                             </motion.div>
-                        </div>
-                    </div>
-                </section>
-
-                {/* Impact */}
-                <section className="py-20 bg-gray-50">
-                    <div className="container mx-auto max-w-6xl px-4">
-                        <div className="text-center mb-16">
-                            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Η Επίδραση της Δωρεάς σας</h2>
-                            <p className="text-xl text-gray-600 max-w-2xl mx-auto">Δείτε πώς η συνεισφορά σας κάνει πραγματική διαφορά</p>
-                        </div>
-
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                            {impacts.map((impact) => (
-                                <div
-                                    key={impact.amount}
-                                    className="bg-white rounded-2xl p-8 text-center border border-gray-200 hover:border-pink-300 hover:shadow-xl transition-all">
-                                    <div className="text-4xl font-bold text-pink-600 mb-3">{impact.amount}</div>
-                                    <p className="text-gray-700 leading-relaxed">{impact.description}</p>
-                                </div>
-                            ))}
                         </div>
                     </div>
                 </section>

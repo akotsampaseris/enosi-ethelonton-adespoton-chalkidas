@@ -40,7 +40,10 @@ export const defaultMetadata: Metadata = {
         locale: "el_GR",
         url: siteUrl,
         siteName,
-        title: siteName,
+        title: {
+            default: siteName,
+            template: `%s | ${siteName}`,
+        },
         description,
         images: [
             {
@@ -53,7 +56,10 @@ export const defaultMetadata: Metadata = {
     },
     twitter: {
         card: "summary_large_image",
-        title: siteName,
+        title: {
+            default: siteName,
+            template: `%s | ${siteName}`,
+        },
         description,
         images: ["/logo.jpg"],
     },

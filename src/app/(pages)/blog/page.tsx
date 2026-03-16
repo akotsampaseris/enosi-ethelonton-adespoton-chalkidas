@@ -5,6 +5,7 @@ import { Calendar, User, ArrowRight, ChevronLeft, ChevronRight } from "lucide-re
 import { Button } from "@/components/ui/button";
 import PageLayout from "@/components/PageLayout";
 import { BlogPost } from "@/types/blogPost";
+import { formatDate } from "@/lib/utils";
 
 import type { Metadata } from "next";
 import { defaultMetadata } from "@/assets/metadata";
@@ -85,14 +86,6 @@ async function getPosts(page: number = 1): Promise<{
         totalPages: Math.ceil(data.totalPosts / POSTS_PER_PAGE),
         currentPage: page,
     };
-}
-
-function formatDate(date: string) {
-    return new Date(date).toLocaleDateString("el-GR", {
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-    });
 }
 
 const categoryLabels: Record<string, string> = {

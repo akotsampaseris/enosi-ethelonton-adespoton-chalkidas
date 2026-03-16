@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import PageLayout from "@/components/PageLayout";
 import { SuccessStory } from "@/types/successStory";
 import ShareButton from "@/components/ShareButton";
+import { formatDate } from "@/lib/utils";
 
 import { Metadata } from "next";
 import { defaultMetadata } from "@/assets/metadata";
@@ -94,14 +95,6 @@ export async function generateStaticParams() {
     return stories.map((story: { slug: string }) => ({
         slug: story.slug,
     }));
-}
-
-function formatDate(date: string) {
-    return new Date(date).toLocaleDateString("el-GR", {
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-    });
 }
 
 const portableTextComponents = {

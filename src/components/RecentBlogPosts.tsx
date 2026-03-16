@@ -2,7 +2,7 @@ import { client } from "@/sanity/lib/client";
 import Image from "next/image";
 import Link from "next/link";
 import { Calendar, ArrowRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { formatDate } from "@/lib/utils";
 
 interface BlogPost {
     _id: string;
@@ -27,14 +27,6 @@ async function getRecentPosts(): Promise<BlogPost[]> {
 
     const posts = await client.fetch(query);
     return posts;
-}
-
-function formatDate(date: string) {
-    return new Date(date).toLocaleDateString("el-GR", {
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-    });
 }
 
 export default async function RecentBlogPosts() {

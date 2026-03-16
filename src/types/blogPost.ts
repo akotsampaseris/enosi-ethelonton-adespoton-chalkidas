@@ -17,3 +17,12 @@ export interface BlogPost {
     body: PortableTextBlock;
     featured: boolean;
 }
+
+export const CategoryLabels: Record<string, string> = {
+    "adoption-stories": "Ιστορίες Υιοθεσίας",
+    "animal-care": "Φροντίδα Ζώων",
+    events: "Εκδηλώσεις",
+    news: "Νέα",
+    "tips-advice": "Συμβουλές",
+    "volunteer-stories": "Ιστορίες Εθελοντών",
+};

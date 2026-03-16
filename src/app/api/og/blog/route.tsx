@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 // app/api/og/blog/route.tsx
 import { ImageResponse } from "next/og";
+import { CategoryLabels } from "@/types/blogPost";
 
 export const runtime = "edge";
 
@@ -9,7 +10,7 @@ export async function GET(request: Request) {
 
     const title = searchParams.get("title") || "Blog Post";
     const image = searchParams.get("image") || "https://eeach.gr/logo.png";
-    const category = searchParams.get("category") || "";
+    const categories = searchParams.getAll("category") || "";
     const date = searchParams.get("date") || "";
 
     return new ImageResponse(
@@ -43,20 +44,29 @@ export async function GET(request: Request) {
                 {/* Middle - Content */}
                 <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
                     {/* Category Badge */}
-                    {category && (
+                    {categories && categories.length && (
                         <div
                             style={{
                                 display: "flex",
-                                alignSelf: "flex-start",
-                                background: "rgba(236, 72, 153, 0.1)",
-                                color: "#ec4899",
-                                padding: "10px 24px",
-                                borderRadius: "999px",
-                                fontSize: "18px",
-                                fontWeight: "600",
-                                border: "2px solid rgba(236, 72, 153, 0.2)",
+                                gap: "10px",
                             }}>
-                            {category}
+                            {categories.map((cat) => (
+                                <div
+                                    key={cat}
+                                    style={{
+                                        display: "flex",
+                                        alignSelf: "flex-start",
+                                        background: "rgba(236, 72, 153, 0.1)",
+                                        color: "#ec4899",
+                                        padding: "8px 20px",
+                                        borderRadius: "999px",
+                                        fontSize: "14px",
+                                        fontWeight: "600",
+                                        border: "2px solid rgba(236, 72, 153, 0.2)",
+                                    }}>
+                                    {CategoryLabels[cat] || cat}
+                                </div>
+                            ))}
                         </div>
                     )}
 

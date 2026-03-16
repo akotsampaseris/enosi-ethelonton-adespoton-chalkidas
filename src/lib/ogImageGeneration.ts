@@ -33,12 +33,12 @@ export function generateAnimalOgImage(name: string, gender?: string, age?: strin
     return url.toString();
 }
 
-export function generateBlogPostOgImage(title: string, category?: string, image?: string, date?: string): string {
+export function generateBlogPostOgImage(title: string, categories?: string[], image?: string, date?: string): string {
     const url = new URL(`${siteUrl}/api/og/blog`);
     url.searchParams.set("title", title);
 
-    if (category) {
-        url.searchParams.set("category", category);
+    if (categories) {
+        url.searchParams.set("categories", categories);
     }
 
     if (image) {

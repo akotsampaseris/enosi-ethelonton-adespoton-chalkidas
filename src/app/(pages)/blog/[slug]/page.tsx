@@ -7,7 +7,7 @@ import { Calendar, User, ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ShareButton from "@/components/ShareButton";
 import PageLayout from "@/components/PageLayout";
-import { BlogPost } from "@/types/blogPost";
+import { BlogPost, CategoryLabels } from "@/types/blogPost";
 
 import { Metadata } from "next";
 import { defaultMetadata } from "@/assets/metadata";
@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
     if (!post) return {};
 
-    const ogImage = generateBlogPostOgImage(post.title, post.categories?.[0], post.mainImage, post.publishedAt);
+    const ogImage = generateBlogPostOgImage(post.title, post.categories, post.mainImage, post.publishedAt);
 
     return {
         ...defaultMetadata,
@@ -111,15 +111,6 @@ function formatDate(date: string) {
     });
 }
 
-const categoryLabels: Record<string, string> = {
-    "adoption-stories": "Ιστορίες Υιοθεσίας",
-    "animal-care": "Φροντίδα Ζώων",
-    events: "Εκδηλώσεις",
-    news: "Νέα",
-    "tips-advice": "Συμβουλές",
-    "volunteer-stories": "Ιστορίες Εθελοντών",
-};
-
 // Portable Text components for rich content rendering
 const portableTextComponents = {
     types: {
@@ -177,7 +168,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                         <div className="flex flex-wrap gap-2 mb-6">
                             {post.categories.map((cat) => (
                                 <span key={cat} className="bg-pink-100 text-pink-700 px-4 py-2 rounded-full text-sm font-semibold">
-                                    {categoryLabels[cat] || cat}
+                                    {CategoryLabels[cat] || cat}
                                 </span>
                             ))}
                         </div>

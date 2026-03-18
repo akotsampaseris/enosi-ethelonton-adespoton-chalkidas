@@ -89,7 +89,7 @@ export default function AnimalsGallery({ fetchedAnimals }: AnimalsGalleryProps) 
                         <div className="px-6 pb-5 border-t border-gray-100">
                             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 pt-5">
                                 <div>
-                                    <label className="block text-xs font-medium text-gray-500 mb-2 uppercase tracking-wide">Είδος</label>
+                                    <label className="block text-xs font-medium text-gray-500 mb-2 uppercase tracking-wide">ΕΙΔΟΣ</label>
                                     <Select value={speciesFilter} onValueChange={setSpeciesFilter}>
                                         <SelectTrigger className="border-gray-300">
                                             <SelectValue placeholder="Όλα" />
@@ -103,7 +103,7 @@ export default function AnimalsGallery({ fetchedAnimals }: AnimalsGalleryProps) 
                                 </div>
 
                                 <div>
-                                    <label className="block text-xs font-medium text-gray-500 mb-2 uppercase tracking-wide">Φύλο</label>
+                                    <label className="block text-xs font-medium text-gray-500 mb-2 uppercase tracking-wide">ΦΥΛΟ</label>
                                     <Select value={genderFilter} onValueChange={setGenderFilter}>
                                         <SelectTrigger className="border-gray-300">
                                             <SelectValue placeholder="Όλα" />
@@ -117,7 +117,7 @@ export default function AnimalsGallery({ fetchedAnimals }: AnimalsGalleryProps) 
                                 </div>
 
                                 <div>
-                                    <label className="block text-xs font-medium text-gray-500 mb-2 uppercase tracking-wide">Κατάσταση</label>
+                                    <label className="block text-xs font-medium text-gray-500 mb-2 uppercase tracking-wide">ΚΑΤΑΣΤΑΣΗ</label>
                                     <Select value={statusFilter} onValueChange={setStatusFilter}>
                                         <SelectTrigger className="border-gray-300">
                                             <SelectValue placeholder="Κατάσταση" />
@@ -132,7 +132,7 @@ export default function AnimalsGallery({ fetchedAnimals }: AnimalsGalleryProps) 
                                 </div>
 
                                 <div>
-                                    <label className="block text-xs font-medium text-gray-500 mb-2 uppercase tracking-wide">Μέγεθος</label>
+                                    <label className="block text-xs font-medium text-gray-500 mb-2 uppercase tracking-wide">ΜΕΓΕΘΟΣ</label>
                                     <Select value={sizeFilter} onValueChange={setSizeFilter}>
                                         <SelectTrigger className="border-gray-300">
                                             <SelectValue placeholder="Όλα" />
@@ -148,7 +148,7 @@ export default function AnimalsGallery({ fetchedAnimals }: AnimalsGalleryProps) 
                                 </div>
 
                                 <div>
-                                    <label className="block text-xs font-medium text-gray-500 mb-2 uppercase tracking-wide">Ηλικία</label>
+                                    <label className="block text-xs font-medium text-gray-500 mb-2 uppercase tracking-wide">ΗΛΙΚΙΑ</label>
                                     <Select value={ageFilter} onValueChange={setAgeFilter}>
                                         <SelectTrigger className="border-gray-300">
                                             <SelectValue placeholder="Όλες" />

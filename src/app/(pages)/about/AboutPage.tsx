@@ -174,7 +174,7 @@ export default function AboutPage() {
                             <div className="bg-pink-500 text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-6 text-2xl font-bold">1</div>
                             <h3 className="text-2xl font-bold text-gray-900 mb-3">Διάσωση</h3>
                             <p className="text-gray-700 leading-relaxed">
-                                Ανταποκρινόμαστε σε αναφορές για εγκαταλελειμμένα ή αδέσποτα ζώα, παρέχοντας άμεση φροντίδα και ασφάλεια.
+                                Ανταποκρινόμαστε σε περιστατικά εγκαταλελειμμένων ή αδέσποτων ζώων που έχουν την ανάγκη μας, παρέχοντας φροντίδα και ασφάλεια όπου μπορούμε.
                             </p>
                         </motion.div>
 
@@ -186,7 +186,9 @@ export default function AboutPage() {
                             className="text-center">
                             <div className="bg-pink-500 text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-6 text-2xl font-bold">2</div>
                             <h3 className="text-2xl font-bold text-gray-900 mb-3">Αποκατάσταση</h3>
-                            <p className="text-gray-700 leading-relaxed">Πλήρης κτηνιατρική φροντίδα, κοινωνικοποίηση και φιλοξενία προετοιμάζουν τα ζώα για τα νέα τους σπίτια.</p>
+                            <p className="text-gray-700 leading-relaxed">
+                                Φροντίζουμε για την κτηνιατρική περίθαλψη, κοινωνικοποίηση και φιλοξενία όταν υπάρχει δυνατότητα, προετοιμάζοντας τα ζώα για τα νέα τους σπίτια.
+                            </p>
                         </motion.div>
 
                         <motion.div
@@ -196,7 +198,7 @@ export default function AboutPage() {
                             viewport={{ once: true }}
                             className="text-center">
                             <div className="bg-pink-500 text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-6 text-2xl font-bold">3</div>
-                            <h3 className="text-2xl font-bold text-gray-900 mb-3">Επανένταξη</h3>
+                            <h3 className="text-2xl font-bold text-gray-900 mb-3">Υιοθεσία</h3>
                             <p className="text-gray-700 leading-relaxed">
                                 Προσεκτική αντιστοίχιση με οικογένειες γεμάτες αγάπη διασφαλίζει ότι κάθε υιοθεσία είναι το τέλειο ταίρι.
                             </p>

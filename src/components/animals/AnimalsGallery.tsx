@@ -9,32 +9,25 @@ import { Animal } from "@/types/animal";
 import AnimalCard from "./AnimalCard";
 
 interface AnimalsGalleryProps {
-    initialAnimals: Animal[];
+    fetchedAnimals: Animal[];
 }
 
-export default function AnimalsGallery({ initialAnimals }: AnimalsGalleryProps) {
-    const [animals] = useState<Animal[]>(initialAnimals);
+export default function AnimalsGallery({ fetchedAnimals }: AnimalsGalleryProps) {
+    const [animals] = useState(fetchedAnimals);
     const [speciesFilter, setSpeciesFilter] = useState<string>("all");
     const [genderFilter, setGenderFilter] = useState<string>("all");
     const [statusFilter, setStatusFilter] = useState<string>("Διαθέσιμο");
 
-    // Derive filtered animals instead of using effect
-    const filteredAnimals = animals.filter((animal) => {
-        if (speciesFilter !== "all" && animal.species !== speciesFilter) {
-            return false;
-        }
-        if (genderFilter !== "all" && animal.gender !== genderFilter) {
-            return false;
-        }
-        if (statusFilter !== "all" && animal.status !== statusFilter) {
-            return false;
-        }
+    const filtered = animals.filter((animal) => {
+        if (speciesFilter !== "all" && animal.species !== speciesFilter) return false;
+        if (genderFilter !== "all" && animal.gender !== genderFilter) return false;
+        if (statusFilter !== "all" && animal.status !== statusFilter) return false;
         return true;
     });
 
     return (
         <div className="min-h-screen bg-white">
-            {/* Hero Section - matching homepage style */}
+            {/* Hero Section */}
             <section className="relative py-20 px-4">
                 <div className="container mx-auto max-w-6xl">
                     <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="text-center">
@@ -44,7 +37,7 @@ export default function AnimalsGallery({ initialAnimals }: AnimalsGalleryProps) 
                 </div>
             </section>
 
-            {/* Filters Section - clean white card */}
+            {/* Filters */}
             <section className="container mx-auto max-w-6xl px-4 pb-12">
                 <div className="bg-white rounded-2xl border border-gray-200 p-6 mb-12">
                     <div className="grid grid-cols-1 md:grid-cols-4 gap-4 items-end">
@@ -92,29 +85,29 @@ export default function AnimalsGallery({ initialAnimals }: AnimalsGalleryProps) 
                         </div>
                     </div>
                     <div className="pt-4 px-2">
-                        <p className="text-sm font-medium text-gray-500">{filteredAnimals.length == 1 ? `${filteredAnimals.length} ζωάκι` : `${filteredAnimals.length} ζωάκια`}</p>
+                        <p className="text-sm font-medium text-gray-500">{filtered.length === 1 ? `${filtered.length} ζωάκι` : `${filtered.length} ζωάκια`}</p>
                     </div>
                 </div>
 
-                {/* Animals Grid - matching homepage card style */}
-                {filteredAnimals.length === 0 ? (
+                {filtered.length === 0 ? (
                     <div className="text-center py-20">
                         <p className="text-gray-500 text-lg">Δεν βρέθηκαν ζωάκια με αυτά τα κριτήρια</p>
                     </div>
                 ) : (
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        {filteredAnimals.map((animal) => (
-                            <AnimalCard key={animal._id} animal={animal} />
-                        ))}
-                    </div>
+                    <>
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            {filtered.map((animal) => (
+                                <AnimalCard key={animal._id} animal={animal} />
+                            ))}
+                        </div>
+                    </>
                 )}
             </section>
 
-            {/* CTA Section - pink gradient matching your brand */}
+            {/* CTA Section */}
             <section className="py-20 px-4">
                 <div className="container mx-auto max-w-4xl">
                     <div className="bg-gradient-to-r from-pink-500 to-pink-600 rounded-3xl p-12 text-center text-white relative overflow-hidden">
-                        {/* Decorative heart shape */}
                         <div className="absolute top-0 right-0 w-64 h-64 opacity-10">
                             <svg viewBox="0 0 100 100" className="w-full h-full">
                                 <path
@@ -123,7 +116,6 @@ export default function AnimalsGallery({ initialAnimals }: AnimalsGalleryProps) 
                                 />
                             </svg>
                         </div>
-
                         <div className="relative z-10">
                             <h2 className="text-3xl md:text-4xl font-bold mb-4">Δεν βρήκες τον ιδανικό σου φίλο;</h2>
                             <p className="text-xl text-pink-100 mb-8 max-w-2xl mx-auto">

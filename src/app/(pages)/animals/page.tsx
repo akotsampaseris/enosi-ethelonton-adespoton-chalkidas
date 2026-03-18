@@ -41,22 +41,12 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 async function getAnimals(): Promise<Animal[]> {
-    const query = `*[_type == "animal"] | order(_createdAt desc) {
-    _id,
-    name,
-    species,
-    age,
-    ageUnit,
-    weight,
-    gender,
-    location,
-    status,
-    "image": image.asset->url,
-    "slug": slug.current
-  }`;
-
-    const animals = await client.fetch(query);
-    return animals;
+    const query = `*[_type == "animal"] | order(featured asc, _createdAt desc) {
+        _id, name, species, age, ageUnit, weight, gender, location, status, featured,
+        "image": image.asset->url,
+        "slug": slug.current
+    }`;
+    return await client.fetch(query);
 }
 
 export default async function AnimalsPage() {
@@ -64,7 +54,7 @@ export default async function AnimalsPage() {
 
     return (
         <PageLayout>
-            <AnimalsGallery initialAnimals={animals} />
+            <AnimalsGallery fetchedAnimals={animals} />
         </PageLayout>
     );
 }

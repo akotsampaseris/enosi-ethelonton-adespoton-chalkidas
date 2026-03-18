@@ -4,6 +4,7 @@ export interface AnimalData {
     _id: string;
     _createdAt: string;
     _updatedAt: string;
+    featured: boolean;
     name: string;
     slug: {
         current: string;
@@ -58,6 +59,7 @@ export type Animal = {
     _id: string;
     _createdAt: string;
     _updatedAt: string;
+    featured: boolean;
     name: string;
     species: "Σκύλος" | "Γάτα";
     age: number;

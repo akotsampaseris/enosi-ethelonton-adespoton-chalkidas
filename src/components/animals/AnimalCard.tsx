@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 import type { Animal } from "@/types/animal";
-import { Heart, Calendar, MapPin } from "lucide-react";
+import { Heart, Calendar, MapPin, Star } from "lucide-react";
 import { formatAge, formatWeight } from "@/lib/utils";
 
 interface AnimalCardProps {
@@ -16,7 +16,7 @@ const AnimalCard = ({ animal }: AnimalCardProps) => {
     };
 
     return (
-        <motion.div key={animal._id} variants={item} className="group relative overflow-hidden rounded-2xl bg-white shadow-lg ring-1 ring-gray-900/5 transition hover:shadow-2xl">
+        <motion.div variants={item} className="group relative overflow-hidden rounded-2xl bg-white shadow-lg ring-1 ring-gray-900/5 transition hover:shadow-2xl">
             <Link href={`/animals/${animal.slug}`} className="block">
                 {/* Image */}
                 <div className="relative aspect-[3/4] overflow-hidden bg-gray-100">
@@ -25,6 +25,14 @@ const AnimalCard = ({ animal }: AnimalCardProps) => {
                     ) : (
                         <div className="flex h-full items-center justify-center bg-gradient-to-br from-pink-100 to-purple-100">
                             <Heart className="h-16 w-16 text-pink-300" />
+                        </div>
+                    )}
+
+                    {/* Top Priority badge */}
+                    {animal.featured && (
+                        <div className="absolute top-3 left-3 flex items-center gap-1 bg-pink-500 text-white px-3 py-2 rounded-full text-xs font-semibold shadow-lg">
+                            <Star className="w-3 h-3 fill-white" />
+                            Υψηλή Προτεραιότητα
                         </div>
                     )}
                 </div>
@@ -45,11 +53,11 @@ const AnimalCard = ({ animal }: AnimalCardProps) => {
                     <div className="mt-6 flex items-center gap-4 text-xs text-gray-500">
                         <span className="flex items-center gap-1">
                             <MapPin className="h-4 w-4" />
-                            Χαλκίδα, Ελλάδα
+                            {animal.location ?? "Χαλκίδα, Ελλάδα"}
                         </span>
                         <span className="flex items-center gap-1">
                             <Calendar className="h-4 w-4" />
-                            Διαθέσιμο
+                            {animal.status}
                         </span>
                     </div>
 

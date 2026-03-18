@@ -6,6 +6,13 @@ export const animalType = defineType({
     type: "document",
     fields: [
         defineField({
+            name: "featured",
+            title: "Προτεραιότητα (Featured)",
+            type: "boolean",
+            description: 'Εμφάνιση αυτού του ζώου πρώτα με badge "Υψηλή Προτεραιότητα"',
+            initialValue: false,
+        }),
+        defineField({
             name: "name",
             title: "Όνομα",
             type: "string",

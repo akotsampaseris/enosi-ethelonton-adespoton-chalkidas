@@ -1,12 +1,14 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Heart, Users, Home, Award, Target, Sparkles } from "lucide-react";
+import ImageCarousel from "@/components/ui/ImageCarousel";
 
 export default function AboutPage() {
+    const featuredImages = ["/images/carousel/1.jpeg", "/images/carousel/2.jpeg", "/images/carousel/3.jpeg", "/images/carousel/4.jpeg"];
+
     const stats = [
         { number: "300+", label: "Ζώα Διασώθηκαν", icon: Heart },
         { number: "150+", label: "Επιτυχημένες Υιοθεσίες", icon: Home },
@@ -39,30 +41,28 @@ export default function AboutPage() {
 
     return (
         <div className="min-h-screen bg-white">
-            {/* Hero Section */}
-            <section className="relative bg-gradient-to-r from-pink-500 to-pink-600 text-white py-24">
-                <div className="container mx-auto max-w-6xl px-4">
-                    <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="text-center max-w-3xl mx-auto">
-                        <h1 className="text-4xl md:text-6xl font-bold mb-6">Η Ιστορία μας</h1>
-                        <p className="text-xl md:text-2xl text-pink-100 leading-relaxed">
-                            Σώζουμε ζωές, ένα ζώο τη φορά, και χτίζουμε μια κοινότητα όπου κάθε κατοικίδιο βρίσκει το παντοτινό του σπίτι.
-                        </p>
-                    </motion.div>
-                </div>
-            </section>
-
             {/* Mission Statement */}
             <section className="py-20 bg-gray-50">
                 <div className="container mx-auto max-w-6xl px-4">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                        <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.6 }} viewport={{ once: true }}>
+                        <motion.div
+                            initial={{ opacity: 0, x: -20 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.6 }}
+                            viewport={{ once: true }}
+                            className="order-2 md:order-1">
                             <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl">
-                                <Image src="/images/about-mission.jpeg" alt="Η αποστολή μας" fill className="object-cover" />
+                                <ImageCarousel images={featuredImages} interval={3000} alt="Σχετικά με εμάς slideshow" />
                             </div>
                         </motion.div>
 
-                        <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.6 }} viewport={{ once: true }}>
-                            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">Η Αποστολή μας</h2>
+                        <motion.div
+                            initial={{ opacity: 0, x: 20 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.6 }}
+                            viewport={{ once: true }}
+                            className="order-1 md:order-2">
+                            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">Σχετικά με εμάς</h1>
                             <p className="text-lg text-gray-700 leading-relaxed mb-6">
                                 Δραστηριοποιούμαστε από το 2013 και είμαστε αφοσιωμένοι στη διάσωση, αποκατάσταση και επανένταξη εγκαταλελειμμένων και αδέσποτων ζώων στη Χαλκίδα
                                 και τις γύρω περιοχές.

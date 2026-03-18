@@ -44,7 +44,7 @@ export default function Footer() {
                         <div className="space-y-2">
                             <h3 className="text-xl text-white font-semibold leading-7 sm:text-inde">Ένωση Εθελοντών Αδέσποτων Χαλκίδας</h3>
                             <p className="text-sm leading-6 text-gray-300">
-                                Διασώζουμε, φροντίζουμε και βρίσκουμε ένα σπίτι για τα αδέσποτα ζώα στον δήμο μας. Σε κάθε ζώο αξίζει ένα ζεστό σπίτι.
+                                Οραματιζόμαστε μια πόλη χωρίς αδέσποτα όπου τα ζώα θα είναι ασφαλή και κάθε πολίτης θα σέβεται τα δικαιώματα τους.
                             </p>
                         </div>
 

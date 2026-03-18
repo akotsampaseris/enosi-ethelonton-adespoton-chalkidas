@@ -7,6 +7,7 @@ import { client } from "@/sanity/lib/client";
 import CollectionPhotoGrid from "@/components/gallery/CollectionPhotoGrid";
 import { ArrowLeft, Calendar } from "lucide-react";
 import Link from "next/link";
+import PageLayout from "@/components/ui/PageLayout";
 
 interface PhotoCollection {
     _id: string;
@@ -74,34 +75,36 @@ export default async function CollectionPage({ params }: { params: Promise<{ slu
     };
 
     return (
-        <div className="min-h-screen bg-gradient-to-b from-pink-50 to-white pt-24 pb-20">
-            <div className="container mx-auto px-4">
-                {/* Header */}
-                <div className="mb-12">
-                    {/* Back Button */}
-                    <Link href="/gallery" className="inline-flex items-center gap-2 text-gray-600 hover:text-pink-600 transition-colors mb-6">
-                        <ArrowLeft size={20} />
-                        <span className="font-medium">Πίσω στη Συλλογή</span>
-                    </Link>
+        <PageLayout>
+            <div className="min-h-screen bg-gradient-to-b from-pink-50 to-white pt-24 pb-20">
+                <div className="container mx-auto px-4">
+                    {/* Header */}
+                    <div className="mb-12">
+                        {/* Back Button */}
+                        <Link href="/gallery" className="inline-flex items-center gap-2 text-gray-600 hover:text-pink-600 transition-colors mb-6">
+                            <ArrowLeft size={20} />
+                            <span className="font-medium">Πίσω στη Συλλογή</span>
+                        </Link>
 
-                    {/* Title & Info */}
-                    <div className="max-w-4xl">
-                        <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">{collection.title}</h1>
-                        <p className="text-lg text-gray-600 mb-4">{collection.description}</p>
-                        <div className="flex items-center gap-4 text-gray-500">
-                            <div className="flex items-center gap-2">
-                                <Calendar size={18} />
-                                <span>{formatDate(collection.date)}</span>
+                        {/* Title & Info */}
+                        <div className="max-w-4xl">
+                            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">{collection.title}</h1>
+                            <p className="text-lg text-gray-600 mb-4">{collection.description}</p>
+                            <div className="flex items-center gap-4 text-gray-500">
+                                <div className="flex items-center gap-2">
+                                    <Calendar size={18} />
+                                    <span>{formatDate(collection.date)}</span>
+                                </div>
+                                <span>•</span>
+                                <span>{collection.photos.length} φωτογραφίες</span>
                             </div>
-                            <span>•</span>
-                            <span>{collection.photos.length} φωτογραφίες</span>
                         </div>
                     </div>
-                </div>
 
-                {/* Photo Grid */}
-                <CollectionPhotoGrid photos={collection.photos} collectionTitle={collection.title} />
+                    {/* Photo Grid */}
+                    <CollectionPhotoGrid photos={collection.photos} collectionTitle={collection.title} />
+                </div>
             </div>
-        </div>
+        </PageLayout>
     );
 }

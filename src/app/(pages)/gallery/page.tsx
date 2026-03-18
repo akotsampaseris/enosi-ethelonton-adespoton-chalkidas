@@ -25,6 +25,7 @@ export const metadata: Metadata = {
 
 interface PhotoCollection {
     _id: string;
+    slug: string;
     title: string;
     description: string;
     date: string;
@@ -36,6 +37,7 @@ async function getPhotoCollections(): Promise<PhotoCollection[]> {
     const query = `*[_type == "photoCollection"] | order(date desc) {
     _id,
     title,
+    "slug": slug.current,
     description,
     date,
     "coverImage": coverImage.asset->url,

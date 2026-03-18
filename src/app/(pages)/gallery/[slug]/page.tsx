@@ -1,0 +1,107 @@
+// app/(main)/gallery/[slug]/page.tsx
+import { Metadata } from "next";
+import { notFound } from "next/navigation";
+import { defaultMetadata } from "@/assets/metadata";
+import { generatePageOgImage } from "@/lib/ogImageGeneration";
+import { client } from "@/sanity/lib/client";
+import CollectionPhotoGrid from "@/components/gallery/CollectionPhotoGrid";
+import { ArrowLeft, Calendar } from "lucide-react";
+import Link from "next/link";
+
+interface PhotoCollection {
+    _id: string;
+    slug: string;
+    title: string;
+    description: string;
+    date: string;
+    coverImage: string;
+    photos: string[];
+}
+
+async function getCollection(slug: string): Promise<PhotoCollection | null> {
+    const query = `*[_type == "photoCollection" && slug.current == $slug][0] {
+    _id,
+    "slug": slug.current,
+    title,
+    description,
+    date,
+    "coverImage": coverImage.asset->url,
+    "photos": photos[].asset->url
+  }`;
+
+    return client.fetch(query, { slug });
+}
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+    const { slug } = await params;
+    const collection = await getCollection(slug);
+
+    if (!collection) return defaultMetadata;
+
+    return {
+        ...defaultMetadata,
+        title: collection.title,
+        description: collection.description,
+        openGraph: {
+            ...defaultMetadata.openGraph,
+            title: collection.title,
+            description: collection.description,
+            images: [
+                {
+                    url: generatePageOgImage(collection.title, collection.description),
+                    width: 1200,
+                    height: 630,
+                },
+            ],
+        },
+    };
+}
+
+export default async function CollectionPage({ params }: { params: Promise<{ slug: string }> }) {
+    const { slug } = await params;
+    const collection = await getCollection(slug);
+
+    if (!collection) {
+        notFound();
+    }
+
+    const formatDate = (date: string) => {
+        return new Date(date).toLocaleDateString("el-GR", {
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+        });
+    };
+
+    return (
+        <div className="min-h-screen bg-gradient-to-b from-pink-50 to-white pt-24 pb-20">
+            <div className="container mx-auto px-4">
+                {/* Header */}
+                <div className="mb-12">
+                    {/* Back Button */}
+                    <Link href="/gallery" className="inline-flex items-center gap-2 text-gray-600 hover:text-pink-600 transition-colors mb-6">
+                        <ArrowLeft size={20} />
+                        <span className="font-medium">Πίσω στη Συλλογή</span>
+                    </Link>
+
+                    {/* Title & Info */}
+                    <div className="max-w-4xl">
+                        <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">{collection.title}</h1>
+                        <p className="text-lg text-gray-600 mb-4">{collection.description}</p>
+                        <div className="flex items-center gap-4 text-gray-500">
+                            <div className="flex items-center gap-2">
+                                <Calendar size={18} />
+                                <span>{formatDate(collection.date)}</span>
+                            </div>
+                            <span>•</span>
+                            <span>{collection.photos.length} φωτογραφίες</span>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Photo Grid */}
+                <CollectionPhotoGrid photos={collection.photos} collectionTitle={collection.title} />
+            </div>
+        </div>
+    );
+}

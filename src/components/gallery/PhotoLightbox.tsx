@@ -2,32 +2,28 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import { X, ChevronLeft, ChevronRight, Calendar } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
-
-interface PhotoCollection {
-    _id: string;
-    title: string;
-    description: string;
-    date: string;
-    coverImage: string;
-    photos: string[];
-}
+import { X, ChevronLeft, ChevronRight } from "lucide-react";
+import { motion, AnimatePresence, PanInfo } from "framer-motion";
 
 interface PhotoLightboxProps {
-    collection: PhotoCollection;
+    photos: string[];
+    initialIndex: number;
+    collectionTitle: string;
     onClose: () => void;
 }
 
-export default function PhotoLightbox({ collection, onClose }: PhotoLightboxProps) {
-    const [currentIndex, setCurrentIndex] = useState(0);
+export default function PhotoLightbox({ photos, initialIndex, collectionTitle, onClose }: PhotoLightboxProps) {
+    const [currentIndex, setCurrentIndex] = useState(initialIndex);
+    const [direction, setDirection] = useState(0);
 
     const goToNext = () => {
-        setCurrentIndex((prev) => (prev + 1) % collection.photos.length);
+        setDirection(1);
+        setCurrentIndex((prev) => (prev + 1) % photos.length);
     };
 
     const goToPrevious = () => {
-        setCurrentIndex((prev) => (prev - 1 + collection.photos.length) % collection.photos.length);
+        setDirection(-1);
+        setCurrentIndex((prev) => (prev - 1 + photos.length) % photos.length);
     };
 
     // Keyboard navigation
@@ -47,25 +43,41 @@ export default function PhotoLightbox({ collection, onClose }: PhotoLightboxProp
         };
     }, [currentIndex]);
 
-    const formatDate = (date: string) => {
-        return new Date(date).toLocaleDateString("el-GR", {
-            year: "numeric",
-            month: "long",
-            day: "numeric",
-        });
+    // Handle swipe gesture
+    const handleDragEnd = (e: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
+        const swipeThreshold = 50;
+
+        if (info.offset.x > swipeThreshold) {
+            // Swiped right - go to previous
+            goToPrevious();
+        } else if (info.offset.x < -swipeThreshold) {
+            // Swiped left - go to next
+            goToNext();
+        }
+    };
+
+    const variants = {
+        enter: (direction: number) => ({
+            x: direction > 0 ? 1000 : -1000,
+            opacity: 0,
+        }),
+        center: {
+            x: 0,
+            opacity: 1,
+        },
+        exit: (direction: number) => ({
+            x: direction < 0 ? 1000 : -1000,
+            opacity: 0,
+        }),
     };
 
     return (
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-50 bg-black/95 backdrop-blur-sm" onClick={onClose}>
             {/* Header */}
             <div className="absolute top-0 left-0 right-0 p-4 md:p-6 bg-gradient-to-b from-black/50 to-transparent z-10">
-                <div className="container mx-auto flex items-start justify-between">
+                <div className="container mx-auto flex items-center justify-between">
                     <div className="text-white">
-                        <h2 className="text-2xl md:text-3xl font-bold mb-2">{collection.title}</h2>
-                        <div className="flex items-center gap-2 text-sm text-gray-300">
-                            <Calendar size={16} />
-                            <span>{formatDate(collection.date)}</span>
-                        </div>
+                        <h2 className="text-xl md:text-2xl font-bold">{collectionTitle}</h2>
                     </div>
                     <button onClick={onClose} className="p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors">
                         <X className="text-white" size={24} />
@@ -73,24 +85,41 @@ export default function PhotoLightbox({ collection, onClose }: PhotoLightboxProp
                 </div>
             </div>
 
-            {/* Main Photo */}
-            <div className="h-full w-full flex items-center justify-center px-4 md:px-16 py-20" onClick={(e) => e.stopPropagation()}>
-                <AnimatePresence mode="wait">
+            {/* Main Photo with Swipe Support */}
+            <div className="h-full w-full flex items-center justify-center px-4 md:px-16 py-20 overflow-hidden" onClick={(e) => e.stopPropagation()}>
+                <AnimatePresence mode="wait" custom={direction}>
                     <motion.div
                         key={currentIndex}
-                        initial={{ opacity: 0, scale: 0.95 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        exit={{ opacity: 0, scale: 0.95 }}
-                        transition={{ duration: 0.3 }}
-                        className="relative w-full h-full max-w-6xl max-h-full">
-                        <Image src={collection.photos[currentIndex]} alt={`${collection.title} - Photo ${currentIndex + 1}`} fill className="object-contain" priority />
+                        custom={direction}
+                        variants={variants}
+                        initial="enter"
+                        animate="center"
+                        exit="exit"
+                        transition={{
+                            x: { type: "spring", stiffness: 300, damping: 30 },
+                            opacity: { duration: 0.2 },
+                        }}
+                        drag="x"
+                        dragConstraints={{ left: 0, right: 0 }}
+                        dragElastic={1}
+                        onDragEnd={handleDragEnd}
+                        className="relative w-full h-full max-w-6xl max-h-full cursor-grab active:cursor-grabbing">
+                        <Image
+                            src={photos[currentIndex]}
+                            alt={`${collectionTitle} - Photo ${currentIndex + 1}`}
+                            fill
+                            className="object-contain pointer-events-none"
+                            priority
+                            draggable={false}
+                        />
                     </motion.div>
                 </AnimatePresence>
             </div>
 
-            {/* Navigation Buttons - Desktop */}
-            {collection.photos.length > 1 && (
+            {/* Navigation Buttons */}
+            {photos.length > 1 && (
                 <>
+                    {/* Desktop Navigation */}
                     <button
                         onClick={(e) => {
                             e.stopPropagation();
@@ -116,30 +145,13 @@ export default function PhotoLightbox({ collection, onClose }: PhotoLightboxProp
                     {/* Counter */}
                     <div className="text-white text-center mb-4">
                         <span className="text-lg font-medium">
-                            {currentIndex + 1} / {collection.photos.length}
+                            {currentIndex + 1} / {photos.length}
                         </span>
                     </div>
 
-                    {/* Thumbnail Strip - Hidden on mobile */}
-                    <div className="hidden md:flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
-                        {collection.photos.map((photo, index) => (
-                            <button
-                                key={index}
-                                onClick={(e) => {
-                                    e.stopPropagation();
-                                    setCurrentIndex(index);
-                                }}
-                                className={`relative flex-shrink-0 w-20 h-20 rounded-lg overflow-hidden transition-all ${
-                                    index === currentIndex ? "ring-2 ring-pink-400 scale-105" : "opacity-50 hover:opacity-100"
-                                }`}>
-                                <Image src={photo} alt={`Thumbnail ${index + 1}`} fill className="object-cover" />
-                            </button>
-                        ))}
-                    </div>
-
-                    {/* Mobile Swipe Navigation */}
-                    {collection.photos.length > 1 && (
-                        <div className="flex md:hidden gap-4 justify-center mt-4">
+                    {/* Mobile Navigation */}
+                    {photos.length > 1 && (
+                        <div className="flex md:hidden gap-4 justify-center">
                             <button
                                 onClick={(e) => {
                                     e.stopPropagation();
@@ -158,6 +170,9 @@ export default function PhotoLightbox({ collection, onClose }: PhotoLightboxProp
                             </button>
                         </div>
                     )}
+
+                    {/* Swipe Hint (shows briefly on mobile) */}
+                    <div className="md:hidden text-center mt-4 text-white/50 text-sm">← Σύρε για περισσότερες φωτογραφίες →</div>
                 </div>
             </div>
         </motion.div>

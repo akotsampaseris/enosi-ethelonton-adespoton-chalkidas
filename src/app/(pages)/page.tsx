@@ -6,7 +6,7 @@ import { HowToHelp } from "@/components/HowToHelp";
 import { FeaturedSuccessStories } from "@/components/animals/FeaturedSuccessStories";
 import { Newsletter } from "@/components/Newsletter";
 import type { Animal } from "@/types/animal";
-import PageLayout from "@/components/PageLayout";
+import PageLayout from "@/components/ui/PageLayout";
 import type { SuccessStory } from "@/types/successStory";
 import RecentBlogPosts from "@/components/RecentBlogPosts";
 
@@ -48,6 +48,7 @@ async function getFeaturedStories(): Promise<SuccessStory[]> {
 export default async function Home() {
     const animals = await getAnimals();
     const successStories = await getFeaturedStories();
+    console.log(successStories);
 
     return (
         <PageLayout hasHero={true}>

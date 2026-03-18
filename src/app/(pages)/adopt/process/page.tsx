@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Search, FileText, Home, Heart, PenTool, CheckCircle, Clock, Info } from "lucide-react";
-import PageLayout from "@/components/PageLayout";
+import PageLayout from "@/components/ui/PageLayout";
 
 import { Metadata } from "next";
 import { defaultMetadata } from "@/assets/metadata";

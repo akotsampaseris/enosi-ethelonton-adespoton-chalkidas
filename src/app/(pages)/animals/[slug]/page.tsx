@@ -2,7 +2,7 @@ import { client } from "@/sanity/lib/client";
 import { notFound } from "next/navigation";
 import AnimalDetails from "@/components/animals/AnimalDetails";
 import { Animal } from "@/types/animal";
-import PageLayout from "@/components/PageLayout";
+import PageLayout from "@/components/ui/PageLayout";
 
 import { Metadata } from "next";
 import { defaultMetadata } from "@/assets/metadata";

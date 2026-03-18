@@ -5,7 +5,7 @@ import Link from "next/link";
 import { PortableText } from "@portabletext/react";
 import { Calendar, Heart, ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import PageLayout from "@/components/PageLayout";
+import PageLayout from "@/components/ui/PageLayout";
 import { SuccessStory } from "@/types/successStory";
 import ShareButton from "@/components/ShareButton";
 import { formatDate } from "@/lib/utils";

@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Calendar, User, ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import PageLayout from "@/components/PageLayout";
+import PageLayout from "@/components/ui/PageLayout";
 import { BlogPost } from "@/types/blogPost";
 import { formatDate } from "@/lib/utils";
 

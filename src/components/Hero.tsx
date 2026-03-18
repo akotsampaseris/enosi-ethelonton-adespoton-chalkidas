@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { Heart, ArrowRight } from "lucide-react";
-import HeroImageCarousel from "./ui/ImageCarousel";
+import ImageCarousel from "@/components/ui/ImageCarousel";
 
 const images = ["/images/carousel/1.jpeg", "/images/carousel/2.jpeg", "/images/carousel/3.jpeg", "/images/carousel/4.jpeg"];
 
@@ -63,7 +63,7 @@ export function Hero() {
 
                     {/* Right column - Hero image */}
                     <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.6, delay: 0.2 }} className="relative">
-                        <HeroImageCarousel images={images} />
+                        <ImageCarousel images={images} transition="zoom" showGradient className="aspect-[4/3] rounded-3xl shadow-2xl" />
 
                         {/* Floating badge */}
                         <motion.div

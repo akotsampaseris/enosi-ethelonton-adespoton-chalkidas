@@ -2,7 +2,7 @@ import { client } from "@/sanity/lib/client";
 import Image from "next/image";
 import Link from "next/link";
 import { Calendar, Heart, ArrowRight } from "lucide-react";
-import PageLayout from "@/components/PageLayout";
+import PageLayout from "@/components/ui/PageLayout";
 import { SuccessStory } from "@/types/successStory";
 import { formatDate } from "@/lib/utils";
 import type { Metadata } from "next";

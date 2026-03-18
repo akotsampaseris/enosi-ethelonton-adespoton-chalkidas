@@ -1,5 +1,5 @@
 import ContactForm from "@/forms/ContactForm";
-import PageLayout from "@/components/PageLayout";
+import PageLayout from "@/components/ui/PageLayout";
 
 import type { Metadata } from "next";
 import { defaultMetadata } from "@/assets/metadata";

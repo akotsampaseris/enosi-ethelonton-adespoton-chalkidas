@@ -4,7 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { Check, Copy, Heart, Package, PawPrint, Gift, CheckCircle } from "lucide-react";
-import PageLayout from "@/components/PageLayout";
+import PageLayout from "@/components/ui/PageLayout";
 
 export default function Donate() {
     const otherWays = [

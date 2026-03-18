@@ -5,7 +5,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Heart, Users, Calendar, Home, Stethoscope, Camera, Megaphone } from "lucide-react";
-import PageLayout from "@/components/PageLayout";
+import PageLayout from "@/components/ui/PageLayout";
 
 export default function Volunteer() {
     const roles = [

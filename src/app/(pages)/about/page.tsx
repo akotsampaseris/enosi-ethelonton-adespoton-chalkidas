@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import AboutPage from "./AboutPage";
-import PageLayout from "@/components/PageLayout";
+import PageLayout from "@/components/ui/PageLayout";
 import { defaultMetadata } from "@/assets/metadata";
 import { generatePageOgImage } from "@/lib/ogImageGeneration";
 

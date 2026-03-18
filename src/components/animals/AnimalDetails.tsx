@@ -9,11 +9,11 @@ import ShareButton from "@/components/ShareButton";
 import { formatAge, formatWeight } from "@/lib/utils";
 import AnimalMedia from "./AnimalMedia";
 
-interface AnimalPageProps {
+interface AnimalDetailsProps {
     animal: Animal;
 }
 
-export default function AnimalPage({ animal }: AnimalPageProps) {
+export default function AnimalDetails({ animal }: AnimalDetailsProps) {
     return (
         <div className="min-h-screen bg-white">
             {/* Back Button */}
@@ -30,7 +30,7 @@ export default function AnimalPage({ animal }: AnimalPageProps) {
             <div className="container mx-auto max-w-6xl px-4 py-8">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
                     {/* Left Column - Media */}
-                    <AnimalMedia media={animal.gallery || []} animalName={animal.name} mainImage={animal.image} status={animal.status} />
+                    <AnimalMedia media={animal.gallery || []} animalName={animal.name} mainImage={animal.image} status={animal.status} featured={animal.featured} />
                     {/* Right Column - Details */}
                     <div className="space-y-8">
                         {/* Header */}

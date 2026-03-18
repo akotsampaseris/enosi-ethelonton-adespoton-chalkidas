@@ -54,6 +54,7 @@ interface PageProps {
 async function getAnimal(slug: string): Promise<Animal | null> {
     const query = `*[_type == "animal" && slug.current == $slug][0] {
     _id,
+    featured,
     name,
     species,
     age,

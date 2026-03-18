@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import Image from "next/image";
-import { Play } from "lucide-react";
+import { Play, Star } from "lucide-react";
 import PhotoLightbox from "@/components/gallery/PhotoLightbox";
 import { MediaItem } from "@/types/media";
 
@@ -10,14 +10,14 @@ interface AnimalMediaProps {
     animalName: string;
     mainImage: string;
     status?: string;
+    featured?: boolean;
 }
 
-export default function AnimalMedia({ media, animalName, mainImage, status }: AnimalMediaProps) {
+export default function AnimalMedia({ media, animalName, mainImage, status, featured }: AnimalMediaProps) {
     const [activeThumb, setActiveThumb] = useState(0);
     const [selectedMediaIndex, setSelectedMediaIndex] = useState<number | null>(null);
 
     const allMedia: MediaItem[] = [{ _type: "image", url: mainImage }, ...media];
-
     const isVideo = (item: MediaItem) => item._type === "file" && item.mimeType?.startsWith("video/");
 
     return (
@@ -26,7 +26,24 @@ export default function AnimalMedia({ media, animalName, mainImage, status }: An
                 {/* Main Image */}
                 <button onClick={() => setSelectedMediaIndex(activeThumb)} className="relative w-full aspect-[3/4] rounded-3xl overflow-hidden cursor-pointer">
                     <Image src={allMedia[activeThumb].url} alt={animalName} fill className="object-cover" priority />
-                    {status && <div className="absolute top-4 right-4 bg-green-500 text-white px-4 py-2 rounded-full font-semibold text-sm shadow-lg">{status}</div>}
+
+                    {/* Top Priority badge - top left */}
+                    {featured && (
+                        <div className="absolute top-4 left-4 flex items-center gap-1 bg-pink-500 text-white px-3 py-1.5 rounded-full text-xs font-semibold shadow-lg">
+                            <Star className="w-3 h-3 fill-white" />
+                            Υψηλή Προτεραιότητα
+                        </div>
+                    )}
+
+                    {/* Status badge - top right, only if not featured */}
+                    {!featured && status && (
+                        <div
+                            className={`absolute top-4 right-4 px-4 py-2 rounded-full font-semibold text-sm text-white shadow-lg ${
+                                status === "Διαθέσιμο" ? "bg-green-500" : status === "Υιοθετήθηκε" ? "bg-gray-500" : "bg-blue-500"
+                            }`}>
+                            {status}
+                        </div>
+                    )}
                 </button>
 
                 {/* Horizontal Thumbnail Row */}

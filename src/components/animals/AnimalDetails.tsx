@@ -1,24 +1,19 @@
 "use client";
 
-import { useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { MapPin, Calendar, Heart, CheckCircle, XCircle, ArrowLeft, Sparkles } from "lucide-react";
 import { Animal } from "@/types/animal";
 import ShareButton from "@/components/ShareButton";
 import { formatAge, formatWeight } from "@/lib/utils";
+import AnimalMedia from "./AnimalMedia";
 
 interface AnimalPageProps {
     animal: Animal;
 }
 
 export default function AnimalPage({ animal }: AnimalPageProps) {
-    const [selectedImage, setSelectedImage] = useState(0);
-    const images = animal.gallery && animal.gallery.length > 0 ? [animal.image, ...animal.gallery] : [animal.image];
-
     return (
         <div className="min-h-screen bg-white">
             {/* Back Button */}
@@ -34,48 +29,8 @@ export default function AnimalPage({ animal }: AnimalPageProps) {
             {/* Main Content */}
             <div className="container mx-auto max-w-6xl px-4 py-8">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                    {/* Left Column - Images */}
-                    <div className="space-y-4">
-                        {/* Main Image */}
-                        <motion.div
-                            initial={{ opacity: 0, scale: 0.95 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            transition={{ duration: 0.5 }}
-                            className="relative aspect-[3/4] rounded-3xl overflow-hidden border border-gray-200">
-                            <Image src={images[selectedImage]} alt={animal.name} fill className="object-cover" priority />
-
-                            {/* Status Badge */}
-                            <div className="absolute top-4 right-4">
-                                <Badge
-                                    className={`px-4 py-2 text-sm font-semibold ${
-                                        animal.status === "Διαθέσιμο"
-                                            ? "bg-green-500 hover:bg-green-600"
-                                            : animal.status === "Υιοθετήθηκε"
-                                              ? "bg-gray-500 hover:bg-gray-600"
-                                              : "bg-blue-500 hover:bg-blue-600"
-                                    }`}>
-                                    {animal.status}
-                                </Badge>
-                            </div>
-                        </motion.div>
-
-                        {/* Image Gallery Thumbnails */}
-                        {images.length > 1 && (
-                            <div className="grid grid-cols-4 gap-3">
-                                {images.map((img, index) => (
-                                    <button
-                                        key={index}
-                                        onClick={() => setSelectedImage(index)}
-                                        className={`relative aspect-square rounded-xl overflow-hidden border-2 transition-all ${
-                                            selectedImage === index ? "border-pink-500 scale-105" : "border-gray-200 opacity-60 hover:opacity-100"
-                                        }`}>
-                                        <Image src={img} alt={`${animal.name} - ${index + 1}`} fill className="object-cover" />
-                                    </button>
-                                ))}
-                            </div>
-                        )}
-                    </div>
-
+                    {/* Left Column - Media */}
+                    <AnimalMedia media={animal.gallery || []} animalName={animal.name} mainImage={animal.image} status={animal.status} />
                     {/* Right Column - Details */}
                     <div className="space-y-8">
                         {/* Header */}

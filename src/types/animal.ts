@@ -1,6 +1,5 @@
-// TypeScript types for Animal data used in the frontend
+import { MediaItem } from "./media";
 
-// Raw Sanity document structure (what comes from Sanity CMS)
 export interface AnimalData {
     _id: string;
     _createdAt: string;
@@ -18,7 +17,7 @@ export interface AnimalData {
     location: string;
     status: "Διαθέσιμο" | "Υιοθετήθηκε" | "Σε φιλοξενία";
     image: SanityImage;
-    gallery?: SanityImage[];
+    gallery: MediaItem[];
     description?: string;
     personality?: string[];
     goodWith?: GoodWith;
@@ -55,7 +54,6 @@ export interface MedicalInfo {
     specialNeeds?: string;
 }
 
-// Frontend type (what we use in components after GROQ transformation)
 export type Animal = {
     _id: string;
     _createdAt: string;
@@ -75,7 +73,7 @@ export type Animal = {
     goodWith?: GoodWith;
     medicalInfo?: MedicalInfo;
     rescueStory?: string;
-    gallery?: string[]; // Transformed to URLs
+    gallery?: MediaItem[]; // Changed from string[] to MediaItem[]
     adoptedBy?: string;
     adoptionDate?: string;
 };

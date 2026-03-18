@@ -103,12 +103,29 @@ export const animalType = defineType({
         }),
         defineField({
             name: "gallery",
-            title: "Φωτογραφίες",
+            title: "Φωτογραφίες & Βίντεο",
             type: "array",
-            of: [{ type: "image" }],
-            options: {
-                layout: "grid",
-            },
+            of: [
+                {
+                    type: "image",
+                    options: {
+                        hotspot: true,
+                    },
+                },
+                {
+                    type: "file",
+                    options: {
+                        accept: "video/*",
+                    },
+                    fields: [
+                        {
+                            name: "alt",
+                            type: "string",
+                            title: "Περιγραφή",
+                        },
+                    ],
+                },
+            ],
         }),
         defineField({
             name: "description",

@@ -3,10 +3,8 @@ import { notFound } from "next/navigation";
 import AnimalDetails from "@/components/animals/AnimalDetails";
 import { Animal } from "@/types/animal";
 import PageLayout from "@/components/ui/PageLayout";
-
 import { Metadata } from "next";
 import { defaultMetadata } from "@/assets/metadata";
-
 import { formatAge, formatWeight } from "@/lib/utils";
 import { generateAnimalOgImage } from "@/lib/ogImageGeneration";
 
@@ -18,8 +16,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
     const formattedAge = formatAge(animal.age, animal.ageUnit);
     const formattedWeight = formatWeight(animal.weight);
-
     const ogImageUrl = generateAnimalOgImage(animal.name, animal.gender, formattedAge, formattedWeight, animal.image);
+
     const shortDescription = `${animal.name}, ${formattedAge}, αναζητά οικογένεια! ${animal.description?.slice(0, 100)}...`;
 
     return {
@@ -50,9 +48,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 }
 
 interface PageProps {
-    params: {
-        slug: string;
-    };
+    params: Promise<{ slug: string }>;
 }
 
 async function getAnimal(slug: string): Promise<Animal | null> {
@@ -67,7 +63,11 @@ async function getAnimal(slug: string): Promise<Animal | null> {
     location,
     status,
     "image": image.asset->url,
-    "gallery": gallery[].asset->url,
+    "gallery": gallery[]{
+      _type,
+      "url": asset->url,
+      "mimeType": asset->mimeType
+    },
     "slug": slug.current,
     description,
     personality,
@@ -77,6 +77,7 @@ async function getAnimal(slug: string): Promise<Animal | null> {
     adoptedBy,
     adoptionDate
   }`;
+
     const animal = await client.fetch(query, { slug });
     return animal;
 }

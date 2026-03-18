@@ -8,6 +8,7 @@ import CollectionPhotoGrid from "@/components/gallery/CollectionPhotoGrid";
 import { ArrowLeft, Calendar } from "lucide-react";
 import Link from "next/link";
 import PageLayout from "@/components/ui/PageLayout";
+import { formatDate } from "@/lib/utils";
 
 interface PhotoCollection {
     _id: string;
@@ -16,7 +17,11 @@ interface PhotoCollection {
     description: string;
     date: string;
     coverImage: string;
-    photos: string[];
+    media: Array<{
+        _type: "image" | "file";
+        url: string;
+        mimeType?: string;
+    }>;
 }
 
 async function getCollection(slug: string): Promise<PhotoCollection | null> {
@@ -27,10 +32,26 @@ async function getCollection(slug: string): Promise<PhotoCollection | null> {
     description,
     date,
     "coverImage": coverImage.asset->url,
-    "photos": photos[].asset->url
+    "media": photos[]{
+      _type,
+      "url": asset->url,
+      "mimeType": asset->mimeType
+    }
   }`;
 
     return client.fetch(query, { slug });
+}
+
+export async function generateStaticParams() {
+    const query = `*[_type == "photoCollection"] {
+    "slug": slug.current
+  }`;
+
+    const collections = await client.fetch(query);
+
+    return collections.map((collection: { slug: string }) => ({
+        slug: collection.slug,
+    }));
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
@@ -58,18 +79,6 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     };
 }
 
-export async function generateStaticParams() {
-    const query = `*[_type == "photoCollection"] {
-    "slug": slug.current
-  }`;
-
-    const collections = await client.fetch(query);
-
-    return collections.map((collection: { slug: string }) => ({
-        slug: collection.slug,
-    }));
-}
-
 export default async function CollectionPage({ params }: { params: Promise<{ slug: string }> }) {
     const { slug } = await params;
     const collection = await getCollection(slug);
@@ -78,17 +87,9 @@ export default async function CollectionPage({ params }: { params: Promise<{ slu
         notFound();
     }
 
-    const formatDate = (date: string) => {
-        return new Date(date).toLocaleDateString("el-GR", {
-            year: "numeric",
-            month: "long",
-            day: "numeric",
-        });
-    };
-
     return (
         <PageLayout>
-            <div className="min-h-screen bg-gradient-to-b from-pink-50 to-white pt-24 pb-20">
+            <div className="min-h-screen bg-gradient-to-b from-pink-50 to-white pb-20">
                 <div className="container mx-auto px-4">
                     {/* Header */}
                     <div className="mb-12">
@@ -108,13 +109,13 @@ export default async function CollectionPage({ params }: { params: Promise<{ slu
                                     <span>{formatDate(collection.date)}</span>
                                 </div>
                                 <span>•</span>
-                                <span>{collection.photos.length} φωτογραφίες</span>
+                                <span>{collection.media.length} στοιχεία</span>
                             </div>
                         </div>
                     </div>
 
                     {/* Photo Grid */}
-                    <CollectionPhotoGrid photos={collection.photos} collectionTitle={collection.title} />
+                    <CollectionPhotoGrid media={collection.media} collectionTitle={collection.title} />
                 </div>
             </div>
         </PageLayout>

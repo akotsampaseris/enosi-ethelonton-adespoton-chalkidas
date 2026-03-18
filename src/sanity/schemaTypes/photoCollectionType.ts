@@ -55,6 +55,19 @@ export const photoCollectionType = defineType({
                         hotspot: true,
                     },
                 },
+                {
+                    type: "file",
+                    options: {
+                        accept: "video/*",
+                    },
+                    fields: [
+                        {
+                            name: "alt",
+                            type: "string",
+                            title: "Περιγραφή",
+                        },
+                    ],
+                },
             ],
             validation: (Rule) => Rule.required().min(1),
         }),

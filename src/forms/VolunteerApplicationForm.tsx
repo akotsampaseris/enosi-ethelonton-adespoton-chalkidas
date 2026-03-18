@@ -99,6 +99,7 @@ export default function VolunteerApplicationForm() {
         { id: "social-media", label: "Διαχείριση Social Media" },
         { id: "adoption-marketing", label: "Προώθηση υιοθεσιών" },
         { id: "volunteer-marketing", label: "Ενημέρωση & ευαισθητοποίηση πολιτών" },
+        { id: "abuse-report", label: "Καταγγελίες για κακοποιήσεις" },
     ];
 
     return (

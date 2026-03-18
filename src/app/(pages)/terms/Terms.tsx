@@ -4,7 +4,7 @@ import { useState, useEffect, useEffectEvent } from "react";
 import { ChevronDown, FileText, Home, Heart, Users, Shield } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import PageLayout from "@/components/PageLayout";
+import PageLayout from "@/components/ui/PageLayout";
 
 export default function Terms() {
     const [openSection, setOpenSection] = useState("general");
@@ -134,14 +134,7 @@ export default function Terms() {
                     </div>
 
                     <div>
-                        <h3 className="text-xl font-bold text-gray-900 mb-3">3. Τέλος Υιοθεσίας</h3>
-                        <p className="text-gray-700 leading-relaxed">
-                            Το τέλος υιοθεσίας (50-100€) καλύπτει μέρος των εξόδων για στείρωση, εμβόλια, μικροτσίπ και κτηνιατρική φροντίδα. Το τέλος δεν επιστρέφεται.
-                        </p>
-                    </div>
-
-                    <div>
-                        <h3 className="text-xl font-bold text-gray-900 mb-3">4. Περίοδος Προσαρμογής</h3>
+                        <h3 className="text-xl font-bold text-gray-900 mb-3">3. Περίοδος Προσαρμογής</h3>
                         <p className="text-gray-700 leading-relaxed">
                             Παρέχουμε υποστήριξη κατά την περίοδο προσαρμογής. Αν προκύψουν σοβαρά προβλήματα συμπεριφοράς εντός των πρώτων 2 εβδομάδων, μπορούμε να συζητήσουμε
                             εναλλακτικές λύσεις.
@@ -149,12 +142,12 @@ export default function Terms() {
                     </div>
 
                     <div>
-                        <h3 className="text-xl font-bold text-gray-900 mb-3">5. Επισκέψεις Follow-up</h3>
+                        <h3 className="text-xl font-bold text-gray-900 mb-3">4. Επισκέψεις Follow-up</h3>
                         <p className="text-gray-700 leading-relaxed">Διατηρούμε το δικαίωμα να πραγματοποιούμε επισκέψεις follow-up για να διασφαλίσουμε την ευημερία του ζώου.</p>
                     </div>
 
                     <div>
-                        <h3 className="text-xl font-bold text-gray-900 mb-3">6. Επιστροφή Ζώου</h3>
+                        <h3 className="text-xl font-bold text-gray-900 mb-3">5. Επιστροφή Ζώου</h3>
                         <p className="text-gray-700 leading-relaxed">
                             Αν για οποιονδήποτε λόγο δεν μπορείτε να κρατήσετε το ζώο, πρέπει να επικοινωνήσετε μαζί μας. Το ζώο πρέπει να επιστραφεί στην οργάνωση - δεν
                             επιτρέπεται η μεταβίβαση σε τρίτους χωρίς την έγκρισή μας.

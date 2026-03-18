@@ -58,6 +58,18 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     };
 }
 
+export async function generateStaticParams() {
+    const query = `*[_type == "photoCollection"] {
+    "slug": slug.current
+  }`;
+
+    const collections = await client.fetch(query);
+
+    return collections.map((collection: { slug: string }) => ({
+        slug: collection.slug,
+    }));
+}
+
 export default async function CollectionPage({ params }: { params: Promise<{ slug: string }> }) {
     const { slug } = await params;
     const collection = await getCollection(slug);

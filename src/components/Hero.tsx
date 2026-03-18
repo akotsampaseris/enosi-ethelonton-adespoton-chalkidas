@@ -63,7 +63,7 @@ export function Hero() {
 
                     {/* Right column - Hero image */}
                     <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.6, delay: 0.2 }} className="relative">
-                        <ImageCarousel images={images} transition="zoom" showGradient className="aspect-[4/3] rounded-3xl shadow-2xl" />
+                        <ImageCarousel images={images} transition="zoom" showGradient showDots={false} className="aspect-[4/3] rounded-3xl shadow-2xl" />
 
                         {/* Floating badge */}
                         <motion.div

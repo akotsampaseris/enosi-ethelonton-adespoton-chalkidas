@@ -41,7 +41,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 async function getAnimals(): Promise<Animal[]> {
-    const query = `*[_type == "animal"] | order(featured asc, _createdAt desc) {
+    const query = `*[_type == "animal"] | order(featured desc, _createdAt desc) {
         _id, name, species, age, ageUnit, weight, gender, location, status, featured,
         "image": image.asset->url,
         "slug": slug.current

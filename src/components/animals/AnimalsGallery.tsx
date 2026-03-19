@@ -30,7 +30,7 @@ function getSizeCategory(weight: number): string {
 
 export default function AnimalsGallery({ fetchedAnimals }: AnimalsGalleryProps) {
     const [animals] = useState<Animal[]>(fetchedAnimals);
-    const [filtersOpen, setFiltersOpen] = useState(true);
+    const [filtersOpen, setFiltersOpen] = useState(false);
     const [speciesFilter, setSpeciesFilter] = useState("all");
     const [genderFilter, setGenderFilter] = useState("all");
     const [statusFilter, setStatusFilter] = useState("Διαθέσιμο");
@@ -59,16 +59,16 @@ export default function AnimalsGallery({ fetchedAnimals }: AnimalsGalleryProps) 
     return (
         <div className="min-h-screen bg-white">
             {/* Hero */}
-            <section className="relative py-20 px-4">
+            <section className="relative pt-20 px-4">
                 <div className="container mx-auto max-w-6xl">
                     <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="text-center">
-                        <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">Βρες τον νέο σου φίλο</h1>
+                        <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">Βρες τον νέο σου φίλο</h1>
                         <p className="text-xl text-gray-600 max-w-2xl mx-auto">Τα ζωάκια που περιμένουν το παντοτινό τους σπίτι</p>
                     </motion.div>
                 </div>
             </section>
 
-            <section className="container mx-auto max-w-6xl px-4 pb-12">
+            <section className="container mx-auto max-w-6xl px-4 py-10">
                 {/* Filter Card */}
                 <div className="bg-white rounded-2xl border border-gray-200 mb-12 overflow-hidden">
                     {/* Filter Header - always visible */}

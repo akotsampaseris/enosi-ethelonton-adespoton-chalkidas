@@ -48,12 +48,12 @@ export default function AnimalMedia({ media, animalName, mainImage, status, feat
 
                 {/* Horizontal Thumbnail Row */}
                 {allMedia.length > 1 && (
-                    <div className="grid grid-cols-4 gap-3">
+                    <div className="flex gap-3 overflow-x-auto pb-1 scrollbar-hide snap-x snap-mandatory">
                         {allMedia.map((item, index) => (
                             <button
                                 key={index}
                                 onClick={() => setActiveThumb(index)}
-                                className={`relative aspect-square rounded-2xl overflow-hidden cursor-pointer transition-all ${
+                                className={`relative flex-shrink-0 w-24 h-24 rounded-2xl overflow-hidden snap-start transition-all ${
                                     activeThumb === index ? "ring-4 ring-pink-500" : "opacity-70 hover:opacity-100"
                                 }`}>
                                 {isVideo(item) ? (

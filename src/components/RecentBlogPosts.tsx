@@ -1,8 +1,9 @@
 import { client } from "@/sanity/lib/client";
 import Image from "next/image";
 import Link from "next/link";
-import { Calendar, ArrowRight } from "lucide-react";
+import { Calendar } from "lucide-react";
 import { formatDate } from "@/lib/utils";
+import { CategoryLabels } from "@/types/blogPost";
 
 interface BlogPost {
     _id: string;
@@ -22,7 +23,7 @@ async function getRecentPosts(): Promise<BlogPost[]> {
     excerpt,
     "mainImage": mainImage.asset->url,
     publishedAt,
-    "categories": categories[]->title
+    categories
   }`;
 
     const posts = await client.fetch(query);
@@ -63,7 +64,7 @@ export default async function RecentBlogPosts() {
                                         <div className="flex flex-wrap gap-2 mb-3">
                                             {post.categories.slice(0, 2).map((category) => (
                                                 <span key={category} className="text-xs bg-pink-100 text-pink-600 px-3 py-1 rounded-full font-medium">
-                                                    {category}
+                                                    {CategoryLabels[category] || category}
                                                 </span>
                                             ))}
                                         </div>

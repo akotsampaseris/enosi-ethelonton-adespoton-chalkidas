@@ -3,11 +3,13 @@
 import { useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { SlidersHorizontal, ChevronDown } from "lucide-react";
+import { SlidersHorizontal, ChevronDown, ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Animal } from "@/types/animal";
 import AnimalCard from "./AnimalCard";
+
+const PAGE_SIZE = 12;
 
 interface AnimalsGalleryProps {
     fetchedAnimals: Animal[];
@@ -36,6 +38,7 @@ export default function AnimalsGallery({ fetchedAnimals }: AnimalsGalleryProps) 
     const [statusFilter, setStatusFilter] = useState("Διαθέσιμο");
     const [sizeFilter, setSizeFilter] = useState("all");
     const [ageFilter, setAgeFilter] = useState("all");
+    const [page, setPage] = useState(1);
 
     const filteredAnimals = animals.filter((animal) => {
         if (speciesFilter !== "all" && animal.species !== speciesFilter) return false;
@@ -46,6 +49,9 @@ export default function AnimalsGallery({ fetchedAnimals }: AnimalsGalleryProps) 
         return true;
     });
 
+    const totalPages = Math.ceil(filteredAnimals.length / PAGE_SIZE);
+    const paginatedAnimals = filteredAnimals.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
+
     const activeFilterCount = [speciesFilter !== "all", genderFilter !== "all", statusFilter !== "Διαθέσιμο", sizeFilter !== "all", ageFilter !== "all"].filter(Boolean).length;
 
     const clearFilters = () => {
@@ -54,6 +60,18 @@ export default function AnimalsGallery({ fetchedAnimals }: AnimalsGalleryProps) 
         setStatusFilter("Διαθέσιμο");
         setSizeFilter("all");
         setAgeFilter("all");
+        setPage(1);
+    };
+
+    const changePage = (newPage: number) => {
+        setPage(newPage);
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    };
+
+    // Reset to page 1 when filters change
+    const handleFilterChange = (setter: (v: string) => void) => (value: string) => {
+        setter(value);
+        setPage(1);
     };
 
     return (
@@ -71,7 +89,6 @@ export default function AnimalsGallery({ fetchedAnimals }: AnimalsGalleryProps) 
             <section className="container mx-auto max-w-6xl px-4 py-10">
                 {/* Filter Card */}
                 <div className="bg-white rounded-2xl border border-gray-200 mb-12 overflow-hidden">
-                    {/* Filter Header - always visible */}
                     <button onClick={() => setFiltersOpen((prev) => !prev)} className="w-full flex items-center justify-between px-6 py-4 hover:bg-gray-50 transition">
                         <div className="flex items-center gap-2">
                             <SlidersHorizontal className="w-4 h-4 text-gray-500" />
@@ -84,13 +101,12 @@ export default function AnimalsGallery({ fetchedAnimals }: AnimalsGalleryProps) 
                         </div>
                     </button>
 
-                    {/* Collapsible body */}
                     {filtersOpen && (
                         <div className="px-6 pb-5 border-t border-gray-100">
                             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 pt-5">
                                 <div>
                                     <label className="block text-xs font-medium text-gray-500 mb-2 uppercase tracking-wide">ΕΙΔΟΣ</label>
-                                    <Select value={speciesFilter} onValueChange={setSpeciesFilter}>
+                                    <Select value={speciesFilter} onValueChange={handleFilterChange(setSpeciesFilter)}>
                                         <SelectTrigger className="border-gray-300">
                                             <SelectValue placeholder="Όλα" />
                                         </SelectTrigger>
@@ -104,7 +120,7 @@ export default function AnimalsGallery({ fetchedAnimals }: AnimalsGalleryProps) 
 
                                 <div>
                                     <label className="block text-xs font-medium text-gray-500 mb-2 uppercase tracking-wide">ΦΥΛΟ</label>
-                                    <Select value={genderFilter} onValueChange={setGenderFilter}>
+                                    <Select value={genderFilter} onValueChange={handleFilterChange(setGenderFilter)}>
                                         <SelectTrigger className="border-gray-300">
                                             <SelectValue placeholder="Όλα" />
                                         </SelectTrigger>
@@ -118,7 +134,7 @@ export default function AnimalsGallery({ fetchedAnimals }: AnimalsGalleryProps) 
 
                                 <div>
                                     <label className="block text-xs font-medium text-gray-500 mb-2 uppercase tracking-wide">ΚΑΤΑΣΤΑΣΗ</label>
-                                    <Select value={statusFilter} onValueChange={setStatusFilter}>
+                                    <Select value={statusFilter} onValueChange={handleFilterChange(setStatusFilter)}>
                                         <SelectTrigger className="border-gray-300">
                                             <SelectValue placeholder="Κατάσταση" />
                                         </SelectTrigger>
@@ -133,7 +149,7 @@ export default function AnimalsGallery({ fetchedAnimals }: AnimalsGalleryProps) 
 
                                 <div>
                                     <label className="block text-xs font-medium text-gray-500 mb-2 uppercase tracking-wide">ΜΕΓΕΘΟΣ</label>
-                                    <Select value={sizeFilter} onValueChange={setSizeFilter}>
+                                    <Select value={sizeFilter} onValueChange={handleFilterChange(setSizeFilter)}>
                                         <SelectTrigger className="border-gray-300">
                                             <SelectValue placeholder="Όλα" />
                                         </SelectTrigger>
@@ -149,7 +165,7 @@ export default function AnimalsGallery({ fetchedAnimals }: AnimalsGalleryProps) 
 
                                 <div>
                                     <label className="block text-xs font-medium text-gray-500 mb-2 uppercase tracking-wide">ΗΛΙΚΙΑ</label>
-                                    <Select value={ageFilter} onValueChange={setAgeFilter}>
+                                    <Select value={ageFilter} onValueChange={handleFilterChange(setAgeFilter)}>
                                         <SelectTrigger className="border-gray-300">
                                             <SelectValue placeholder="Όλες" />
                                         </SelectTrigger>
@@ -184,11 +200,59 @@ export default function AnimalsGallery({ fetchedAnimals }: AnimalsGalleryProps) 
                         </button>
                     </div>
                 ) : (
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        {filteredAnimals.map((animal) => (
-                            <AnimalCard key={animal._id} animal={animal} />
-                        ))}
-                    </div>
+                    <>
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            {paginatedAnimals.map((animal) => (
+                                <AnimalCard key={animal._id} animal={animal} />
+                            ))}
+                        </div>
+
+                        {/* Pagination */}
+                        {totalPages > 1 && (
+                            <div className="flex items-center justify-center gap-2 mt-12">
+                                <button
+                                    onClick={() => changePage(page - 1)}
+                                    disabled={page === 1}
+                                    className="p-2 rounded-xl border border-gray-200 text-gray-500 hover:border-pink-300 hover:text-pink-500 disabled:opacity-30 disabled:cursor-not-allowed transition">
+                                    <ChevronLeft className="w-5 h-5" />
+                                </button>
+
+                                {Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => {
+                                    // Show first, last, current, and neighbours — ellipsis for the rest
+                                    const showPage = p === 1 || p === totalPages || Math.abs(p - page) <= 1;
+                                    const showEllipsisBefore = p === page - 2 && page > 3;
+                                    const showEllipsisAfter = p === page + 2 && page < totalPages - 2;
+
+                                    if (showEllipsisBefore || showEllipsisAfter) {
+                                        return (
+                                            <span key={p} className="px-1 text-gray-400">
+                                                …
+                                            </span>
+                                        );
+                                    }
+                                    if (!showPage) return null;
+
+                                    return (
+                                        <button
+                                            key={p}
+                                            onClick={() => changePage(p)}
+                                            className={`w-10 h-10 rounded-xl text-sm font-medium transition ${
+                                                p === page ? "bg-pink-500 text-white shadow-sm" : "border border-gray-200 text-gray-600 hover:border-pink-300 hover:text-pink-500"
+                                            }`}>
+                                            {p}
+                                        </button>
+                                    );
+                                })}
+
+                                <button
+                                    onClick={() => changePage(page + 1)}
+                                    disabled={page === totalPages}
+                                    className="p-2 rounded-xl border border-gray-200 text-gray-500 hover:border-pink-300 hover:text-pink-500 disabled:opacity-30 disabled:cursor-not-allowed transition">
+                                    <ChevronRight className="w-5 h-5" />
+                                </button>
+                            </div>
+                        )}
+                    </>
                 )}
             </section>
 

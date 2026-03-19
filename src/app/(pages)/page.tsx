@@ -11,7 +11,7 @@ import type { SuccessStory } from "@/types/successStory";
 import RecentBlogPosts from "@/components/RecentBlogPosts";
 
 async function getAnimals(): Promise<Animal[]> {
-    const query = `*[_type == "animal"] | order(featured asc, _createdAt desc)[0...3] {
+    const query = `*[_type == "animal"] | order(featured desc, _createdAt desc)[0...3] {
     _id,
     featured,
     name,

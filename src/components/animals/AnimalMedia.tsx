@@ -49,7 +49,7 @@ export default function AnimalMedia({ media, animalName, mainImage, status, feat
                 {/* Horizontal Thumbnail Row */}
                 {allMedia.length > 1 && (
                     <div className="grid grid-cols-4 gap-3">
-                        {allMedia.slice(0, 4).map((item, index) => (
+                        {allMedia.map((item, index) => (
                             <button
                                 key={index}
                                 onClick={() => setActiveThumb(index)}

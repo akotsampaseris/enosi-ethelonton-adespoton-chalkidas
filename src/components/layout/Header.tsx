@@ -30,6 +30,7 @@ export default function Header() {
         { name: "Φιλοξένησε", href: "/foster" },
         { name: "Εθελοντισμός", href: "/volunteer" },
         { name: "Blog", href: "/blog" },
+        { name: "Gallery", href: "/gallery" },
         { name: "Επικοινωνία", href: "/contact" },
     ];
 

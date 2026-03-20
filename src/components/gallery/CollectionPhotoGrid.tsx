@@ -5,12 +5,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { Play } from "lucide-react";
 import PhotoLightbox from "@/components/gallery/PhotoLightbox";
-
-interface MediaItem {
-    _type: "image" | "file";
-    url: string;
-    mimeType?: string;
-}
+import { MediaItem } from "@/types/media";
 
 interface CollectionPhotoGridProps {
     media: MediaItem[];
@@ -21,7 +16,7 @@ export default function CollectionPhotoGrid({ media, collectionTitle }: Collecti
     const [selectedMediaIndex, setSelectedMediaIndex] = useState<number | null>(null);
 
     const isVideo = (item: MediaItem) => {
-        return item._type === "file" && item.mimeType?.startsWith("video/");
+        return item._type === "video" && item.mimeType?.startsWith("video/");
     };
 
     return (

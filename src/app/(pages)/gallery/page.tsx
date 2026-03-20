@@ -52,11 +52,11 @@ export default async function GalleryPage() {
 
     return (
         <PageLayout>
-            <div className="min-h-screen bg-gradient-to-b from-pink-50 to-white pt-24 pb-20">
+            <div className="min-h-screen bg-gradient-to-b from-pink-50 to-white py-20">
                 <div className="container mx-auto px-4">
                     {/* Header */}
                     <div className="text-center mb-16">
-                        <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-4">Φωτογραφίες</h1>
+                        <h1 className="text-3xl md:text-5xl font-bold text-gray-900 mb-4">Φωτογραφίες & Βίντεο</h1>
                         <p className="text-xl text-gray-600 max-w-2xl mx-auto">Στιγμές από τις δράσεις, τις εκδηλώσεις και την καθημερινότητα των ζώων μας</p>
                     </div>
 

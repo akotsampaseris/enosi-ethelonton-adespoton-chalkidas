@@ -9,6 +9,7 @@ import { ArrowLeft, Calendar } from "lucide-react";
 import Link from "next/link";
 import PageLayout from "@/components/ui/PageLayout";
 import { formatDate } from "@/lib/utils";
+import { MediaItem } from "@/types/media";
 
 interface PhotoCollection {
     _id: string;
@@ -17,11 +18,7 @@ interface PhotoCollection {
     description: string;
     date: string;
     coverImage: string;
-    media: Array<{
-        _type: "image" | "file";
-        url: string;
-        mimeType?: string;
-    }>;
+    media: MediaItem[];
 }
 
 async function getCollection(slug: string): Promise<PhotoCollection | null> {
@@ -89,7 +86,7 @@ export default async function CollectionPage({ params }: { params: Promise<{ slu
 
     return (
         <PageLayout>
-            <div className="min-h-screen bg-gradient-to-b from-pink-50 to-white pb-20">
+            <div className="min-h-screen bg-gradient-to-b from-pink-50 to-white py-20">
                 <div className="container mx-auto px-4">
                     {/* Header */}
                     <div className="mb-12">

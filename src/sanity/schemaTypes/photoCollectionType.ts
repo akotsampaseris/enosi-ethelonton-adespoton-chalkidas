@@ -51,12 +51,23 @@ export const photoCollectionType = defineType({
             of: [
                 {
                     type: "image",
+                    name: "image",
+                    title: "Φωτογραφία",
                     options: {
                         hotspot: true,
                     },
+                    fields: [
+                        {
+                            name: "alt",
+                            type: "string",
+                            title: "Περιγραφή",
+                        },
+                    ],
                 },
                 {
                     type: "file",
+                    name: "video",
+                    title: "Βίντεο",
                     options: {
                         accept: "video/*",
                     },

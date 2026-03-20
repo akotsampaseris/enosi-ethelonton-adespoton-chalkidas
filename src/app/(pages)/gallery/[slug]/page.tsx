@@ -57,6 +57,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
     if (!collection) return defaultMetadata;
 
+    const ogImage = generatePageOgImage(collection.title, collection.description);
+
     return {
         ...defaultMetadata,
         title: collection.title,
@@ -67,11 +69,18 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
             description: collection.description,
             images: [
                 {
-                    url: generatePageOgImage(collection.title, collection.description),
+                    url: ogImage,
                     width: 1200,
                     height: 630,
+                    alt: collection.title,
                 },
             ],
+        },
+        twitter: {
+            ...defaultMetadata.twitter,
+            title: collection.title,
+            description: collection.description,
+            images: [ogImage],
         },
     };
 }

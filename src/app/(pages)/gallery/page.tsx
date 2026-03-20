@@ -5,21 +5,32 @@ import GalleryGrid from "@/components/gallery/GalleryGrid";
 import { client } from "@/sanity/lib/client";
 import PageLayout from "@/components/ui/PageLayout";
 
+const pageTitle = "Φωτογραφίες & Βίντεο";
+const pageDescription = "Στιγμές από τις δράσεις και τις εκδηλώσεις μας";
+const ogImage = generatePageOgImage(pageTitle, pageDescription);
+
 export const metadata: Metadata = {
     ...defaultMetadata,
-    title: "Φωτογραφίες",
-    description: "Στιγμές από τις δράσεις και τις εκδηλώσεις μας",
+    title: pageTitle,
+    description: pageDescription,
     openGraph: {
         ...defaultMetadata.openGraph,
-        title: "Φωτογραφίες",
-        description: "Στιγμές από τις δράσεις και τις εκδηλώσεις μας",
+        title: pageTitle,
+        description: pageDescription,
         images: [
             {
-                url: generatePageOgImage("Φωτογραφίες", "Στιγμές από τις δράσεις μας"),
+                url: ogImage,
                 width: 1200,
                 height: 630,
+                alt: pageTitle,
             },
         ],
+    },
+    twitter: {
+        ...defaultMetadata.twitter,
+        title: pageTitle,
+        description: pageDescription,
+        images: [ogImage],
     },
 };
 

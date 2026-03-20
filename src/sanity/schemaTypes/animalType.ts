@@ -121,16 +121,11 @@ export const animalType = defineType({
                 },
                 {
                     type: "file",
+                    name: "video",
                     options: {
-                        accept: "video/*",
+                        accepts: "video",
                     },
-                    fields: [
-                        {
-                            name: "alt",
-                            type: "string",
-                            title: "Περιγραφή",
-                        },
-                    ],
+                    title: "Βίντεο",
                 },
             ],
         }),

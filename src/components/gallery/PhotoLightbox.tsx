@@ -4,12 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import { motion, AnimatePresence, PanInfo } from "framer-motion";
-
-interface MediaItem {
-    _type: "image" | "file";
-    url: string;
-    mimeType?: string;
-}
+import { MediaItem } from "@/types/media";
 
 interface PhotoLightboxProps {
     media: MediaItem[];
@@ -24,7 +19,7 @@ export default function PhotoLightbox({ media, initialIndex, collectionTitle, on
     const videoRef = useRef<HTMLVideoElement>(null);
 
     const isVideo = (item: MediaItem) => {
-        return item._type === "file" && item.mimeType?.startsWith("video/");
+        return item._type === "video" && item.mimeType?.startsWith("video/");
     };
 
     const currentItem = media[currentIndex];

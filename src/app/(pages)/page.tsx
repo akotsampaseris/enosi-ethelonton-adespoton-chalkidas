@@ -49,7 +49,6 @@ async function getFeaturedStories(): Promise<SuccessStory[]> {
 export default async function Home() {
     const animals = await getAnimals();
     const successStories = await getFeaturedStories();
-    console.log(successStories);
 
     return (
         <PageLayout hasHero={true}>

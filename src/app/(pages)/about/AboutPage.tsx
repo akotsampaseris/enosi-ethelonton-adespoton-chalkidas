@@ -7,7 +7,7 @@ import { Heart, Users, Home, Award, Target, Sparkles } from "lucide-react";
 import ImageCarousel from "@/components/ui/ImageCarousel";
 
 export default function AboutPage() {
-    const featuredImages = ["/images/carousel/1.jpeg", "/images/carousel/2.jpeg", "/images/carousel/3.jpeg", "/images/carousel/4.jpeg"];
+    const featuredImages = ["/images/carousel/about/1.jpg", "/images/carousel/about/2.jpg", "/images/carousel/about/3.jpg", "/images/carousel/about/4.jpg"];
 
     const stats = [
         { number: "300+", label: "Ζώα Διασώθηκαν", icon: Heart },

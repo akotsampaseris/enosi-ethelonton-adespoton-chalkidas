@@ -5,7 +5,7 @@ import Link from "next/link";
 import { Heart, ArrowRight } from "lucide-react";
 import ImageCarousel from "@/components/ui/ImageCarousel";
 
-const images = ["/images/carousel/1.jpeg", "/images/carousel/2.jpeg", "/images/carousel/3.jpeg", "/images/carousel/4.jpeg"];
+const images = ["/images/carousel/hero/1.jpg", "/images/carousel/hero/2.jpg", "/images/carousel/hero/3.jpg", "/images/carousel/hero/4.jpg"];
 
 export function Hero() {
     return (

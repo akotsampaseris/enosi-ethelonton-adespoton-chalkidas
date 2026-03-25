@@ -46,46 +46,47 @@ export async function generateMetadata(): Promise<Metadata> {
 
 const POSTS_PER_PAGE = 9;
 
-async function getPosts(page: number = 1): Promise<{
-    featured: BlogPost | null;
-    posts: BlogPost[];
-    totalPosts: number;
-    totalPages: number;
-    currentPage: number;
-}> {
+async function getPosts(page: number = 1) {
     const start = (page - 1) * POSTS_PER_PAGE;
     const end = start + POSTS_PER_PAGE;
 
     const query = `{
-    "featured": *[_type == "post" && featured == true] | order(publishedAt desc)[0] {
-      _id,
-      title,
-      "slug": slug.current,
-      excerpt,
-      "mainImage": mainImage.asset->url,
-      publishedAt,
-      "author": author->{name, "image": image.asset->url},
-      categories,
-      featured
-    },
-    "posts": *[_type == "post"] | order(publishedAt desc)[${start}...${end}] {
-      _id,
-      title,
-      "slug": slug.current,
-      excerpt,
-      "mainImage": mainImage.asset->url,
-      publishedAt,
-      "author": author->{name, "image": image.asset->url},
-      categories,
-      featured
-    },
-    "totalPosts": count(*[_type == "post"])
-  }`;
+        "featured": *[_type == "post" && featured == true] | order(publishedAt desc)[0] {
+            _id,
+            title,
+            "slug": slug.current,
+            excerpt,
+            "mainImage": mainImage.asset->url,
+            publishedAt,
+            "author": author->{name, "image": image.asset->url},
+            categories,
+            featured
+        },
+        "featuredId": *[_type == "post" && featured == true] | order(publishedAt desc)[0]._id,
+        "totalPosts": count(*[_type == "post" && !(featured == true)])
+    }`;
 
     const data = await client.fetch(query);
+    const featuredId = data.featuredId;
+
+    const postsQuery = `*[_type == "post" && _id != $featuredId] | order(publishedAt desc)[${start}...${end}] {
+        _id,
+        title,
+        "slug": slug.current,
+        excerpt,
+        "mainImage": mainImage.asset->url,
+        publishedAt,
+        "author": author->{name, "image": image.asset->url},
+        categories,
+        featured
+    }`;
+
+    const posts = await client.fetch(postsQuery, { featuredId: featuredId ?? "" });
 
     return {
-        ...data,
+        featured: data.featured,
+        posts,
+        totalPosts: data.totalPosts,
         totalPages: Math.ceil(data.totalPosts / POSTS_PER_PAGE),
         currentPage: page,
     };
@@ -105,7 +106,6 @@ export default async function BlogPage({ searchParams }: { searchParams: Promise
     const currentPage = Number(pageParam) || 1;
 
     const { featured, posts, totalPages } = await getPosts(currentPage);
-    const regularPosts = posts.filter((post) => !post.featured || post._id !== featured?._id);
 
     return (
         <PageLayout>
@@ -139,7 +139,7 @@ export default async function BlogPage({ searchParams }: { searchParams: Promise
                                     <div className="p-8 lg:p-12 flex flex-col justify-center">
                                         {featured.categories && featured.categories.length > 0 && (
                                             <div className="flex flex-wrap gap-2 mb-4">
-                                                {featured.categories.slice(0, 2).map((cat) => (
+                                                {featured.categories.slice(0, 2).map((cat: string) => (
                                                     <span key={cat} className="text-sm text-pink-600 font-medium">
                                                         {categoryLabels[cat] || cat}
                                                     </span>
@@ -178,7 +178,7 @@ export default async function BlogPage({ searchParams }: { searchParams: Promise
                 {/* Blog Grid */}
                 <section className="container mx-auto max-w-6xl px-4 py-12">
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        {regularPosts.map((post) => (
+                        {posts.map((post: BlogPost) => (
                             <Link key={post._id} href={`/blog/${post.slug}`}>
                                 <article className="group bg-white rounded-2xl overflow-hidden border border-gray-200 hover:border-pink-300 hover:shadow-xl transition-all duration-300">
                                     <div className="relative aspect-[3/4] overflow-hidden bg-gray-100">
@@ -214,7 +214,7 @@ export default async function BlogPage({ searchParams }: { searchParams: Promise
                         ))}
                     </div>
 
-                    {regularPosts.length === 0 && !featured && (
+                    {posts.length === 0 && !featured && (
                         <div className="text-center py-20">
                             <p className="text-gray-500 text-lg">Δεν υπάρχουν άρθρα ακόμα. Ελέγξτε ξανά σύντομα!</p>
                         </div>

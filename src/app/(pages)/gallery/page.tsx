@@ -4,6 +4,7 @@ import { generatePageOgImage } from "@/lib/ogImageGeneration";
 import GalleryGrid from "@/components/gallery/GalleryGrid";
 import { client } from "@/sanity/lib/client";
 import PageLayout from "@/components/ui/PageLayout";
+import { PhotoCollection } from "@/types/photoCollection";
 
 const pageTitle = "Φωτογραφίες & Βίντεο";
 const pageDescription = "Στιγμές από τις δράσεις και τις εκδηλώσεις μας";
@@ -35,16 +36,6 @@ export const metadata: Metadata = {
     },
 };
 
-interface PhotoCollection {
-    _id: string;
-    slug: string;
-    title: string;
-    description: string;
-    date: string;
-    coverImage: string;
-    photos: string[];
-}
-
 async function getPhotoCollections(): Promise<PhotoCollection[]> {
     const query = `*[_type == "photoCollection"] | order(date desc) {
     _id,
@@ -53,7 +44,11 @@ async function getPhotoCollections(): Promise<PhotoCollection[]> {
     description,
     date,
     "coverImage": coverImage.asset->url,
-    "photos": photos[].asset->url
+    "media": photos[]{
+      _type,
+      "url": asset->url,
+      "mimeType": asset->mimeType
+    }
   }`;
 
     return client.fetch(query);

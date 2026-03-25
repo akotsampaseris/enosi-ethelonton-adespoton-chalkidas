@@ -3,30 +3,15 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Calendar } from "lucide-react";
-
-interface PhotoCollection {
-    _id: string;
-    slug: string;
-    title: string;
-    description: string;
-    date: string;
-    coverImage: string;
-    photos: string[];
-}
+import { PhotoCollection } from "@/types/photoCollection";
+import { portableToPlainText } from "@/lib/utils";
+import { formatDate } from "@/lib/utils";
 
 interface GalleryGridProps {
     collections: PhotoCollection[];
 }
 
 export default function GalleryGrid({ collections }: GalleryGridProps) {
-    const formatDate = (date: string) => {
-        return new Date(date).toLocaleDateString("el-GR", {
-            year: "numeric",
-            month: "long",
-            day: "numeric",
-        });
-    };
-
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {collections.map((collection) => (
@@ -43,11 +28,11 @@ export default function GalleryGrid({ collections }: GalleryGridProps) {
                     {/* Content */}
                     <div className="absolute inset-0 p-6 flex flex-col justify-end text-white">
                         <h3 className="text-2xl font-bold mb-2 group-hover:text-pink-300 transition-colors">{collection.title}</h3>
-                        <p className="text-sm text-gray-200 mb-3 line-clamp-2">{collection.description}</p>
+                        <p className="text-sm text-gray-200 mb-3 line-clamp-2">{portableToPlainText(collection.description)}</p>
                         <div className="flex items-center gap-2 text-sm text-gray-300">
                             <Calendar size={16} />
                             <span>{formatDate(collection.date)}</span>
-                            <span className="ml-auto bg-white/20 px-3 py-1 rounded-full backdrop-blur-sm">{collection.photos.length} φωτογραφίες</span>
+                            <span className="ml-auto bg-white/20 px-3 py-1 rounded-full backdrop-blur-sm">{collection.media.length} φωτογραφίες</span>
                         </div>
                     </div>
 

@@ -1,5 +1,6 @@
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
+import { PortableTextBlock } from "next-sanity";
 
 export function cn(...inputs: ClassValue[]) {
     return twMerge(clsx(inputs));
@@ -41,4 +42,10 @@ export function formatWeight(weight: number): string {
         return "1 κιλό";
     }
     return `${weight} κιλά`;
+}
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function portableToPlainText(blocks: PortableTextBlock[]): string {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    return blocks.map((block) => block.children?.map((c: any) => c.text).join("") ?? "").join(" ");
 }

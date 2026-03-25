@@ -25,8 +25,31 @@ export const photoCollectionType = defineType({
         defineField({
             name: "description",
             title: "Περιγραφή",
-            type: "text",
-            rows: 3,
+            type: "array",
+            of: [
+                {
+                    type: "block",
+                    styles: [{ title: "Normal", value: "normal" }],
+                    lists: [],
+                    marks: {
+                        decorators: [],
+                        annotations: [
+                            {
+                                name: "link",
+                                type: "object",
+                                title: "Link",
+                                fields: [
+                                    {
+                                        name: "href",
+                                        type: "url",
+                                        title: "URL",
+                                    },
+                                ],
+                            },
+                        ],
+                    },
+                },
+            ],
             validation: (Rule) => Rule.required(),
         }),
         defineField({

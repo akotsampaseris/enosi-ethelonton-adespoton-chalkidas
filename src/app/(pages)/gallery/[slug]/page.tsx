@@ -10,12 +10,15 @@ import PageLayout from "@/components/ui/PageLayout";
 import { formatDate } from "@/lib/utils";
 import { MediaItem } from "@/types/media";
 import ShareButton from "@/components/ShareButton";
+import { PortableTextBlock } from "next-sanity";
+import { PortableText } from "@portabletext/react";
+import { portableTextComponents } from "@/types/portableText";
 
 interface PhotoCollection {
     _id: string;
     slug: string;
     title: string;
-    description: string;
+    description: PortableTextBlock;
     date: string;
     coverImage: string;
     media: MediaItem[];
@@ -57,17 +60,19 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
     if (!collection) return defaultMetadata;
 
-    const ogImage = generatePageOgImage(collection.title, collection.description);
+    const pageTitle = collection.title;
+    const pageDescription = String(collection.description);
+    const ogImage = generatePageOgImage(pageTitle, pageDescription);
 
     return {
         ...defaultMetadata,
         title: collection.title,
-        description: collection.description,
+        description: pageDescription,
         openGraph: {
             ...defaultMetadata.openGraph,
             url: `https://eeach.gr/gallery/${slug}`,
             title: collection.title,
-            description: collection.description,
+            description: pageDescription,
             images: [
                 {
                     url: ogImage,
@@ -80,7 +85,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
         twitter: {
             ...defaultMetadata.twitter,
             title: collection.title,
-            description: collection.description,
+            description: pageDescription,
             images: [ogImage],
         },
     };
@@ -103,13 +108,13 @@ export default async function CollectionPage({ params }: { params: Promise<{ slu
                         {/* Back Button */}
                         <Link href="/gallery" className="inline-flex items-center gap-2 text-gray-600 hover:text-pink-600 transition-colors mb-6">
                             <ArrowLeft size={20} />
-                            <span className="font-medium">Πίσω στη Συλλογή</span>
+                            <span className="font-medium">Πίσω στις Συλλογές</span>
                         </Link>
 
                         {/* Title & Info */}
                         <div className="max-w-4xl">
                             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">{collection.title}</h1>
-                            <p className="text-lg text-gray-600 mb-4">{collection.description}</p>
+                            <PortableText value={collection.description} components={portableTextComponents} />
                             <div className="flex items-center gap-4 text-gray-500">
                                 <div className="flex items-center gap-2">
                                     <Calendar size={18} />
@@ -118,7 +123,7 @@ export default async function CollectionPage({ params }: { params: Promise<{ slu
                                 <span>•</span>
                                 <span>{collection.media.length} στοιχεία</span>
                                 <span>
-                                    <ShareButton variant="ghost" title={collection.title} text={collection.description} className="text-pink-600 hover:text-pink-700" />
+                                    <ShareButton variant="ghost" title={collection.title} text={String(collection.description)} className="text-pink-600 hover:text-pink-700" />
                                 </span>
                             </div>
                         </div>

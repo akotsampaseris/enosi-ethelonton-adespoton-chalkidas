@@ -51,7 +51,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
     const pageTitle = collection.title;
     const descriptionPreview = portableToPlainText(collection.description);
-    const pageDescription = descriptionPreview.length > 120 ? descriptionPreview.slice(0, 120) + "..." : descriptionPreview;
+    const pageDescription = descriptionPreview.length > 150 ? descriptionPreview.slice(0, 120) + "..." : descriptionPreview;
     const ogImage = generatePageOgImage(pageTitle, pageDescription);
 
     return {

@@ -153,7 +153,7 @@ export default async function SuccessStoryPage({ params }: { params: Promise<{ s
                         </div>
                         <div className="flex items-center gap-2">
                             <Calendar size={20} />
-                            <span>{formatDate(story.adoptionDate)}</span>
+                            <span>{formatDate(story.adoptionDate, "short")}</span>
                         </div>
                         <div className="ml-auto">
                             <ShareButton variant="ghost" title={story.title} text={story.excerpt} className="text-pink-600 hover:text-pink-700" />

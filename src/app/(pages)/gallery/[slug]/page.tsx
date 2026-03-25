@@ -1,4 +1,3 @@
-// app/(main)/gallery/[slug]/page.tsx
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { defaultMetadata } from "@/assets/metadata";
@@ -114,7 +113,7 @@ export default async function CollectionPage({ params }: { params: Promise<{ slu
                             <div className="flex items-center gap-4 text-gray-500">
                                 <div className="flex items-center gap-2">
                                     <Calendar size={18} />
-                                    <span>{formatDate(collection.date)}</span>
+                                    <span>{formatDate(collection.date, "short")}</span>
                                 </div>
                                 <span>•</span>
                                 <span>{collection.media.length} στοιχεία</span>

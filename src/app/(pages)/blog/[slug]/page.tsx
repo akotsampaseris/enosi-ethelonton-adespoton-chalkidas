@@ -178,7 +178,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                     <div className="flex items-center gap-6 text-gray-600 mb-8 pb-8 border-b border-gray-200">
                         <div className="flex items-center gap-2">
                             <Calendar size={20} />
-                            <span>{formatDate(post.publishedAt)}</span>
+                            <span>{formatDate(post.publishedAt, "short")}</span>
                         </div>
                         {post.author && (
                             <div className="flex items-center gap-3">

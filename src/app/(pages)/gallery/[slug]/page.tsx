@@ -10,6 +10,7 @@ import Link from "next/link";
 import PageLayout from "@/components/ui/PageLayout";
 import { formatDate } from "@/lib/utils";
 import { MediaItem } from "@/types/media";
+import ShareButton from "@/components/ShareButton";
 
 interface PhotoCollection {
     _id: string;
@@ -117,6 +118,9 @@ export default async function CollectionPage({ params }: { params: Promise<{ slu
                                 </div>
                                 <span>•</span>
                                 <span>{collection.media.length} στοιχεία</span>
+                                <span>
+                                    <ShareButton variant="ghost" title={collection.title} text={collection.description} className="text-pink-600 hover:text-pink-700" />
+                                </span>
                             </div>
                         </div>
                     </div>

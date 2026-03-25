@@ -58,7 +58,13 @@ async function getPost(slug: string): Promise<BlogPost | null> {
     publishedAt,
     "author": author->{name, "image": image.asset->url},
     categories,
-    body
+    "body": body[] {
+        ...,
+        _type == "image" => {
+            ...,
+            "asset": asset->{ url }
+        }
+    }
   }`;
 
     const post = await client.fetch(query, { slug });
@@ -103,7 +109,6 @@ export async function generateStaticParams() {
     }));
 }
 
-// Portable Text components for rich content rendering
 const portableTextComponents = {
     types: {
         image: ({ value }: any) => (

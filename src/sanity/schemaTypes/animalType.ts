@@ -93,6 +93,7 @@ export const animalType = defineType({
             options: {
                 list: [
                     { title: "Διαθέσιμο", value: "Διαθέσιμο" },
+                    { title: "Μη Διαθέσιμο", value: "Μη Διαθέσιμο" },
                     { title: "Υιοθετήθηκε", value: "Υιοθετήθηκε" },
                 ],
             },

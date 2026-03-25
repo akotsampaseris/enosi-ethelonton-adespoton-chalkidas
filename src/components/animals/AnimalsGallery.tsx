@@ -16,7 +16,7 @@ interface AnimalsGalleryProps {
 }
 
 function getAgeCategory(age: number, ageUnit: string): string {
-    const months = ageUnit === "years" ? age * 12 : age;
+    const months = ageUnit === "Χρόνια" ? age * 12 : age;
     if (months < 12) return "baby";
     if (months < 36) return "young";
     if (months < 96) return "adult";
@@ -133,21 +133,6 @@ export default function AnimalsGallery({ fetchedAnimals }: AnimalsGalleryProps) 
                                 </div>
 
                                 <div>
-                                    <label className="block text-xs font-medium text-gray-500 mb-2 uppercase tracking-wide">ΚΑΤΑΣΤΑΣΗ</label>
-                                    <Select value={statusFilter} onValueChange={handleFilterChange(setStatusFilter)}>
-                                        <SelectTrigger className="border-gray-300">
-                                            <SelectValue placeholder="Κατάσταση" />
-                                        </SelectTrigger>
-                                        <SelectContent>
-                                            <SelectItem value="all">Όλα</SelectItem>
-                                            <SelectItem value="Διαθέσιμο">Διαθέσιμο</SelectItem>
-                                            <SelectItem value="Υιοθετήθηκε">Υιοθετήθηκε</SelectItem>
-                                            <SelectItem value="Σε φιλοξενία">Σε φιλοξενία</SelectItem>
-                                        </SelectContent>
-                                    </Select>
-                                </div>
-
-                                <div>
                                     <label className="block text-xs font-medium text-gray-500 mb-2 uppercase tracking-wide">ΜΕΓΕΘΟΣ</label>
                                     <Select value={sizeFilter} onValueChange={handleFilterChange(setSizeFilter)}>
                                         <SelectTrigger className="border-gray-300">
@@ -175,6 +160,19 @@ export default function AnimalsGallery({ fetchedAnimals }: AnimalsGalleryProps) 
                                             <SelectItem value="young">Νέο (1–3 έτη)</SelectItem>
                                             <SelectItem value="adult">Ενήλικο (3–8 έτη)</SelectItem>
                                             <SelectItem value="senior">Ηλικιωμένο (8+ έτη)</SelectItem>
+                                        </SelectContent>
+                                    </Select>
+                                </div>
+                                <div>
+                                    <label className="block text-xs font-medium text-gray-500 mb-2 uppercase tracking-wide">ΚΑΤΑΣΤΑΣΗ</label>
+                                    <Select value={statusFilter} onValueChange={handleFilterChange(setStatusFilter)}>
+                                        <SelectTrigger className="border-gray-300">
+                                            <SelectValue placeholder="Κατάσταση" />
+                                        </SelectTrigger>
+                                        <SelectContent>
+                                            <SelectItem value="all">Όλα</SelectItem>
+                                            <SelectItem value="Διαθέσιμο">Διαθέσιμο</SelectItem>
+                                            <SelectItem value="Υιοθετήθηκε">Υιοθετήθηκε</SelectItem>
                                         </SelectContent>
                                     </Select>
                                 </div>

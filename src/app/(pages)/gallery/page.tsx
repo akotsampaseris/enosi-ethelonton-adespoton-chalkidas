@@ -15,6 +15,7 @@ export const metadata: Metadata = {
     description: pageDescription,
     openGraph: {
         ...defaultMetadata.openGraph,
+        url: "https://eeach.gr/gallery",
         title: pageTitle,
         description: pageDescription,
         images: [

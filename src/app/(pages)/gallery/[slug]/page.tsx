@@ -65,6 +65,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
         description: collection.description,
         openGraph: {
             ...defaultMetadata.openGraph,
+            url: `https://eeach.gr/gallery/${slug}`,
             title: collection.title,
             description: collection.description,
             images: [

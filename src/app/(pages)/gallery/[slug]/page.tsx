@@ -7,22 +7,11 @@ import CollectionPhotoGrid from "@/components/gallery/CollectionPhotoGrid";
 import { ArrowLeft, Calendar } from "lucide-react";
 import Link from "next/link";
 import PageLayout from "@/components/ui/PageLayout";
-import { formatDate } from "@/lib/utils";
-import { MediaItem } from "@/types/media";
+import { formatDate, portableToPlainText } from "@/lib/utils";
 import ShareButton from "@/components/ShareButton";
-import { PortableTextBlock } from "next-sanity";
 import { PortableText } from "@portabletext/react";
 import { portableTextComponents } from "@/types/portableText";
-
-interface PhotoCollection {
-    _id: string;
-    slug: string;
-    title: string;
-    description: PortableTextBlock;
-    date: string;
-    coverImage: string;
-    media: MediaItem[];
-}
+import { PhotoCollection } from "@/types/photoCollection";
 
 async function getCollection(slug: string): Promise<PhotoCollection | null> {
     const query = `*[_type == "photoCollection" && slug.current == $slug][0] {
@@ -61,7 +50,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     if (!collection) return defaultMetadata;
 
     const pageTitle = collection.title;
-    const pageDescription = String(collection.description);
+    const pageDescription = portableToPlainText(collection.description);
     const ogImage = generatePageOgImage(pageTitle, pageDescription);
 
     return {

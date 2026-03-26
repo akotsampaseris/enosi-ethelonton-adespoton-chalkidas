@@ -7,6 +7,7 @@ import { Metadata } from "next";
 import { defaultMetadata } from "@/assets/metadata";
 import { formatAge, formatWeight } from "@/lib/utils";
 import { generateAnimalOgImage } from "@/lib/ogImageGeneration";
+import { portableToPlainText } from "@/lib/utils";
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
     const { slug } = await params;
@@ -18,7 +19,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     const formattedWeight = formatWeight(animal.weight);
     const ogImageUrl = generateAnimalOgImage(animal.name, animal.gender, formattedAge, formattedWeight, animal.image);
 
-    const shortDescription = `${animal.name}, ${formattedAge}, αναζητά οικογένεια! ${animal.description?.slice(0, 100)}...`;
+    const shortDescription = `${animal.name}, ${formattedAge}, αναζητά οικογένεια! ${portableToPlainText(animal.description || [])?.slice(0, 100)}...`;
 
     return {
         ...defaultMetadata,

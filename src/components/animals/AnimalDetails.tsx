@@ -8,6 +8,9 @@ import { Animal } from "@/types/animal";
 import ShareButton from "@/components/ShareButton";
 import { formatAge, formatWeight } from "@/lib/utils";
 import AnimalMedia from "./AnimalMedia";
+import { PortableText } from "@portabletext/react";
+import { portableTextComponents } from "@/types/portableText";
+import { portableToPlainText } from "@/lib/utils";
 
 interface AnimalDetailsProps {
     animal: Animal;
@@ -64,7 +67,7 @@ export default function AnimalDetails({ animal }: AnimalDetailsProps) {
                                 <h2 className="text-xl font-bold text-gray-900 mb-3">
                                     Σχετικά με {animal.gender == "Αρσενικό" ? "τον" : "την"} {animal.name}
                                 </h2>
-                                <p className="text-gray-700 leading-relaxed">{animal.description}</p>
+                                <PortableText value={animal.description} components={portableTextComponents} />
                             </div>
                         )}
 
@@ -203,7 +206,7 @@ export default function AnimalDetails({ animal }: AnimalDetailsProps) {
                                     <Button variant="outline" size="lg" className="border-gray-300" asChild>
                                         <Link href={`/foster?animal=${animal.slug}`}>Φιλοξενία</Link>
                                     </Button>
-                                    <ShareButton variant="outline" size="lg" title={animal.name} text={animal.description} className="border-gray-300" />
+                                    <ShareButton variant="outline" size="lg" title={animal.name} text={portableToPlainText(animal.description || [])} className="border-gray-300" />
                                 </div>
                             </div>
                         )}

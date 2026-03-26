@@ -1,4 +1,5 @@
 import { MediaItem } from "./media";
+import { PortableTextBlock } from "next-sanity";
 
 export interface AnimalData {
     _id: string;
@@ -19,7 +20,7 @@ export interface AnimalData {
     status: "Διαθέσιμο" | "Υιοθετήθηκε" | "Σε φιλοξενία";
     image: SanityImage;
     gallery: MediaItem[];
-    description?: string;
+    description?: PortableTextBlock[];
     personality?: string[];
     goodWith?: GoodWith;
     medicalInfo?: MedicalInfo;
@@ -70,7 +71,7 @@ export type Animal = {
     status: "Διαθέσιμο" | "Υιοθετήθηκε";
     image: string; // Transformed to URL
     slug: string; // Extracted from slug.current
-    description?: string;
+    description?: PortableTextBlock[];
     personality?: string[];
     goodWith?: GoodWith;
     medicalInfo?: MedicalInfo;

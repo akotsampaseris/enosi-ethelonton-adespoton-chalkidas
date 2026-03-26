@@ -48,8 +48,6 @@ const AnimalCard = ({ animal }: AnimalCardProps) => {
                         </div>
                     </div>
 
-                    {animal.description && <p className="mt-4 line-clamp-2 text-sm text-gray-600">{animal.description}</p>}
-
                     <div className="mt-6 flex items-center gap-4 text-xs text-gray-500">
                         <span className="flex items-center gap-1">
                             <MapPin className="h-4 w-4" />

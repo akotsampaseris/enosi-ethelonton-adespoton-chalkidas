@@ -125,11 +125,6 @@ export default function Social() {
                                         </div>
                                     </div>
 
-                                    <div className="mb-6">
-                                        <p className="text-3xl font-bold text-pink-600">{social.followers}</p>
-                                        <p className="text-gray-600">Ακόλουθοι</p>
-                                    </div>
-
                                     <Button className={`w-full ${social.color} text-white border-0`}>Ακολούθησε</Button>
                                 </div>
                             </motion.a>

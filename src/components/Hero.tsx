@@ -7,6 +7,16 @@ import ImageCarousel from "@/components/ui/ImageCarousel";
 
 const images = ["/images/carousel/hero/1.jpg", "/images/carousel/hero/2.jpg", "/images/carousel/hero/3.jpg", "/images/carousel/hero/4.jpg"];
 
+const PAW_PRINT = () => (
+    <svg viewBox="0 0 100 100" fill="currentColor" className="w-6 h-6">
+        <ellipse cx="20" cy="30" rx="10" ry="13" />
+        <ellipse cx="42" cy="20" rx="10" ry="13" />
+        <ellipse cx="64" cy="20" rx="10" ry="13" />
+        <ellipse cx="82" cy="30" rx="10" ry="13" />
+        <path d="M50 45 C25 45 15 60 18 75 C21 88 35 92 50 92 C65 92 79 88 82 75 C85 60 75 45 50 45 Z" />
+    </svg>
+);
+
 export function Hero() {
     return (
         <section className="relative overflow-hidden bg-purple-50">
@@ -74,7 +84,9 @@ export function Hero() {
                             <div className="flex items-center gap-4">
                                 <div className="flex -space-x-2">
                                     {[1, 2, 3, 4].map((i) => (
-                                        <div key={i} className="h-10 w-10 rounded-full bg-pink-200 ring-2 ring-white" />
+                                        <div key={i} className="w-10 h-10 rounded-full bg-pink-200 flex items-center justify-center ring-2 ring-white text-pink-400">
+                                            <PAW_PRINT />
+                                        </div>
                                     ))}
                                 </div>
                                 <div>

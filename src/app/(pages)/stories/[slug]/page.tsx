@@ -64,7 +64,13 @@ async function getStory(slug: string): Promise<SuccessStory | null> {
     "mainImage": mainImage.asset->url,
     "beforeImage": beforeImage.asset->url,
     excerpt,
-    story
+    "story": story[] {
+        ...,
+        _type == "image" => {
+            ...,
+            "asset": asset->{ url }
+        }
+    }
   }`;
 
     const story = await client.fetch(query, { slug });

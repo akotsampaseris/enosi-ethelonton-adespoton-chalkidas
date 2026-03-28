@@ -6,6 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
+import LogoLink from "@/components/ui/LogoLink";
 
 export default function Header() {
     const [isOpen, setIsOpen] = useState(false);
@@ -46,9 +47,7 @@ export default function Header() {
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between items-center h-28">
                     <div className="flex-shrink-0">
-                        <Link href="/" className="flex items-center">
-                            <Image src="/logo.png" alt="Ένωση Εθελοντών Αδέσποτων Χαλκίδας" width={180} height={60} className="h-24 w-auto" priority />
-                        </Link>
+                        <LogoLink />
                     </div>
 
                     {/* Desktop Navigation */}

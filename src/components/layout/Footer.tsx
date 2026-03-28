@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Facebook, Instagram, Linkedin, Twitter, Mail, MapPin, Heart } from "lucide-react";
+import LogoLink from "@/components/ui/LogoLink";
 
 const navigation = {
     adopt: [
@@ -38,9 +39,7 @@ export default function Footer() {
                 <div className="xl:grid xl:grid-cols-3 xl:gap-8">
                     {/* Brand column */}
                     <div className="space-y-4">
-                        <Link href="/" className="flex items-center space-x-4">
-                            <Image src="/logo.png" alt="Animal Rights Volunteer Group" width={150} height={150} className="h-24 w-auto mix-blend-difference" />
-                        </Link>
+                        <LogoLink />
                         <div className="space-y-2">
                             <h3 className="text-xl text-white font-semibold leading-7 sm:text-inde">Ένωση Εθελοντών Αδέσποτων Χαλκίδας</h3>
                             <p className="text-sm leading-6 text-gray-300">

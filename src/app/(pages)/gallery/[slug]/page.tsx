@@ -113,7 +113,12 @@ export default async function CollectionPage({ params }: { params: Promise<{ slu
                                 <span>•</span>
                                 <span>{collection.media.length} στοιχεία</span>
                                 <span>
-                                    <ShareButton variant="ghost" title={collection.title} text={String(collection.description)} className="text-pink-600 hover:text-pink-700" />
+                                    <ShareButton
+                                        variant="ghost"
+                                        title={collection.title}
+                                        text={portableToPlainText(collection.description)}
+                                        className="text-pink-600 hover:text-pink-700"
+                                    />
                                 </span>
                             </div>
                         </div>

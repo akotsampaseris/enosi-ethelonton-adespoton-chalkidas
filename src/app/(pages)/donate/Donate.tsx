@@ -136,7 +136,7 @@ export default function Donate() {
                                 <div className="bg-pink-100 rounded-full w-16 h-16 flex items-center justify-center mb-6">
                                     <PawPrint className="text-pink-600" size={28} />
                                 </div>
-                                <h3 className="text-lg font-bold text-gray-900 mb-3">Pet Shop Ζαχαροπούλου Μαρία</h3>
+                                <h3 className="text-lg font-bold text-gray-900 mb-3">Κτηνιατρικά Φάρμακα - Pet Shop</h3>
                                 <p className="text-gray-600 mb-6 font-medium">Κατάθεση στον τραπεζικό λογαριασμό της επιχείρησης</p>
                                 <div className="text-sm text-gray-700 space-y-4">
                                     <div className="flex flex-col gap-1">

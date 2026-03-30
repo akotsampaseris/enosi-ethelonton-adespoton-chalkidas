@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { SlidersHorizontal, ChevronDown, ChevronLeft, ChevronRight } from "lucide-react";
+import { SlidersHorizontal, ChevronDown, ChevronLeft, ChevronRight, Search, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Animal } from "@/types/animal";
@@ -13,6 +13,13 @@ const PAGE_SIZE = 12;
 
 interface AnimalsGalleryProps {
     fetchedAnimals: Animal[];
+}
+
+function normalizeAccentsInString(str: string): string {
+    return str
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .toLowerCase();
 }
 
 function getAgeCategory(age: number, ageUnit: string): string {
@@ -33,6 +40,7 @@ function getSizeCategory(weight: number): string {
 export default function AnimalsGallery({ fetchedAnimals }: AnimalsGalleryProps) {
     const [animals] = useState<Animal[]>(fetchedAnimals);
     const [filtersOpen, setFiltersOpen] = useState(false);
+    const [search, setSearch] = useState("");
     const [speciesFilter, setSpeciesFilter] = useState("all");
     const [genderFilter, setGenderFilter] = useState("all");
     const [statusFilter, setStatusFilter] = useState("all");
@@ -41,6 +49,7 @@ export default function AnimalsGallery({ fetchedAnimals }: AnimalsGalleryProps) 
     const [page, setPage] = useState(1);
 
     const filteredAnimals = animals.filter((animal) => {
+        if (search && !normalizeAccentsInString(animal.name).includes(normalizeAccentsInString(search))) return false;
         if (speciesFilter !== "all" && animal.species !== speciesFilter) return false;
         if (genderFilter !== "all" && animal.gender !== genderFilter) return false;
         if (statusFilter !== "all" && animal.status !== statusFilter) return false;
@@ -52,9 +61,12 @@ export default function AnimalsGallery({ fetchedAnimals }: AnimalsGalleryProps) 
     const totalPages = Math.ceil(filteredAnimals.length / PAGE_SIZE);
     const paginatedAnimals = filteredAnimals.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
 
-    const activeFilterCount = [speciesFilter !== "all", genderFilter !== "all", statusFilter !== "all", sizeFilter !== "all", ageFilter !== "all"].filter(Boolean).length;
+    const activeFilterCount = [search !== "", speciesFilter !== "all", genderFilter !== "all", statusFilter !== "all", sizeFilter !== "all", ageFilter !== "all"].filter(
+        Boolean,
+    ).length;
 
     const clearFilters = () => {
+        setSearch("");
         setSpeciesFilter("all");
         setGenderFilter("all");
         setStatusFilter("all");
@@ -68,9 +80,13 @@ export default function AnimalsGallery({ fetchedAnimals }: AnimalsGalleryProps) 
         window.scrollTo({ top: 0, behavior: "smooth" });
     };
 
-    // Reset to page 1 when filters change
     const handleFilterChange = (setter: (v: string) => void) => (value: string) => {
         setter(value);
+        setPage(1);
+    };
+
+    const handleSearch = (value: string) => {
+        setSearch(value);
         setPage(1);
     };
 
@@ -81,7 +97,24 @@ export default function AnimalsGallery({ fetchedAnimals }: AnimalsGalleryProps) 
                 <div className="container mx-auto max-w-6xl">
                     <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="text-center">
                         <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">Βρες τον νέο σου φίλο</h1>
-                        <p className="text-xl text-gray-600 max-w-2xl mx-auto">Τα ζωάκια που περιμένουν το παντοτινό τους σπίτι</p>
+                        <p className="text-xl text-gray-600 max-w-2xl mx-auto mb-10">Τα ζωάκια που περιμένουν το παντοτινό τους σπίτι</p>
+
+                        {/* Search bar */}
+                        <div className="relative max-w-md mx-auto">
+                            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none" />
+                            <input
+                                type="text"
+                                value={search}
+                                onChange={(e) => handleSearch(e.target.value)}
+                                placeholder="Αναζήτηση με όνομα..."
+                                className="w-full pl-12 pr-10 py-3 rounded-2xl border border-gray-200 bg-white shadow-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-pink-300 focus:border-transparent transition"
+                            />
+                            {search && (
+                                <button onClick={() => handleSearch("")} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 transition">
+                                    <X className="w-4 h-4" />
+                                </button>
+                            )}
+                        </div>
                     </motion.div>
                 </div>
             </section>
@@ -163,6 +196,7 @@ export default function AnimalsGallery({ fetchedAnimals }: AnimalsGalleryProps) 
                                         </SelectContent>
                                     </Select>
                                 </div>
+
                                 <div>
                                     <label className="block text-xs font-medium text-gray-500 mb-2 uppercase tracking-wide">ΚΑΤΑΣΤΑΣΗ</label>
                                     <Select value={statusFilter} onValueChange={handleFilterChange(setStatusFilter)}>
@@ -192,7 +226,7 @@ export default function AnimalsGallery({ fetchedAnimals }: AnimalsGalleryProps) 
                 {/* Grid */}
                 {filteredAnimals.length === 0 ? (
                     <div className="text-center py-20">
-                        <p className="text-gray-500 text-lg">Δεν βρέθηκαν ζωάκια με αυτά τα κριτήρια</p>
+                        <p className="text-gray-500 text-lg">{search ? `Δεν βρέθηκε ζωάκι με το όνομα "${search}"` : "Δεν βρέθηκαν ζωάκια με αυτά τα κριτήρια"}</p>
                         <button onClick={clearFilters} className="mt-4 text-pink-500 hover:text-pink-600 font-medium text-sm">
                             Καθαρισμός φίλτρων
                         </button>
@@ -216,7 +250,6 @@ export default function AnimalsGallery({ fetchedAnimals }: AnimalsGalleryProps) 
                                 </button>
 
                                 {Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => {
-                                    // Show first, last, current, and neighbours — ellipsis for the rest
                                     const showPage = p === 1 || p === totalPages || Math.abs(p - page) <= 1;
                                     const showEllipsisBefore = p === page - 2 && page > 3;
                                     const showEllipsisAfter = p === page + 2 && page < totalPages - 2;

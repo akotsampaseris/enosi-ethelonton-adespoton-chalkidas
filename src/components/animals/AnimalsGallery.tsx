@@ -35,7 +35,7 @@ export default function AnimalsGallery({ fetchedAnimals }: AnimalsGalleryProps) 
     const [filtersOpen, setFiltersOpen] = useState(false);
     const [speciesFilter, setSpeciesFilter] = useState("all");
     const [genderFilter, setGenderFilter] = useState("all");
-    const [statusFilter, setStatusFilter] = useState("Διαθέσιμο");
+    const [statusFilter, setStatusFilter] = useState("all");
     const [sizeFilter, setSizeFilter] = useState("all");
     const [ageFilter, setAgeFilter] = useState("all");
     const [page, setPage] = useState(1);
@@ -52,12 +52,12 @@ export default function AnimalsGallery({ fetchedAnimals }: AnimalsGalleryProps) 
     const totalPages = Math.ceil(filteredAnimals.length / PAGE_SIZE);
     const paginatedAnimals = filteredAnimals.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
 
-    const activeFilterCount = [speciesFilter !== "all", genderFilter !== "all", statusFilter !== "Διαθέσιμο", sizeFilter !== "all", ageFilter !== "all"].filter(Boolean).length;
+    const activeFilterCount = [speciesFilter !== "all", genderFilter !== "all", statusFilter !== "all", sizeFilter !== "all", ageFilter !== "all"].filter(Boolean).length;
 
     const clearFilters = () => {
         setSpeciesFilter("all");
         setGenderFilter("all");
-        setStatusFilter("Διαθέσιμο");
+        setStatusFilter("all");
         setSizeFilter("all");
         setAgeFilter("all");
         setPage(1);

@@ -23,6 +23,14 @@ export const photoCollectionType = defineType({
             validation: (Rule) => Rule.required(),
         }),
         defineField({
+            name: "excerpt",
+            title: "Short Summary",
+            type: "text",
+            description: "Brief summary (1-2 sentences) for cards",
+            rows: 3,
+            validation: (Rule) => Rule.required().max(200),
+        }),
+        defineField({
             name: "description",
             title: "Περιγραφή",
             type: "array",

@@ -7,7 +7,7 @@ import CollectionPhotoGrid from "@/components/gallery/CollectionPhotoGrid";
 import { ArrowLeft, Calendar } from "lucide-react";
 import Link from "next/link";
 import PageLayout from "@/components/ui/PageLayout";
-import { formatDate, portableToPlainText } from "@/lib/utils";
+import { formatDate } from "@/lib/utils";
 import ShareButton from "@/components/ShareButton";
 import { PortableText } from "@portabletext/react";
 import { portableTextComponents } from "@/types/portableText";
@@ -18,6 +18,7 @@ async function getCollection(slug: string): Promise<PhotoCollection | null> {
     _id,
     "slug": slug.current,
     title,
+    excerpt,
     description,
     date,
     "coverImage": coverImage.asset->url,
@@ -50,8 +51,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     if (!collection) return defaultMetadata;
 
     const pageTitle = collection.title;
-    const descriptionPreview = portableToPlainText(collection.description);
-    const pageDescription = descriptionPreview.length > 150 ? descriptionPreview.slice(0, 120) + "..." : descriptionPreview;
+    const pageDescription = collection.excerpt;
     const ogImage = generatePageOgImage(pageTitle, pageDescription);
 
     return {
@@ -113,12 +113,7 @@ export default async function CollectionPage({ params }: { params: Promise<{ slu
                                 <span>•</span>
                                 <span>{collection.media.length} στοιχεία</span>
                                 <span>
-                                    <ShareButton
-                                        variant="ghost"
-                                        title={collection.title}
-                                        text={portableToPlainText(collection.description)}
-                                        className="text-pink-600 hover:text-pink-700"
-                                    />
+                                    <ShareButton variant="ghost" title={collection.title} text={collection.excerpt} className="text-pink-600 hover:text-pink-700" />
                                 </span>
                             </div>
                         </div>

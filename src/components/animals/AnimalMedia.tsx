@@ -112,7 +112,7 @@ export default function AnimalMedia({ media, animalName, mainImage, status, feat
                     {!featured && status && (
                         <div
                             className={`absolute top-4 right-4 px-4 py-2 rounded-full font-semibold text-sm text-white shadow-lg pointer-events-none z-10 ${
-                                status === "Διαθέσιμο" ? "bg-green-500" : status === "Υιοθετήθηκε" ? "bg-gray-500" : "bg-blue-500"
+                                status === "Διαθέσιμο" ? "bg-green-500" : status === "Υιοθετήθηκε" ? "bg-pink-500" : "bg-blue-500"
                             }`}>
                             {status}
                         </div>

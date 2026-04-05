@@ -1,26 +1,26 @@
 import type { NextConfig } from "next";
+import createNextIntlPlugin from "next-intl/plugin";
 
 const nextConfig: NextConfig = {
-  /* config options here */
-  images: {
-    // remotePatterns: ["images.unsplash.com", "cdn.sanity.io"],
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "images.unsplash.com",
-        port: "",
-        pathname: "/**",
-        search: "",
-      },
-      {
-        protocol: "https",
-        hostname: "cdn.sanity.io",
-        port: "",
-        pathname: "/**",
-        search: "",
-      },
-    ],
-  },
+    images: {
+        remotePatterns: [
+            {
+                protocol: "https",
+                hostname: "images.unsplash.com",
+                port: "",
+                pathname: "/**",
+                search: "",
+            },
+            {
+                protocol: "https",
+                hostname: "cdn.sanity.io",
+                port: "",
+                pathname: "/**",
+                search: "",
+            },
+        ],
+    },
 };
 
-export default nextConfig;
+const withNextIntl = createNextIntlPlugin();
+export default withNextIntl(nextConfig);

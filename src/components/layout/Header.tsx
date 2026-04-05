@@ -2,19 +2,21 @@
 
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
-import Image from "next/image";
-import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import LogoLink from "@/components/ui/LogoLink";
+import { Link } from "@/i18n/navigation";
+import { useTranslations, useLocale } from "next-intl";
+import LanguageSwitcher from "@/components/layout/LanguageSwitcher";
 
 export default function Header() {
     const [isOpen, setIsOpen] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
     const pathname = usePathname();
+    const locale = useLocale();
+    const t = useTranslations("nav");
 
-    const isHomepage = pathname === "/";
-
+    const isHomepage = pathname === "/" || pathname === `/${locale}`;
     useEffect(() => {
         const handleScroll = () => {
             setIsScrolled(window.scrollY > 50);
@@ -25,18 +27,16 @@ export default function Header() {
     }, []);
 
     const navLinks = [
-        { name: "Σχετικά με εμάς", href: "/about" },
-        { name: "Τα ζώα μας", href: "/animals" },
-        { name: "Υιοθέτησε", href: "/adopt" },
-        { name: "Φιλοξένησε", href: "/foster" },
-        { name: "Εθελοντισμός", href: "/volunteer" },
-        { name: "Blog", href: "/blog" },
-        { name: "Gallery", href: "/gallery" },
-        { name: "Επικοινωνία", href: "/contact" },
+        { name: t("about"), href: "/about" },
+        { name: t("animals"), href: "/animals" },
+        { name: t("adopt"), href: "/adopt" },
+        { name: t("foster"), href: "/foster" },
+        { name: t("volunteer"), href: "/volunteer" },
+        { name: t("blog"), href: "/blog" },
+        { name: t("gallery"), href: "/gallery" },
+        { name: t("contact"), href: "/contact" },
     ];
 
-    // On homepage: transparent until scroll, then white
-    // On other pages: always white
     const isTransparent = isHomepage && !isScrolled;
 
     return (
@@ -59,8 +59,10 @@ export default function Header() {
                         ))}
 
                         <Button asChild className="bg-pink-700 hover:bg-pink-600 text-white font-bold">
-                            <Link href="/donate">Δωρεά</Link>
+                            <Link href="/donate">{t("donate")}</Link>
                         </Button>
+
+                        <LanguageSwitcher />
                     </div>
 
                     {/* Mobile menu button */}
@@ -87,8 +89,11 @@ export default function Header() {
                             ))}
                             <div className="px-4 pt-2">
                                 <Button asChild className="w-full bg-pink-700 hover:bg-pink-600 text-white" onClick={() => setIsOpen(false)}>
-                                    <Link href="/donate">Δωρεά</Link>
+                                    <Link href="/donate">{t("donate")}</Link>
                                 </Button>
+                            </div>
+                            <div className="px-4 pt-1 pb-2">
+                                <LanguageSwitcher />
                             </div>
                         </div>
                     </div>

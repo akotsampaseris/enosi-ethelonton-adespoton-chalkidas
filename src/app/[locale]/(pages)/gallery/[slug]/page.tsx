@@ -8,7 +8,7 @@ import { ArrowLeft, Calendar } from "lucide-react";
 import Link from "next/link";
 import PageLayout from "@/components/ui/PageLayout";
 import { formatDate } from "@/lib/utils";
-import ShareButton from "@/components/ShareButton";
+import ShareButton from "@/components/ui/ShareButton";
 import { PortableText } from "@portabletext/react";
 import { portableTextComponents } from "@/types/portableText";
 import { PhotoCollection } from "@/types/photoCollection";

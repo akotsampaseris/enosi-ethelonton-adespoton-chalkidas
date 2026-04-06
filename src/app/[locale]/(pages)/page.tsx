@@ -1,14 +1,14 @@
 import { client } from "@/sanity/lib/client";
-import { Hero } from "@/components/Hero";
-import { FeaturedAnimals } from "@/components/animals/FeaturedAnimals";
-import { ImpactStats } from "@/components/ImpactStats";
-import { HowToHelp } from "@/components/HowToHelp";
-import { FeaturedSuccessStories } from "@/components/animals/FeaturedSuccessStories";
-import { Newsletter } from "@/components/Newsletter";
+import { Hero } from "@/components/pages/home/Hero";
+import { FeaturedAnimals } from "@/components/pages/animals/FeaturedAnimals";
+import { ImpactStats } from "@/components/pages/home/ImpactStats";
+import { HowToHelp } from "@/components/pages/home/HowToHelp";
+import { FeaturedSuccessStories } from "@/components/pages/animals/FeaturedSuccessStories";
+import { Newsletter } from "@/components/pages/home/Newsletter";
 import type { Animal } from "@/types/animal";
 import PageLayout from "@/components/ui/PageLayout";
 import type { SuccessStory } from "@/types/successStory";
-import RecentBlogPosts from "@/components/RecentBlogPosts";
+import RecentBlogPosts from "@/components/pages/home/RecentBlogPosts";
 
 async function getAnimals(): Promise<Animal[]> {
     const query = `*[_type == "animal"] | order(featured desc, _createdAt desc)[0...3] {

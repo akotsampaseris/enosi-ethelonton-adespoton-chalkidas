@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { MapPin, Calendar, Heart, CheckCircle, XCircle, ArrowLeft, Sparkles } from "lucide-react";
 import { Animal } from "@/types/animal";
-import ShareButton from "@/components/ShareButton";
+import ShareButton from "@/components/ui/ShareButton";
 import { formatAge, formatWeight } from "@/lib/utils";
 import AnimalMedia from "./AnimalMedia";
 import { PortableText } from "@portabletext/react";

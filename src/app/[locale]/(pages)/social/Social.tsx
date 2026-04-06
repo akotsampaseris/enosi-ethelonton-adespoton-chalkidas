@@ -4,7 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { Facebook, Instagram, Twitter, Linkedin, Share2, Copy, Heart, Check } from "lucide-react";
-import ShareButton from "@/components/ShareButton";
+import ShareButton from "@/components/ui/ShareButton";
 import { Button } from "@/components/ui/button";
 
 export default function Social() {

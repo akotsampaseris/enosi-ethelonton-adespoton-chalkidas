@@ -1,0 +1,119 @@
+{
+    "hero": {
+        "header": {
+            "text": "Every animal deserves",
+            "accent": "a home"
+        },
+        "groupName": "Chalkida Strays Volunteering Association",
+        "tagline": "We dream of a city without strays, where animals are safe and every citizen cares about their well-being.",
+        "cta":  {
+            "primaryBtn": "Adopt an animal",
+            "secondaryBtn": "Support us"
+        },
+        "stats": {
+            "animalsSaved": "Animals Rescued",
+            "animalsAdopted": "Adoptions",
+            "yearsOfAction": "Years of Action"
+        },
+        "floatingBadge": {
+            "title": "50+ Volunteers",
+            "subtitle": "make a difference"
+        }
+    },
+    "featuredAnimals": {
+        "title": "Find your new friend",
+        "subtitle": "Animals waiting for their forever-home",
+        "viewAllBtn": "View all available animals",
+        "noAnimals": "No animals yet!"
+    },
+    "impact": {
+        "title": "Our Impact in Numbers",
+        "subtitle": "Together we make a difference in our city",
+        "message": "Help us support more animals that need our care.",
+        "stats": {
+            "animalsRescued": {
+                "label": "Animals Rescued",
+                "description": "Stray animals pulled from the streets and given a second chance."
+            },
+            "adoptions": {
+                "label": "Successful Adoption",
+                "description": "Stray animals that found a forever home and a family to love them."
+            },
+            "animalTreatments": {
+                "label": "Completed Medical Treatments",
+                "description": "Medical care for thousands of animals in need."
+            },
+            "activeVolunteers": {
+                "label": "Active Volunteers",
+                "description": "Regular people that spend their free time caring for animals."
+            }
+        }
+    },
+    "howToHelp": {
+        "title": "How you can help us",
+        "subtitle": "Every actions makes a difference. There are several ways you can support us.",
+        "options": {
+            "adopt": {
+                "label": "Adopt",
+                "description": "Open your heart for a pet and find your best friend.",
+                "cta": "Find your new friend"
+            },
+            "donate": {
+                "label": "Donate",
+                "description": "Support the medical care, the food, and the foster options we provide.",
+                "cta": "Make a donation"
+            },
+            "volunteer": {
+                "label": "Volunteer",
+                "description": "Join our team and bring the change our city needs.",
+                "cta": "Join us"
+            },
+            "share": {
+                "label": "Spread awareness",
+                "description": "Share our mission with your friends, family and community.",
+                "cta": "Follow us"
+            }
+        }
+    },
+    "featuredStories": {
+        "title": "Success Stories",
+        "subtitle": "These beautiful stories show the difference an adoption can make",
+        "badge": "Happy Endings",
+        "viewAllBtn": "View all stories",
+        "noStories": "No stories yet!"
+    },
+    "recentPosts": {
+        "title": "Recent Posts",
+        "subtitle": "Read our latest news, articles on animal care, and rescue stories",
+        "badge": "Blog & News",
+        "viewAllBtn": "View all blog posts",
+        "noPosts": "No posts yet!"
+    },
+    "newsletter": {
+        "title": "Monthly Newsletters",
+        "subtitle": "We send our news, our available animals, and our latest adoptions",
+        "badge": "Stay Connected",
+        "privacyDisclaimer": "We respect your privacy. You can unsubscribe at any time. Really!",
+        "form": {
+            "emailLabel": "Email Address",
+            "submit": "Subscribe",
+            "submitting": "Subscribing...",
+            "successMsg": "✓ Welcome to our community! Check your email to confirm.",
+            "errorMsg": "Something went wrong!"
+        },
+        "footer": {
+            "followers": {
+                "title": "14,000+",
+                "subtitle": "Followers"
+            },
+            "newsletterFrequency": {
+                "title": "Monthly",
+                "subtitle": "Newsletters"
+            },
+            "noSpam": {
+                "title": "No spam",
+                "subtitle": "Guarranteed"
+            }
+        }
+    }
+}

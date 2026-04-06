@@ -1,14 +1,15 @@
 import { client } from "@/sanity/lib/client";
-import { Hero } from "@/components/pages/home/Hero";
-import { FeaturedAnimals } from "@/components/pages/animals/FeaturedAnimals";
-import { ImpactStats } from "@/components/pages/home/ImpactStats";
-import { HowToHelp } from "@/components/pages/home/HowToHelp";
-import { FeaturedSuccessStories } from "@/components/pages/animals/FeaturedSuccessStories";
-import { Newsletter } from "@/components/pages/home/Newsletter";
+import { Hero } from "@/components/home/Hero";
+import { FeaturedAnimals } from "@/components/home/FeaturedAnimals";
+import { ImpactStats } from "@/components/home/ImpactStats";
+import { HowToHelp } from "@/components/home/HowToHelp";
+import { FeaturedSuccessStories } from "@/components/home/FeaturedSuccessStories";
+import { Newsletter } from "@/components/home/Newsletter";
 import type { Animal } from "@/types/animal";
 import PageLayout from "@/components/ui/PageLayout";
 import type { SuccessStory } from "@/types/successStory";
-import RecentBlogPosts from "@/components/pages/home/RecentBlogPosts";
+import { RecentBlogPosts } from "@/components/home/RecentBlogPosts";
+import type { BlogPost } from "@/types/blogPost";
 
 async function getAnimals(): Promise<Animal[]> {
     const query = `*[_type == "animal"] | order(featured desc, _createdAt desc)[0...3] {
@@ -46,9 +47,25 @@ async function getFeaturedStories(): Promise<SuccessStory[]> {
     return stories;
 }
 
+async function getRecentPosts(): Promise<BlogPost[]> {
+    const query = `*[_type == "post"] | order(publishedAt desc)[0...3] {
+    _id,
+    title,
+    "slug": slug.current,
+    excerpt,
+    "mainImage": mainImage.asset->url,
+    publishedAt,
+    categories
+  }`;
+
+    const posts = await client.fetch(query);
+    return posts;
+}
+
 export default async function Home() {
     const animals = await getAnimals();
     const successStories = await getFeaturedStories();
+    const posts = await getRecentPosts();
 
     return (
         <PageLayout hasHero={true}>
@@ -58,7 +75,7 @@ export default async function Home() {
                 <ImpactStats />
                 <HowToHelp />
                 <FeaturedSuccessStories stories={successStories} />
-                <RecentBlogPosts />
+                <RecentBlogPosts posts={posts} />
                 <Newsletter />
             </main>
         </PageLayout>

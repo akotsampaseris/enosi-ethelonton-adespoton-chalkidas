@@ -1,7 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
+import { useTranslations } from "next-intl";
 import { Heart, ArrowRight } from "lucide-react";
 import ImageCarousel from "@/components/ui/ImageCarousel";
 
@@ -18,6 +19,8 @@ const PAW_PRINT = () => (
 );
 
 export function Hero() {
+    const t = useTranslations("home.hero");
+
     return (
         <section className="relative overflow-hidden bg-purple-50">
             {/* Background pattern */}
@@ -28,14 +31,12 @@ export function Hero() {
                     {/* Left column - Text content */}
                     <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="max-w-2xl">
                         <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl lg:text-6xl">
-                            Σε κάθε ζώο αξίζει ένα <span className="text-pink-600">ζεστό σπίτι</span>
+                            {t("header.text")} <span className="text-pink-600">{t("header.accent")}</span>
                         </h1>
                         <div className="mt-6 space-y-2">
-                            <h2 className="text-2xl font-semibold leading-7 sm:text-inde">Ένωση Εθελοντών Αδέσποτων Χαλκίδας</h2>
+                            <h2 className="text-2xl font-semibold leading-7 sm:text-inde">{t("groupName")}</h2>
 
-                            <p className="text-lg leading-7 text-gray-600">
-                                Οραματιζόμαστε μια πόλη χωρίς αδέσποτα όπου τα ζώα θα είναι ασφαλή και κάθε πολίτης θα σέβεται τα δικαιώματα τους.
-                            </p>
+                            <p className="text-lg leading-7 text-gray-600">{t("tagline")}</p>
                         </div>
 
                         <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:gap-6">
@@ -43,14 +44,14 @@ export function Hero() {
                                 href="/animals"
                                 className="group inline-flex items-center justify-center gap-2 rounded-full bg-pink-600 px-8 py-4 text-base font-semibold text-white shadow-lg transition hover:bg-pink-700 hover:shadow-xl">
                                 <Heart className="h-5 w-5" />
-                                Υιοθέτησε ένα ζωάκι
+                                {t("cta.primaryBtn")}
                                 <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
                             </Link>
 
                             <Link
                                 href="/donate"
                                 className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-pink-600 px-8 py-4 text-base font-semibold text-pink-600 transition hover:bg-pink-50">
-                                Στήριξε την αποστολή μας
+                                {t("cta.secondaryBtn")}
                             </Link>
                         </div>
 
@@ -58,15 +59,15 @@ export function Hero() {
                         <div className="mt-12 grid grid-cols-3 gap-6 border-t border-gray-200 pt-8">
                             <div>
                                 <div className="text-3xl font-bold text-pink-600">300+</div>
-                                <div className="mt-1 text-sm text-gray-600">Ζώα Διασώθηκαν</div>
+                                <div className="mt-1 text-sm text-gray-600">{t("stats.animalsSaved")}</div>
                             </div>
                             <div>
                                 <div className="text-3xl font-bold text-pink-600">150+</div>
-                                <div className="mt-1 text-sm text-gray-600">Υιοθεσίες</div>
+                                <div className="mt-1 text-sm text-gray-600">{t("stats.animalsAdopted")}</div>
                             </div>
                             <div>
                                 <div className="text-3xl font-bold text-pink-600">13+</div>
-                                <div className="mt-1 text-sm text-gray-600">Χρόνια Λειτουργίας</div>
+                                <div className="mt-1 text-sm text-gray-600">{t("stats.yearsOfAction")}</div>
                             </div>
                         </div>
                     </motion.div>
@@ -90,8 +91,8 @@ export function Hero() {
                                     ))}
                                 </div>
                                 <div>
-                                    <div className="font-semibold text-gray-900">50+ Εθελοντές</div>
-                                    <div className="text-sm text-gray-600">κάνουν τη διαφορά</div>
+                                    <div className="font-semibold text-gray-900">{t("floatingBadge.title")}</div>
+                                    <div className="text-sm text-gray-600">{t("floatingBadge.subtitle")}</div>
                                 </div>
                             </div>
                         </motion.div>

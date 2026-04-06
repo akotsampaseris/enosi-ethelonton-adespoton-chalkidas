@@ -1,5 +1,5 @@
 import { client } from "@/sanity/lib/client";
-import AnimalsGallery from "@/components/pages/animals/AnimalsGallery";
+import AnimalsGallery from "@/components/animals/AnimalsGallery";
 import type { Animal } from "@/types/animal";
 import PageLayout from "@/components/ui/PageLayout";
 

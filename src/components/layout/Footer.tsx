@@ -1,34 +1,34 @@
-import Link from "next/link";
-import Image from "next/image";
+import { Link } from "@/i18n/navigation";
+import { useTranslations } from "next-intl";
 import { Facebook, Instagram, Linkedin, Twitter, Mail, MapPin, Heart } from "lucide-react";
 import LogoLink from "@/components/ui/LogoLink";
 
-const navigation = {
-    adopt: [
-        { name: "Διαθέσιμα Ζώα", href: "/animals" },
-        { name: "Διαδικασία Υιοθεσίας", href: "/adopt/process" },
-        { name: "Ιστορίες Υιοθεσίας", href: "/stories" },
-        // { name: "Συχνές Ερωτήσεις", href: "/faq" },
-    ],
-    support: [
-        { name: "Δωρεές", href: "/donate" },
-        { name: "Γίνε Εθελοντής", href: "/volunteer" },
-        { name: "Φιλοξένησε ένα ζώο", href: "/foster" },
-        // { name: "Γίνε χορηγός ενός ζώου", href: "/sponsor" },
-    ],
-    about: [
-        { name: "Η Αποστολή μας", href: "/about" },
-        { name: "Blog", href: "/blog" },
-        { name: "Social", href: "/social" },
-    ],
-    help: [
-        { name: "Συχνές Ερωτήσεις", href: "/faq" },
-        { name: "Επικοινωνία", href: "/contact" },
-        { name: "Όροι & Προϋποθέσεις", href: "/terms" },
-    ],
-};
-
 export default function Footer() {
+    const t = useTranslations("footer");
+
+    const navigation = {
+        adopt: [
+            { name: t("nav.adopt.navItems.animals"), href: "/animals" },
+            { name: t("nav.adopt.navItems.adoptionProcess"), href: "/adopt/process" },
+            { name: t("nav.adopt.navItems.successStories"), href: "/stories" },
+        ],
+        support: [
+            { name: t("nav.support.navItems.donate"), href: "/donate" },
+            { name: t("nav.support.navItems.volunteer"), href: "/volunteer" },
+            { name: t("nav.support.navItems.foster"), href: "/foster" },
+        ],
+        about: [
+            { name: t("nav.about.navItems.ourMission"), href: "/about" },
+            { name: t("nav.about.navItems.blog"), href: "/blog" },
+            { name: t("nav.about.navItems.social"), href: "/social" },
+        ],
+        help: [
+            { name: t("nav.usefulLinks.navItems.faq"), href: "/faq" },
+            { name: t("nav.usefulLinks.navItems.contact"), href: "/contact" },
+            { name: t("nav.usefulLinks.navItems.terms"), href: "/terms" },
+        ],
+    };
+
     return (
         <footer className="bg-gray-900" aria-labelledby="footer-heading">
             <h2 id="footer-heading" className="sr-only">
@@ -41,10 +41,8 @@ export default function Footer() {
                     <div className="space-y-4">
                         <LogoLink />
                         <div className="space-y-2">
-                            <h3 className="text-xl text-white font-semibold leading-7 sm:text-inde">Ένωση Εθελοντών Αδέσποτων Χαλκίδας</h3>
-                            <p className="text-sm leading-6 text-gray-300">
-                                Οραματιζόμαστε μια πόλη χωρίς αδέσποτα όπου τα ζώα θα είναι ασφαλή και κάθε πολίτης θα σέβεται τα δικαιώματα τους.
-                            </p>
+                            <h3 className="text-xl text-white font-semibold leading-7 sm:text-inde">{t("groupName")}</h3>
+                            <p className="text-sm leading-6 text-gray-300">{t("tagline")}</p>
                         </div>
 
                         {/* Contact info */}
@@ -57,13 +55,13 @@ export default function Footer() {
                             </div>
                             <div className="flex items-start gap-2">
                                 <MapPin className="h-4 w-4 mt-0.5" />
-                                <span>Χαλκίδα, Ελλάδα</span>
+                                <span>{t("location")}</span>
                             </div>
                         </div>
 
                         {/* Social links */}
                         <div className="flex-wrap gap-16">
-                            <h4 className="py-2 text-lg text-white font-bold">We are Social</h4>
+                            <h4 className="py-2 text-lg text-white font-bold">{t("socialLinks.title")}</h4>
                             <div className="flex gap-4">
                                 <a href="https://facebook.com/ethelontesadespotwnchalkidas" className="text-gray-400 hover:text-pink-500 transition">
                                     <span className="sr-only">Facebook</span>
@@ -89,7 +87,7 @@ export default function Footer() {
                     <div className="mt-16 grid grid-cols-2 gap-8 xl:col-span-2 xl:mt-0">
                         <div className="md:grid md:grid-cols-2 md:gap-8">
                             <div>
-                                <h3 className="text-sm font-semibold leading-6 text-white">Υιοθέτησε</h3>
+                                <h3 className="text-sm font-semibold leading-6 text-white">{t("nav.adopt.title")}</h3>
                                 <ul role="list" className="mt-6 space-y-4">
                                     {navigation.adopt.map((item) => (
                                         <li key={item.name}>
@@ -101,7 +99,7 @@ export default function Footer() {
                                 </ul>
                             </div>
                             <div className="mt-10 md:mt-0">
-                                <h3 className="text-sm font-semibold leading-6 text-white">Στηρίξτε μας</h3>
+                                <h3 className="text-sm font-semibold leading-6 text-white">{t("nav.support.title")}</h3>
                                 <ul role="list" className="mt-6 space-y-4">
                                     {navigation.support.map((item) => (
                                         <li key={item.name}>
@@ -115,7 +113,7 @@ export default function Footer() {
                         </div>
                         <div className="md:grid md:grid-cols-2 md:gap-8">
                             <div>
-                                <h3 className="text-sm font-semibold leading-6 text-white">Σχετικά με εμάς</h3>
+                                <h3 className="text-sm font-semibold leading-6 text-white">{t("nav.about.title")}</h3>
                                 <ul role="list" className="mt-6 space-y-4">
                                     {navigation.about.map((item) => (
                                         <li key={item.name}>
@@ -127,7 +125,7 @@ export default function Footer() {
                                 </ul>
                             </div>
                             <div className="mt-10 md:mt-0">
-                                <h3 className="text-sm font-semibold leading-6 text-white">Χρήσιμοι Σύνδεσμοι</h3>
+                                <h3 className="text-sm font-semibold leading-6 text-white">{t("nav.usefulLinks.title")}</h3>
                                 <ul role="list" className="mt-6 space-y-4">
                                     {navigation.help.map((item) => (
                                         <li key={item.name}>
@@ -145,7 +143,9 @@ export default function Footer() {
                 {/* Bottom section */}
                 <div className="mt-16 border-t border-white/10 pt-8 sm:mt-20 lg:mt-24">
                     <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-between">
-                        <p className="text-xs leading-5 text-gray-400">© {new Date().getFullYear()} Ένωση Εθελοντών Αδέσποτων Χαλκίδας. All rights reserved.</p>
+                        <p className="text-xs leading-5 text-gray-400">
+                            © 2025 - {new Date().getFullYear()} {t("copyright")}
+                        </p>
                         <div className="flex items-center gap-2 text-xs text-gray-400">
                             Made with <Heart className="h-3 w-3 fill-pink-500 text-pink-500" /> for animals by
                             <Link href="https://negativeentropy.me" target="_blank" className="text-blue-500 hover:text-pink-500">

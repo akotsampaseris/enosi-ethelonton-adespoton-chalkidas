@@ -1,5 +1,5 @@
 import { client } from "@/sanity/lib/client";
-import FAQAccordion from "@/components/pages/faq/FaqAccordion";
+import FAQAccordion from "@/components/faq/FaqAccordion";
 
 import type { Metadata } from "next";
 import { defaultMetadata } from "@/assets/metadata";

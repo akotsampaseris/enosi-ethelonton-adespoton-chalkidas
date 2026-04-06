@@ -1,40 +1,43 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
 import { Heart, Home, Users, Stethoscope } from "lucide-react";
 
-const stats = [
-    {
-        icon: Heart,
-        value: "300+",
-        label: "Ζώα Διασώθηκαν",
-        description: "Αδέσποτα ζώα βρήκαν σπίτι και έφυγαν από τον δρόμο.",
-        color: "from-pink-500 to-rose-500",
-    },
-    {
-        icon: Home,
-        value: "150+",
-        label: "Επιτυχείς Υιοθεσίες",
-        description: "Αδέσποτα ζώα βρήκαν σπίτι και έφυγαν από τον δρόμο.",
-        color: "from-purple-500 to-pink-500",
-    },
-    {
-        icon: Stethoscope,
-        value: "1,000+",
-        label: "Ολοκληρωμένες Θεραπείες",
-        description: "Ιατρική φροντίδα σε χιλιάδες ζώα.",
-        color: "from-blue-500 to-purple-500",
-    },
-    {
-        icon: Users,
-        value: "50+",
-        label: "Ενεργοί Εθελοντές",
-        description: "Άνθρωποι που αφιερώνουν τον χρόνο τους στη φροντίδα των ζώων.",
-        color: "from-pink-500 to-purple-500",
-    },
-];
-
 export function ImpactStats() {
+    const t = useTranslations("home.impact");
+
+    const stats = [
+        {
+            icon: Heart,
+            value: "300+",
+            label: t("stats.animalsRescued.label"),
+            description: t("stats.animalsRescued.description"),
+            color: "from-pink-500 to-rose-500",
+        },
+        {
+            icon: Home,
+            value: "150+",
+            label: t("stats.adoptions.label"),
+            description: t("stats.adoptions.description"),
+            color: "from-purple-500 to-pink-500",
+        },
+        {
+            icon: Stethoscope,
+            value: "1,000+",
+            label: t("stats.animalTreatments.label"),
+            description: t("stats.animalTreatments.description"),
+            color: "from-blue-500 to-purple-500",
+        },
+        {
+            icon: Users,
+            value: "50+",
+            label: t("stats.activeVolunteers.label"),
+            description: t("stats.activeVolunteers.description"),
+            color: "from-pink-500 to-purple-500",
+        },
+    ];
+
     return (
         <section className="relative overflow-hidden bg-gradient-to-br from-pink-600 via-purple-600 to-pink-700 px-6 py-24 lg:px-8">
             {/* Background pattern */}
@@ -42,8 +45,8 @@ export function ImpactStats() {
 
             <div className="relative mx-auto max-w-7xl">
                 <motion.div className="text-center" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }}>
-                    <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">Η Δράση μας σε Αριθμούς</h2>
-                    <p className="mt-4 text-lg text-pink-100">Μαζί κάνουμε τη διαφορά στον δήμο μας.</p>
+                    <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">{t("title")}</h2>
+                    <p className="mt-4 text-lg text-pink-100">{t("subtitle")}</p>
                 </motion.div>
 
                 <div className="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
@@ -72,7 +75,7 @@ export function ImpactStats() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: 0.4 }}>
-                    <p className="text-lg text-white">Βοήθησε μας να φροντίσουμε περισσότερα ζωάκια που έχουν την ανάγκη μας.</p>
+                    <p className="text-lg text-white">{t("message")}</p>
                 </motion.div>
             </div>
         </section>

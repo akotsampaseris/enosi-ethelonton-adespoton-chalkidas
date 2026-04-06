@@ -1,0 +1,43 @@
+{
+    "groupName": "Chalkida Strays Volunteering Association",
+    "tagline": "We dream of a city without strays, where animals are safe and every citizen cares about their well-being.",
+    "location": "Chalkida, Greece",
+    "socialLinks": {
+        "title": "We are Social"
+    },
+    "nav": {
+        "adopt": {
+            "title": "Adopt",
+            "navItems": {
+                "animals": "Available Animals",
+                "adoptionProcess": "Adoption Process",
+                "successStories": "Success Stories"
+            }
+        },
+        "support": {
+            "title": "Support us",
+            "navItems": {
+                "donate": "Donate",
+                "volunteer": "Volunteer",
+                "foster": "Foster an Animal"
+            }
+        },
+        "about": {
+            "title": "About us",
+            "navItems": {
+                "ourMission": "Our Mission",
+                "blog": "Blog",
+                "social": "Social Media"
+            }
+        },
+        "usefulLinks": {
+            "title": "Useful Links",
+            "navItems": {
+                "faq": "FAQ",
+                "contact": "Contact",
+                "terms": "Terms & Conditions"
+            }
+        }
+    },
+    "copyright": "Chalkida Strays Volunteering Association. All rights reserved."
+}

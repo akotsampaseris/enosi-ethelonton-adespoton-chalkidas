@@ -1,8 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Link from "next/link";
-import AnimalCard from "./AnimalCard";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
+import AnimalCard from "../animals/AnimalCard";
 import type { Animal } from "@/types/animal";
 
 interface FeaturedAnimalsProps {
@@ -10,6 +11,7 @@ interface FeaturedAnimalsProps {
 }
 
 export function FeaturedAnimals({ animals }: FeaturedAnimalsProps) {
+    const t = useTranslations("home.featuredAnimals");
     const container = {
         hidden: { opacity: 0 },
         show: {
@@ -25,8 +27,8 @@ export function FeaturedAnimals({ animals }: FeaturedAnimalsProps) {
             <div className="mx-auto max-w-7xl">
                 <div className="text-center">
                     <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }}>
-                        <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Βρες τον νέο σου φίλο</h2>
-                        <p className="mt-4 text-lg text-gray-600">Τα ζωάκια που περιμένουν το παντοτινό τους σπίτι</p>
+                        <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">{t("title")}</h2>
+                        <p className="mt-4 text-lg text-gray-600">{t("subtitle")}</p>
                     </motion.div>
                 </div>
 
@@ -45,7 +47,7 @@ export function FeaturedAnimals({ animals }: FeaturedAnimalsProps) {
                     <Link
                         href="/animals"
                         className="inline-flex items-center gap-2 rounded-full border-2 border-pink-600 px-8 py-3 text-sm font-semibold text-pink-600 transition hover:bg-pink-50">
-                        Δες όλα τα ζωάκια
+                        {t("viewAllBtn")}
                         <span aria-hidden="true">→</span>
                     </Link>
                 </div>

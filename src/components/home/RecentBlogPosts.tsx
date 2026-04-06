@@ -1,50 +1,28 @@
-import { client } from "@/sanity/lib/client";
+"use client";
+
 import Image from "next/image";
-import Link from "next/link";
 import { Calendar } from "lucide-react";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import { formatDate } from "@/lib/utils";
 import { CategoryLabels } from "@/types/blogPost";
+import type { BlogPost } from "@/types/blogPost";
 
-interface BlogPost {
-    _id: string;
-    title: string;
-    slug: string;
-    excerpt: string;
-    mainImage: string;
-    publishedAt: string;
-    categories?: string[];
+interface RecentBlogPostsProps {
+    posts: BlogPost[];
 }
 
-async function getRecentPosts(): Promise<BlogPost[]> {
-    const query = `*[_type == "post"] | order(publishedAt desc)[0...3] {
-    _id,
-    title,
-    "slug": slug.current,
-    excerpt,
-    "mainImage": mainImage.asset->url,
-    publishedAt,
-    categories
-  }`;
-
-    const posts = await client.fetch(query);
-    return posts;
-}
-
-export default async function RecentBlogPosts() {
-    const posts = await getRecentPosts();
-
-    if (posts.length === 0) {
-        return null;
-    }
+export function RecentBlogPosts({ posts }: RecentBlogPostsProps) {
+    const t = useTranslations("home.recentPosts");
 
     return (
         <section className="py-20 bg-gray-50">
             <div className="container mx-auto max-w-6xl px-4">
                 {/* Header */}
                 <div className="text-center mb-12">
-                    <span className="inline-block bg-pink-100 text-pink-600 px-4 py-2 rounded-full text-sm font-semibold mb-4">Blog & Νέα</span>
-                    <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Τελευταίες Αναρτήσεις</h2>
-                    <p className="text-xl text-gray-600 max-w-2xl mx-auto">Διάβασε τα νέα μας, συμβουλές φροντίδας και ιστορίες διάσωσης</p>
+                    <span className="inline-block bg-pink-100 text-pink-600 px-4 py-2 rounded-full text-sm font-semibold mb-4">{t("badge")}</span>
+                    <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">{t("title")}</h2>
+                    <p className="text-xl text-gray-600 max-w-2xl mx-auto">{t("subtitle")}</p>
                 </div>
 
                 {/* Posts Grid */}
@@ -92,7 +70,7 @@ export default async function RecentBlogPosts() {
                     <Link
                         href="/blog"
                         className="inline-flex items-center gap-2 rounded-full border-2 border-pink-600 px-8 py-3 text-sm font-semibold text-pink-600 transition hover:bg-pink-50">
-                        Δες όλες τις αναρτήσεις
+                        {t("viewAllBtn")}
                         <span aria-hidden="true">→</span>
                     </Link>
                 </div>

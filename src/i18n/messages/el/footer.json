@@ -1,0 +1,43 @@
+{
+    "groupName": "Ένωση Εθελοντών Αδέσποτων Χαλκίδας",
+    "tagline": "Οραματιζόμαστε μια πόλη χωρίς αδέσποτα όπου τα ζώα θα είναι ασφαλή και κάθε πολίτης θα σέβεται τα δικαιώματα τους.",
+    "location": "Χαλκίδα, Ελλάδα",
+    "socialLinks": {
+        "title": "We are Social"
+    },
+    "nav": {
+        "adopt": {
+            "title": "Υιοθέτησε",
+            "navItems": {
+                "animals": "Διαθέσιμα Ζώα",
+                "adoptionProcess": "Διαδικασία Υιοθεσίας",
+                "successStories": "Ιστορίες Υιοθεσίας"
+            }
+        },
+        "support": {
+            "title": "Στηρίξτε μας",
+            "navItems": {
+                "donate": "Δωρεά",
+                "volunteer": "Γίνε Εθελοντής",
+                "foster": "Φιλοξένησε ένα ζώο"
+            }
+        },
+        "about": {
+            "title": "Σχετικά με εμάς",
+            "navItems": {
+                "ourMission": "Η Αποστολή μας",
+                "blog": "Blog",
+                "social": "Social Media"
+            }
+        },
+        "usefulLinks": {
+            "title": "Χρήσιμοι Σύνδεσμοι",
+            "navItems": {
+                "faq": "Συχνές Ερωτήσεις",
+                "contact": "Επικοινωνία",
+                "terms": "Όροι & Προϋποθέσεις"
+            }
+        }
+    },
+    "copyright": "Ένωση Εθελοντών Αδέσποτων Χαλκίδας. All rights reserved."
+}
